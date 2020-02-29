@@ -2,47 +2,227 @@
 # Jaws
 # -----------------------------------------------------
 
-#-------------------------MLC------------------------
+# #-------------------------MLC------------------------
 
 
-/gate/world/daughters/name            mlc_y
+/gate/world/daughters/name            mlc_system
 /gate/world/daughters/insert          box 
-/gate/mlc_y/setMaterial                Air
-/gate/mlc_y/geometry/setXLength        500 mm
-/gate/mlc_y/geometry/setYLength        500 mm
-/gate/mlc_y/geometry/setZLength        76.0 mm 
-/gate/mlc_y/placement/setTranslation   0.0 0.0 664.5 mm #(-335.5)
-/gate/mlc_y/vis/setVisible             0
+/gate/mlc_system/setMaterial                Air
+/gate/mlc_system/geometry/setXLength        1000 mm
+/gate/mlc_system/geometry/setYLength        1000 mm
+/gate/mlc_system/geometry/setZLength        76.0 mm 
+/gate/mlc_system/placement/setTranslation   0.0 0.0 664.5 mm #(-335.5)
+/gate/mlc_system/vis/setVisible             0
+/gate/mlc_system/vis/setColor                 green
 
-/gate/mlc_y/daughters/name              mlc_y1
-/gate/mlc_y/daughters/insert            box
-/gate/mlc_y1/setMaterial              Tungsten
-/gate/mlc_y1/geometry/setXLength      250 mm  	
-/gate/mlc_y1/geometry/setYLength      80 mm
-/gate/mlc_y1/geometry/setZLength      75 mm
-/gate/mlc_y1/placement/setTranslation 0 5 0 cm
-# /gate/jaws/placement/setRotationAxis  1 0 0
-# /gate/jaws/placement/setRotationAngle 37.5 deg
-/gate/mlc_y1/vis/setVisible           1
-/gate/mlc_y1/vis/setColor             magenta
+/gate/mlc_system/daughters/name            mlc_leaf
+/gate/mlc_system/daughters/insert          box 
+/gate/mlc_leaf/setMaterial                Air
+/gate/mlc_leaf/geometry/setXLength        400 mm
+/gate/mlc_leaf/geometry/setYLength        3 mm
+/gate/mlc_leaf/geometry/setZLength        75 mm 
+/gate/mlc_leaf/placement/setTranslation   -200.0 0.0 0.0 mm #(-335.5)
+/gate/mlc_leaf/vis/setVisible             0
+/gate/mlc_leaf/vis/setColor                 blue
 
-/gate/mlc_y/daughters/name                     mlc_y2
-/gate/mlc_y/daughters/insert                   box
-/gate/mlc_y2/setMaterial              Tungsten
-/gate/mlc_y2/geometry/setXLength      250 mm  
-/gate/mlc_y2/geometry/setYLength      80 mm
-/gate/mlc_y2/geometry/setZLength      75 mm
-/gate/mlc_y2/placement/setTranslation 0 -5 0 cm
-/gate/mlc_y2/vis/setVisible           1
-/gate/mlc_y2/vis/setColor             magenta
+
+/gate/mlc_leaf/daughters/name                      mlc_y0 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y0/setMaterial                  Tungsten 
+/gate/mlc_y0/geometry/setNarrowerXLength  163.5 mm 
+/gate/mlc_y0/geometry/setXLength          164.5 mm  
+/gate/mlc_y0/geometry/setYLength          5 mm 
+/gate/mlc_y0/geometry/setZLength          3 mm 
+/gate/mlc_y0/placement/setTranslation     112.0 0 30 mm 
+/gate/mlc_y0/placement/setRotationAxis    1 0 0  
+/gate/mlc_y0/placement/setRotationAngle   90 deg 
+/gate/mlc_y0/vis/setVisible               1 
+/gate/mlc_y0/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y1 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y1/setMaterial                  Tungsten 
+/gate/mlc_y1/geometry/setNarrowerXLength  164.5 mm 
+/gate/mlc_y1/geometry/setXLength          165.4 mm  
+/gate/mlc_y1/geometry/setYLength          5 mm 
+/gate/mlc_y1/geometry/setZLength          3 mm 
+/gate/mlc_y1/placement/setTranslation     112.475 0 25 mm 
+/gate/mlc_y1/placement/setRotationAxis    1 0 0  
+/gate/mlc_y1/placement/setRotationAngle   90 deg 
+/gate/mlc_y1/vis/setVisible               1 
+/gate/mlc_y1/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y2 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y2/setMaterial                  Tungsten 
+/gate/mlc_y2/geometry/setNarrowerXLength  165.4 mm 
+/gate/mlc_y2/geometry/setXLength          166.1 mm  
+/gate/mlc_y2/geometry/setYLength          5 mm 
+/gate/mlc_y2/geometry/setZLength          3 mm 
+/gate/mlc_y2/placement/setTranslation     112.875 0 20 mm 
+/gate/mlc_y2/placement/setRotationAxis    1 0 0  
+/gate/mlc_y2/placement/setRotationAngle   90 deg 
+/gate/mlc_y2/vis/setVisible               1 
+/gate/mlc_y2/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y3 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y3/setMaterial                  Tungsten 
+/gate/mlc_y3/geometry/setNarrowerXLength  166.1 mm 
+/gate/mlc_y3/geometry/setXLength          166.5 mm  
+/gate/mlc_y3/geometry/setYLength          5 mm 
+/gate/mlc_y3/geometry/setZLength          3 mm 
+/gate/mlc_y3/placement/setTranslation     113.15 0 15 mm 
+/gate/mlc_y3/placement/setRotationAxis    1 0 0  
+/gate/mlc_y3/placement/setRotationAngle   90 deg 
+/gate/mlc_y3/vis/setVisible               1 
+/gate/mlc_y3/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y4 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y4/setMaterial                  Tungsten 
+/gate/mlc_y4/geometry/setNarrowerXLength  166.5 mm 
+/gate/mlc_y4/geometry/setXLength          166.9 mm  
+/gate/mlc_y4/geometry/setYLength          5 mm 
+/gate/mlc_y4/geometry/setZLength          3 mm 
+/gate/mlc_y4/placement/setTranslation     113.35 0 10 mm 
+/gate/mlc_y4/placement/setRotationAxis    1 0 0  
+/gate/mlc_y4/placement/setRotationAngle   90 deg 
+/gate/mlc_y4/vis/setVisible               1 
+/gate/mlc_y4/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y5 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y5/setMaterial                  Tungsten 
+/gate/mlc_y5/geometry/setNarrowerXLength  166.9 mm 
+/gate/mlc_y5/geometry/setXLength          167.1 mm  
+/gate/mlc_y5/geometry/setYLength          5 mm 
+/gate/mlc_y5/geometry/setZLength          3 mm 
+/gate/mlc_y5/placement/setTranslation     113.5 0 5 mm 
+/gate/mlc_y5/placement/setRotationAxis    1 0 0  
+/gate/mlc_y5/placement/setRotationAngle   90 deg 
+/gate/mlc_y5/vis/setVisible               1 
+/gate/mlc_y5/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y6 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y6/setMaterial                  Tungsten 
+/gate/mlc_y6/geometry/setNarrowerXLength  167.1 mm 
+/gate/mlc_y6/geometry/setXLength          166.9 mm  
+/gate/mlc_y6/geometry/setYLength          5 mm 
+/gate/mlc_y6/geometry/setZLength          3 mm 
+/gate/mlc_y6/placement/setTranslation     113.5 0 0 mm 
+/gate/mlc_y6/placement/setRotationAxis    1 0 0  
+/gate/mlc_y6/placement/setRotationAngle   90 deg 
+/gate/mlc_y6/vis/setVisible               1 
+/gate/mlc_y6/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y7 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y7/setMaterial                  Tungsten 
+/gate/mlc_y7/geometry/setNarrowerXLength  166.9 mm 
+/gate/mlc_y7/geometry/setXLength          166.6 mm  
+/gate/mlc_y7/geometry/setYLength          5 mm 
+/gate/mlc_y7/geometry/setZLength          3 mm 
+/gate/mlc_y7/placement/setTranslation     113.375 0 -5 mm 
+/gate/mlc_y7/placement/setRotationAxis    1 0 0  
+/gate/mlc_y7/placement/setRotationAngle   90 deg 
+/gate/mlc_y7/vis/setVisible               1 
+/gate/mlc_y7/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y8 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y8/setMaterial                  Tungsten 
+/gate/mlc_y8/geometry/setNarrowerXLength  166.6 mm 
+/gate/mlc_y8/geometry/setXLength          166.2 mm  
+/gate/mlc_y8/geometry/setYLength          5 mm 
+/gate/mlc_y8/geometry/setZLength          3 mm 
+/gate/mlc_y8/placement/setTranslation     113.19999999999999 0 -10 mm 
+/gate/mlc_y8/placement/setRotationAxis    1 0 0  
+/gate/mlc_y8/placement/setRotationAngle   90 deg 
+/gate/mlc_y8/vis/setVisible               1 
+/gate/mlc_y8/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y9 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y9/setMaterial                  Tungsten 
+/gate/mlc_y9/geometry/setNarrowerXLength  166.2 mm 
+/gate/mlc_y9/geometry/setXLength          165.8 mm  
+/gate/mlc_y9/geometry/setYLength          5 mm 
+/gate/mlc_y9/geometry/setZLength          3 mm 
+/gate/mlc_y9/placement/setTranslation     113.0 0 -15 mm 
+/gate/mlc_y9/placement/setRotationAxis    1 0 0  
+/gate/mlc_y9/placement/setRotationAngle   90 deg 
+/gate/mlc_y9/vis/setVisible               1 
+/gate/mlc_y9/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y10 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y10/setMaterial                  Tungsten 
+/gate/mlc_y10/geometry/setNarrowerXLength  165.8 mm 
+/gate/mlc_y10/geometry/setXLength          165.2 mm  
+/gate/mlc_y10/geometry/setYLength          5 mm 
+/gate/mlc_y10/geometry/setZLength          3 mm 
+/gate/mlc_y10/placement/setTranslation     112.75 0 -20 mm 
+/gate/mlc_y10/placement/setRotationAxis    1 0 0  
+/gate/mlc_y10/placement/setRotationAngle   90 deg 
+/gate/mlc_y10/vis/setVisible               1 
+/gate/mlc_y10/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y11 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y11/setMaterial                  Tungsten 
+/gate/mlc_y11/geometry/setNarrowerXLength  165.2 mm 
+/gate/mlc_y11/geometry/setXLength          164.3 mm  
+/gate/mlc_y11/geometry/setYLength          5 mm 
+/gate/mlc_y11/geometry/setZLength          3 mm 
+/gate/mlc_y11/placement/setTranslation     112.375 0 -25 mm 
+/gate/mlc_y11/placement/setRotationAxis    1 0 0  
+/gate/mlc_y11/placement/setRotationAngle   90 deg 
+/gate/mlc_y11/vis/setVisible               1 
+/gate/mlc_y11/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y12 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y12/setMaterial                  Tungsten 
+/gate/mlc_y12/geometry/setNarrowerXLength  164.3 mm 
+/gate/mlc_y12/geometry/setXLength          163.1 mm  
+/gate/mlc_y12/geometry/setYLength          5 mm 
+/gate/mlc_y12/geometry/setZLength          3 mm 
+/gate/mlc_y12/placement/setTranslation     111.85 0 -30 mm 
+/gate/mlc_y12/placement/setRotationAxis    1 0 0  
+/gate/mlc_y12/placement/setRotationAngle   90 deg 
+/gate/mlc_y12/vis/setVisible               1 
+/gate/mlc_y12/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y13 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y13/setMaterial                  Tungsten 
+/gate/mlc_y13/geometry/setNarrowerXLength  163.1 mm 
+/gate/mlc_y13/geometry/setXLength          162.0 mm  
+/gate/mlc_y13/geometry/setYLength          5 mm 
+/gate/mlc_y13/geometry/setZLength          3 mm 
+/gate/mlc_y13/placement/setTranslation     111.275 0 -35 mm 
+/gate/mlc_y13/placement/setRotationAxis    1 0 0  
+/gate/mlc_y13/placement/setRotationAngle   90 deg 
+/gate/mlc_y13/vis/setVisible               1 
+/gate/mlc_y13/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y14 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y14/setMaterial                  Tungsten 
+/gate/mlc_y14/geometry/setNarrowerXLength  162.0 mm 
+/gate/mlc_y14/geometry/setXLength          160.5 mm  
+/gate/mlc_y14/geometry/setYLength          5 mm 
+/gate/mlc_y14/geometry/setZLength          3 mm 
+/gate/mlc_y14/placement/setTranslation     110.625 0 -40 mm 
+/gate/mlc_y14/placement/setRotationAxis    1 0 0  
+/gate/mlc_y14/placement/setRotationAngle   90 deg 
+/gate/mlc_y14/vis/setVisible               1 
+/gate/mlc_y14/vis/setColor                 magenta 
+
+
+# /gate/mlc_leaf/repeaters/insert linear
+# /gate/mlc_leaf/linear/setRepeatNumber 80
+# /gate/mlc_leaf/linear/setRepeatVector 0. 3 0. mm
+
+/gate/mlc_leaf/repeaters/insert		genericRepeater
+/gate/mlc_leaf/genericRepeater/setPlacementsFilename	data/leafedge.txt
+/gate/mlc_leaf/genericRepeater/useRelativeTranslation	0
 
 #-------------------------JawsY------------------------
 
 /gate/world/daughters/name            jaws_y
 /gate/world/daughters/insert          box
 /gate/jaws_y/setMaterial                Air
-/gate/jaws_y/geometry/setXLength        500 mm
-/gate/jaws_y/geometry/setYLength        500 mm
+/gate/jaws_y/geometry/setXLength        800 mm
+/gate/jaws_y/geometry/setYLength        800 mm
 /gate/jaws_y/geometry/setZLength        31.0 mm 
 /gate/jaws_y/placement/setTranslation   0.0 0.0 589 mm #(-411)
 /gate/jaws_y/vis/setVisible             0
@@ -50,10 +230,10 @@
 /gate/jaws_y/daughters/name              jaws_y1
 /gate/jaws_y/daughters/insert            box
 /gate/jaws_y1/setMaterial              Tungsten
-/gate/jaws_y1/geometry/setXLength      250 mm  	
-/gate/jaws_y1/geometry/setYLength      80 mm
+/gate/jaws_y1/geometry/setXLength      8 cm  	
+/gate/jaws_y1/geometry/setYLength      30 cm
 /gate/jaws_y1/geometry/setZLength      30 mm
-/gate/jaws_y1/placement/setTranslation 0 5 0 cm
+/gate/jaws_y1/placement/setTranslation 6 0 0 cm
 # /gate/jaws/placement/setRotationAxis  1 0 0
 # /gate/jaws/placement/setRotationAngle 37.5 deg
 /gate/jaws_y1/vis/setVisible           1
@@ -62,10 +242,10 @@
 /gate/jaws_y/daughters/name                     jaws_y2
 /gate/jaws_y/daughters/insert                   box
 /gate/jaws_y2/setMaterial              Tungsten
-/gate/jaws_y2/geometry/setXLength      250 mm  
-/gate/jaws_y2/geometry/setYLength      80 mm
+/gate/jaws_y2/geometry/setXLength      8 cm 
+/gate/jaws_y2/geometry/setYLength      30 cm
 /gate/jaws_y2/geometry/setZLength      30 mm
-/gate/jaws_y2/placement/setTranslation 0 -5 0 cm
+/gate/jaws_y2/placement/setTranslation -6 0 0 cm
 /gate/jaws_y2/vis/setVisible           1
 /gate/jaws_y2/vis/setColor             green
 
@@ -74,8 +254,8 @@
 /gate/world/daughters/name            jaws_x
 /gate/world/daughters/insert          box
 /gate/jaws_x/setMaterial                Air
-/gate/jaws_x/geometry/setXLength        500 mm
-/gate/jaws_x/geometry/setYLength        500 mm
+/gate/jaws_x/geometry/setXLength        800 mm
+/gate/jaws_x/geometry/setYLength        800 mm
 /gate/jaws_x/geometry/setZLength        79.0 mm 
 /gate/jaws_x/placement/setTranslation   0.0 0.0 530 mm #(-470)
 /gate/jaws_x/vis/setVisible             0
@@ -83,10 +263,10 @@
 /gate/jaws_x/daughters/name              jaws_x1
 /gate/jaws_x/daughters/insert            box
 /gate/jaws_x1/setMaterial              Tungsten
-/gate/jaws_x1/geometry/setXLength      78 mm  	
-/gate/jaws_x1/geometry/setYLength      250 mm
+/gate/jaws_x1/geometry/setXLength      30 cm  	
+/gate/jaws_x1/geometry/setYLength      8 cm
 /gate/jaws_x1/geometry/setZLength      78 mm
-/gate/jaws_x1/placement/setTranslation 5 0 0 cm
+/gate/jaws_x1/placement/setTranslation 0 5 0 cm
 # /gate/jaws/placement/setRotationAxis  1 0 0
 # /gate/jaws/placement/setRotationAngle 37.5 deg
 /gate/jaws_x1/vis/setVisible           1
@@ -95,9 +275,9 @@
 /gate/jaws_x/daughters/name                     jaws_x2
 /gate/jaws_x/daughters/insert                   box
 /gate/jaws_x2/setMaterial              Tungsten
-/gate/jaws_x2/geometry/setXLength      78 mm  
-/gate/jaws_x2/geometry/setYLength      250 mm
+/gate/jaws_x2/geometry/setXLength      30 cm  
+/gate/jaws_x2/geometry/setYLength      8 cm
 /gate/jaws_x2/geometry/setZLength      78 mm
-/gate/jaws_x2/placement/setTranslation -5 0 0 cm
+/gate/jaws_x2/placement/setTranslation 0 -5 0 cm
 /gate/jaws_x2/vis/setVisible           1
 /gate/jaws_x2/vis/setColor             red
