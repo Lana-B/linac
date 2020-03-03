@@ -57,8 +57,7 @@
 # /gate/physics/processes/Compton/activateSplitting gamma 100
 # /gate/physics/processes/Compton/addFilter         volumeFilter secondaries
 # /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume        linac
-# /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume        primary_collimator
-# /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume        flattening_filter
+
 #=====================================================
 # DETECTORS
 #=====================================================
@@ -116,12 +115,7 @@
 
 # Bremsstrahlung splitting : generate 100 photon (if below 100 MeV) with weight 1/100
 /process/em/setSecBiasing eBrem target 100 100 MeV
-# /process/em/setSecBiasing compt world 1000 100 MeV
-/process/em/setSecBiasing compt linac 1000 100 MeV
-# /process/em/setSecBiasing compt primary_collimator 1000 100 MeV
-# /process/em/setSecBiasing compt flattening_filter 1000 100 MeV
-# /process/em/setSecBiasing compt back_scatter_plate 1000 100 MeV
-# /process/em/setSecBiasing compt mirror 1000 100 MeV
+/process/em/setSecBiasing compt linac 100 100 MeV
 
 #=====================================================
 # BEAMS

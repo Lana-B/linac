@@ -394,66 +394,108 @@
 
 #-------------------------JawsY------------------------
 
-/gate/world/daughters/name            jaws_y
+/gate/world/daughters/name            jaws_y1Vol
 /gate/world/daughters/insert          box
-/gate/jaws_y/setMaterial                Air
-/gate/jaws_y/geometry/setXLength        800 mm
-/gate/jaws_y/geometry/setYLength        800 mm
-/gate/jaws_y/geometry/setZLength        31.0 mm 
-/gate/jaws_y/placement/setTranslation   0.0 0.0 589 mm #(-411)
-/gate/jaws_y/vis/setVisible             0
+/gate/jaws_y1Vol/setMaterial                Air
+/gate/jaws_y1Vol/geometry/setXLength      25 cm  	
+/gate/jaws_y1Vol/geometry/setYLength      30 cm
+/gate/jaws_y1Vol/geometry/setZLength      3 cm
+/gate/jaws_y1Vol/placement/setTranslation   -250.0 0.0 589 mm #(-411)
+/gate/jaws_y1Vol/vis/setVisible             1
+/gate/jaws_y1Vol/vis/setColor             red 
 
-/gate/jaws_y/daughters/name              jaws_y1
-/gate/jaws_y/daughters/insert            box
+
+/gate/jaws_y1Vol/daughters/name              jaws_y1
+/gate/jaws_y1Vol/daughters/insert            wedge
 /gate/jaws_y1/setMaterial              Tungsten
-/gate/jaws_y1/geometry/setXLength      8 cm  	
-/gate/jaws_y1/geometry/setYLength      30 cm
-/gate/jaws_y1/geometry/setZLength      30 mm
-/gate/jaws_y1/placement/setTranslation 6 0 0 cm
-# /gate/jaws/placement/setRotationAxis  1 0 0
-# /gate/jaws/placement/setRotationAngle 37.5 deg
+/gate/jaws_y1/geometry/setNarrowerXLength  18 cm 
+/gate/jaws_y1/geometry/setXLength      20 cm  	
+/gate/jaws_y1/geometry/setYLength      3 cm
+/gate/jaws_y1/geometry/setZLength      30 cm
 /gate/jaws_y1/vis/setVisible           1
-/gate/jaws_y1/vis/setColor             green
+/gate/jaws_y1/vis/setColor             green 
+/gate/jaws_y1/placement/setTranslation 0 0 0 cm
+/gate/jaws_y1/placement/setRotationAxis  1 0 0
+/gate/jaws_y1/placement/setRotationAngle 270 deg
 
-/gate/jaws_y/daughters/name                     jaws_y2
-/gate/jaws_y/daughters/insert                   box
+/gate/world/daughters/name            jaws_y2Vol
+/gate/world/daughters/insert          box
+/gate/jaws_y2Vol/setMaterial                Air
+/gate/jaws_y2Vol/geometry/setXLength      25 cm  	
+/gate/jaws_y2Vol/geometry/setYLength      30 cm
+/gate/jaws_y2Vol/geometry/setZLength      3 cm
+/gate/jaws_y2Vol/placement/setTranslation   250.0 0.0 589 mm #(-411)
+/gate/jaws_y2Vol/vis/setVisible             1
+/gate/jaws_y2Vol/vis/setColor             blue 
+/gate/jaws_y2Vol/placement/setRotationAxis  1 0 0
+/gate/jaws_y2Vol/placement/setRotationAngle 90 deg
+
+/gate/jaws_y2Vol/daughters/name              jaws_y2
+/gate/jaws_y2Vol/daughters/insert            wedge
 /gate/jaws_y2/setMaterial              Tungsten
-/gate/jaws_y2/geometry/setXLength      8 cm 
-/gate/jaws_y2/geometry/setYLength      30 cm
-/gate/jaws_y2/geometry/setZLength      30 mm
-/gate/jaws_y2/placement/setTranslation -6 0 0 cm
+/gate/jaws_y2/geometry/setNarrowerXLength  18 cm 
+/gate/jaws_y2/geometry/setXLength      20 cm  	
+/gate/jaws_y2/geometry/setYLength      3 cm
+/gate/jaws_y2/geometry/setZLength      30 cm
 /gate/jaws_y2/vis/setVisible           1
-/gate/jaws_y2/vis/setColor             green
+/gate/jaws_y2/vis/setColor             cyan 
+/gate/jaws_y2/placement/setRotationAxis  0 0 1
+/gate/jaws_y2/placement/setRotationAngle 180 deg
+
+# /gate/jaws_y2/placement/setRotationAxis  1 0 0
+# /gate/jaws_y2/placement/setRotationAngle 90 deg
+/gate/jaws_y2/placement/setTranslation 0 0 0  cm
+
+
+# /gate/jaws_y/daughters/name              jaws_y1
+# /gate/jaws_y/daughters/insert            box
+# /gate/jaws_y1/setMaterial              Tungsten
+# /gate/jaws_y1/geometry/setXLength      8 cm  	
+# /gate/jaws_y1/geometry/setYLength      30 cm
+# /gate/jaws_y1/geometry/setZLength      30 mm
+# /gate/jaws_y1/placement/setTranslation 6 0 0 cm
+# /gate/jaws_y1/vis/setVisible           1
+# /gate/jaws_y1/vis/setColor             green
+
+# /gate/jaws_y/daughters/name                     jaws_y2
+# /gate/jaws_y/daughters/insert                   box
+# /gate/jaws_y2/setMaterial              Tungsten
+# /gate/jaws_y2/geometry/setXLength      8 cm 
+# /gate/jaws_y2/geometry/setYLength      30 cm
+# /gate/jaws_y2/geometry/setZLength      30 mm
+# /gate/jaws_y2/placement/setTranslation -6 0 0 cm
+# /gate/jaws_y2/vis/setVisible           1
+# /gate/jaws_y2/vis/setColor             green
 
 #-------------------------JawsX------------------------
 
-/gate/world/daughters/name            jaws_x
-/gate/world/daughters/insert          box
-/gate/jaws_x/setMaterial                Air
-/gate/jaws_x/geometry/setXLength        800 mm
-/gate/jaws_x/geometry/setYLength        800 mm
-/gate/jaws_x/geometry/setZLength        79.0 mm 
-/gate/jaws_x/placement/setTranslation   0.0 0.0 530 mm #(-470)
-/gate/jaws_x/vis/setVisible             0
+# /gate/world/daughters/name            jaws_x
+# /gate/world/daughters/insert          box
+# /gate/jaws_x/setMaterial                Air
+# /gate/jaws_x/geometry/setXLength        800 mm
+# /gate/jaws_x/geometry/setYLength        800 mm
+# /gate/jaws_x/geometry/setZLength        79.0 mm 
+# /gate/jaws_x/placement/setTranslation   0.0 0.0 530 mm #(-470)
+# /gate/jaws_x/vis/setVisible             0
 
-/gate/jaws_x/daughters/name              jaws_x1
-/gate/jaws_x/daughters/insert            box
-/gate/jaws_x1/setMaterial              Tungsten
-/gate/jaws_x1/geometry/setXLength      30 cm  	
-/gate/jaws_x1/geometry/setYLength      8 cm
-/gate/jaws_x1/geometry/setZLength      78 mm
-/gate/jaws_x1/placement/setTranslation 0 5 0 cm
-# /gate/jaws/placement/setRotationAxis  1 0 0
-# /gate/jaws/placement/setRotationAngle 37.5 deg
-/gate/jaws_x1/vis/setVisible           1
-/gate/jaws_x1/vis/setColor             red
+# /gate/jaws_x/daughters/name              jaws_x1
+# /gate/jaws_x/daughters/insert            box
+# /gate/jaws_x1/setMaterial              Tungsten
+# /gate/jaws_x1/geometry/setXLength      30 cm  	
+# /gate/jaws_x1/geometry/setYLength      8 cm
+# /gate/jaws_x1/geometry/setZLength      78 mm
+# /gate/jaws_x1/placement/setTranslation 0 5 0 cm
+# # /gate/jaws/placement/setRotationAxis  1 0 0
+# # /gate/jaws/placement/setRotationAngle 37.5 deg
+# /gate/jaws_x1/vis/setVisible           1
+# /gate/jaws_x1/vis/setColor             red
 
-/gate/jaws_x/daughters/name                     jaws_x2
-/gate/jaws_x/daughters/insert                   box
-/gate/jaws_x2/setMaterial              Tungsten
-/gate/jaws_x2/geometry/setXLength      30 cm  
-/gate/jaws_x2/geometry/setYLength      8 cm
-/gate/jaws_x2/geometry/setZLength      78 mm
-/gate/jaws_x2/placement/setTranslation 0 -5 0 cm
-/gate/jaws_x2/vis/setVisible           1
-/gate/jaws_x2/vis/setColor             red
+# /gate/jaws_x/daughters/name                     jaws_x2
+# /gate/jaws_x/daughters/insert                   box
+# /gate/jaws_x2/setMaterial              Tungsten
+# /gate/jaws_x2/geometry/setXLength      30 cm  
+# /gate/jaws_x2/geometry/setYLength      8 cm
+# /gate/jaws_x2/geometry/setZLength      78 mm
+# /gate/jaws_x2/placement/setTranslation 0 -5 0 cm
+# /gate/jaws_x2/vis/setVisible           1
+# /gate/jaws_x2/vis/setColor             red
