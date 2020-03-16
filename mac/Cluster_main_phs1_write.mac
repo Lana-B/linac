@@ -15,7 +15,7 @@
 # GEOMETRY
 # =====================================================
 
-/gate/geometry/setMaterialDatabase data/GateMaterials.db
+/gate/geometry/setMaterialDatabase GateMaterials.db
 
 # WORLD
 /gate/world/setMaterial            Air
@@ -27,7 +27,7 @@
 # LINAC HEAD
 # World origin is in the center of the beam e- source (not the real
 # isocenter of the gantry room)
-/gate/geometry/setMaterialDatabase data/LinacMaterials.db
+/gate/geometry/setMaterialDatabase LinacMaterials.db
 /control/execute mac/linac_head.mac
 
 # VIRTUAL PLANE FOR PHASE SPACE
@@ -57,7 +57,6 @@
 /gate/physics/Electron/SetCutInRegion   world 1 mm
 /gate/physics/Positron/SetCutInRegion   world 1 mm
 
-
 /gate/physics/Gamma/SetCutInRegion      primary_collimator 0.5 mm
 /gate/physics/Electron/SetCutInRegion   primary_collimator 0.5 mm
 /gate/physics/Positron/SetCutInRegion   primary_collimator 0.5 mm
@@ -74,16 +73,9 @@
 /gate/physics/Electron/SetCutInRegion   mirror 0.5 mm
 /gate/physics/Positron/SetCutInRegion   mirror 0.5 mm
 
-# /gate/physics/addProcess Bremsstrahlung
-# /gate/physics/processes/Bremsstrahlung/setModel StandardModel e-
-# /gate/physics/processes/Bremsstrahlung/setModel StandardModel e+
-# /gate/physics/processes/Bremsstrahlung/activateSplitting e- 20
-# /gate/physics/processes/Bremsstrahlung/addFilter volumeFilter secondaries
-# /gate/physics/processes/Bremsstrahlung/secondaries/volumeFilter/addVolume target
-
 /gate/physics/addProcess Compton
 /gate/physics/processes/Compton/setModel StandardModel gamma
-/gate/physics/processes/Compton/activateSplitting gamma 100
+/gate/physics/processes/Compton/activateSplitting gamma 50
 /gate/physics/processes/Compton/addFilter volumeFilter secondaries
 /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume flattening_filter
 
@@ -106,57 +98,38 @@
 /gate/actor/killer2/attachTo  kill_box_bottom2
 
 # ----------------------------------------------------
-# the following actor regularly store the current number of
-# event/track/step in a file
-
-/gate/actor/addActor               SimulationStatisticActor stat
-/gate/actor/stat/save              output/output-writePhS-stat.txt
-/gate/actor/stat/saveEveryNSeconds 20
-
-# ----------------------------------------------------
 # Phase space storage (a PhS for gamma, another for e-)
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_g
 /gate/actor/PhS_g/attachTo                   PhS_Plane
-/gate/actor/PhS_g/save 	                     output/output-lana-PhS-gb.root
+/gate/actor/PhS_g/save 	                     output-lana-PhS1-g.root
 /gate/actor/PhS_g/enableParticleName         false
-/gate/actor/PhS_g/enableProductionVolume     false
-/gate/actor/PhS_g/enableProductionProcess    false
+/gate/actor/PhS_g/enableProductionVolume     true
+/gate/actor/PhS_g/enableProductionProcess    true
 /gate/actor/PhS_g/useVolumeFrame             true
 /gate/actor/PhS_g/addFilter                  particleFilter
 /gate/actor/PhS_g/particleFilter/addParticle gamma
 /gate/actor/PhS_g/enableZPosition            true
-#/gate/actor/PhS_g/saveEveryNSeconds          20
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_e
 /gate/actor/PhS_e/attachTo                   PhS_Plane
-/gate/actor/PhS_e/save 	                     output/output-lana-PhS-eb.root
+/gate/actor/PhS_e/save 	                     output-lana-PhS1-e.root
 /gate/actor/PhS_e/enableParticleName         false
-/gate/actor/PhS_e/enableProductionVolume     false
-/gate/actor/PhS_e/enableProductionProcess    false
+/gate/actor/PhS_e/enableProductionVolume     true
+/gate/actor/PhS_e/enableProductionProcess    true
 /gate/actor/PhS_e/useVolumeFrame             true
 /gate/actor/PhS_e/addFilter                  particleFilter
 /gate/actor/PhS_e/particleFilter/addParticle e-
 /gate/actor/PhS_e/particleFilter/addParticle e+
 /gate/actor/PhS_e/enableZPosition            true
-# /gate/actor/PhS_e/saveEveryNSeconds          20
 
 #=====================================================
 # INITIALISATION
 #=====================================================
 
-
 /gate/run/initialize
 # Bremsstrahlung splitting : generate 100 photon (if below 100 MeV) with weight 1/100
-
-# /process/em/setSecBiasing eBrem target 20 100 MeV
-# /process/em/setSecBiasing compt flattening_filter 100 100 MeV
-
-# /process/em/setSecBiasing compt linac 1000 100 MeV
-# /process/em/setSecBiasing compt world 1000 100 MeV
-# /process/em/setSecBiasing compt primary_collimator 1000 100 MeV
-# /process/em/setSecBiasing compt back_scatter_plate 1000 100 MeV
-# /process/em/setSecBiasing compt mirror 1000 100 MeV
+/process/em/setSecBiasing eBrem target 50 100 MeV
 
 #====================================================
 # BEAMS
@@ -185,14 +158,11 @@
 #=====================================================
 
 /gate/random/setEngineName MersenneTwister
-/gate/random/setEngineSeed auto
+/gate/random/setEngineSeed 123456
 /gate/application/noGlobalOutput
 
-#/tracking/verbose 2
 
 /gate/application/setTotalNumberOfPrimaries 1000000
 /gate/application/start
 
 
-/gate/physics/processList Enabled
-/gate/physics/processList Initialized

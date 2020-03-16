@@ -67,8 +67,6 @@
 # Jaws
 /control/execute mac/linac_jaws.mac
 
-
-
 /gate/world/daughters/name                   PhS_Plane_Two
 /gate/world/daughters/insert                 box
 /gate/PhS_Plane_Two/setMaterial              Vacuum
@@ -89,17 +87,33 @@
 /gate/physics/Electron/SetCutInRegion   world 1 mm
 /gate/physics/Positron/SetCutInRegion   world 1 mm
 
-# /gate/physics/Gamma/SetCutInRegion      mlc_y 0.001 mm
-# /gate/physics/Electron/SetCutInRegion   mlc_y 0.001 mm
-# /gate/physics/Positron/SetCutInRegion   mlc_y 0.001 mm
+/gate/physics/Gamma/SetCutInRegion      mlc_leaf 0.001 mm
+/gate/physics/Electron/SetCutInRegion   mlc_leaf 0.001 mm
+/gate/physics/Positron/SetCutInRegion   mlc_leaf 0.001 mm
+
+/gate/physics/Gamma/SetCutInRegion      jaws_y1 0.001 mm
+/gate/physics/Electron/SetCutInRegion   jaws_y1 0.001 mm
+/gate/physics/Positron/SetCutInRegion   jaws_y1 0.001 mm
+
+/gate/physics/Gamma/SetCutInRegion      jaws_y2 0.001 mm
+/gate/physics/Electron/SetCutInRegion   jaws_y2 0.001 mm
+/gate/physics/Positron/SetCutInRegion   jaws_y2 0.001 mm
+
+/gate/physics/Gamma/SetCutInRegion      jaws_x1 0.001 mm
+/gate/physics/Electron/SetCutInRegion   jaws_x1 0.001 mm
+/gate/physics/Positron/SetCutInRegion   jaws_x1 0.001 mm
+
+/gate/physics/Gamma/SetCutInRegion      jaws_x2 0.001 mm
+/gate/physics/Electron/SetCutInRegion   jaws_x2 0.001 mm
+/gate/physics/Positron/SetCutInRegion   jaws_x2 0.001 mm
 
 # /gate/physics/Gamma/SetCutInRegion      waterbox 0.5 mm
 # /gate/physics/Electron/SetCutInRegion   waterbox 0.5 mm
 # /gate/physics/Positron/SetCutInRegion   waterbox 0.5 mm
 
-# /gate/physics/addProcess Compton
-# /gate/physics/processes/Compton/setModel StandardModel gamma
-# /gate/physics/processes/Compton/activateSplitting gamma 100
+/gate/physics/addProcess Compton
+/gate/physics/processes/Compton/setModel StandardModel gamma
+/gate/physics/processes/Compton/activateSplitting gamma 20
 
 #=====================================================
 # DETECTORS
@@ -109,9 +123,9 @@
 # the following actor regularly store the current number of
 # event/track/step in a file
 
-/gate/actor/addActor               SimulationStatisticActor stat
-/gate/actor/stat/save              output/output-readPhS-stat.txt
-/gate/actor/stat/saveEveryNSeconds 10
+# /gate/actor/addActor               SimulationStatisticActor stat
+# /gate/actor/stat/save              output/output-readPhS-stat.txt
+# /gate/actor/stat/saveEveryNSeconds 10
 
 # ----------------------------------------------------
 # the following actor stores 3D Dose/Edep distributions
@@ -119,37 +133,38 @@
 # ----------------------------------------------------
 # Phase space storage (a PhS for gamma, another for e-)
 
-# /gate/actor/addActor                         PhaseSpaceActor PhS_g
-# /gate/actor/PhS_g/attachTo                   PhS_Plane_Two
-# /gate/actor/PhS_g/save 	                     output/output-lana2-PhS-g.root
-# /gate/actor/PhS_g/enableParticleName         false
-# /gate/actor/PhS_g/enableProductionVolume     false
-# /gate/actor/PhS_g/enableProductionProcess    false
-# /gate/actor/PhS_g/useVolumeFrame             true
-# /gate/actor/PhS_g/addFilter                  particleFilter
-# /gate/actor/PhS_g/particleFilter/addParticle gamma
-# /gate/actor/PhS_g/enableZPosition            true
+/gate/actor/addActor                         PhaseSpaceActor PhS_g
+/gate/actor/PhS_g/attachTo                   PhS_Plane_Two
+/gate/actor/PhS_g/save 	                     output/output-lana2-PhS-g.root
+/gate/actor/PhS_g/enableParticleName         false
+/gate/actor/PhS_g/enableProductionVolume     false
+/gate/actor/PhS_g/enableProductionProcess    false
+/gate/actor/PhS_g/useVolumeFrame             true
+/gate/actor/PhS_g/addFilter                  particleFilter
+/gate/actor/PhS_g/particleFilter/addParticle gamma
+/gate/actor/PhS_g/enableZPosition            true
 # #/gate/actor/PhS_g/saveEveryNSeconds          20
 
-# /gate/actor/addActor                         PhaseSpaceActor PhS_e
-# /gate/actor/PhS_e/attachTo                   PhS_Plane_Two
-# /gate/actor/PhS_e/save 	                     output/output-lana2-PhS-e.root
-# /gate/actor/PhS_e/enableParticleName         false
-# /gate/actor/PhS_e/enableProductionVolume     false
-# /gate/actor/PhS_e/enableProductionProcess    false
-# /gate/actor/PhS_e/useVolumeFrame             true
-# /gate/actor/PhS_e/addFilter                  particleFilter
-# /gate/actor/PhS_e/particleFilter/addParticle e-
-# /gate/actor/PhS_e/particleFilter/addParticle e+
-# /gate/actor/PhS_e/enableZPosition            true
+/gate/actor/addActor                         PhaseSpaceActor PhS_e
+/gate/actor/PhS_e/attachTo                   PhS_Plane_Two
+/gate/actor/PhS_e/save 	                     output/output-lana2-PhS-e.root
+/gate/actor/PhS_e/enableParticleName         false
+/gate/actor/PhS_e/enableProductionVolume     false
+/gate/actor/PhS_e/enableProductionProcess    false
+/gate/actor/PhS_e/useVolumeFrame             true
+/gate/actor/PhS_e/addFilter                  particleFilter
+/gate/actor/PhS_e/particleFilter/addParticle e-
+/gate/actor/PhS_e/particleFilter/addParticle e+
+/gate/actor/PhS_e/enableZPosition            true
 # /gate/actor/PhS_e/saveEveryNSeconds          20
 #=====================================================
 # INITIALISATION
 #=====================================================
 
 /gate/run/initialize
-# /process/em/setSecBiasing compt world 10 100 MeV
-# /process/em/setSecBiasing compt mlc_y2 100 100 MeV
+
+# /process/em/setSecBiasing compt world 100 100 MeV
+# /process/em/setSecBiasing compt mlc_leaf 100 100 MeV
 # /process/em/setSecBiasing compt jaw_y1 100 100 MeV
 # /process/em/setSecBiasing compt jaw_y2 100 100 MeV
 # /process/em/setSecBiasing compt jaw_x1 100 100 MeV
@@ -181,7 +196,7 @@
 
 #/tracking/verbose 2
 
-/gate/application/setTotalNumberOfPrimaries 100
+/gate/application/setTotalNumberOfPrimaries 5982
 /gate/application/start
 
 
