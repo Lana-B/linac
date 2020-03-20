@@ -118,7 +118,7 @@
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_g
 /gate/actor/PhS_g/attachTo                   PhS_Plane
-/gate/actor/PhS_g/save 	                     output/output-lana-PhS-gb.root
+/gate/actor/PhS_g/save 	                     output/output-lana-PhS-gb2.root
 /gate/actor/PhS_g/enableParticleName         false
 /gate/actor/PhS_g/enableProductionVolume     false
 /gate/actor/PhS_g/enableProductionProcess    false
@@ -130,7 +130,7 @@
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_e
 /gate/actor/PhS_e/attachTo                   PhS_Plane
-/gate/actor/PhS_e/save 	                     output/output-lana-PhS-eb.root
+/gate/actor/PhS_e/save 	                     output/output-lana-PhS-eb2.root
 /gate/actor/PhS_e/enableParticleName         false
 /gate/actor/PhS_e/enableProductionVolume     false
 /gate/actor/PhS_e/enableProductionProcess    false
@@ -190,7 +190,7 @@
 
 #/tracking/verbose 2
 
-/gate/application/setTotalNumberOfPrimaries 1000000
+/gate/application/setTotalNumberOfPrimaries 10000000
 /gate/application/start
 
 

@@ -221,7 +221,7 @@
 /gate/mlc_y0_kill/geometry/setYLength          5 mm 
 /gate/mlc_y0_kill/geometry/setZLength          3 mm 
 /gate/mlc_y0_kill/placement/setTranslation     -3 0 0 mm 
-/gate/mlc_y0_kill/vis/setVisible               0 
+/gate/mlc_y0_kill/vis/setVisible               1 
 /gate/mlc_y0_kill/vis/setColor                 white 
 /gate/mlc_y1/daughters/name                      mlc_y1_kill 
 /gate/mlc_y1/daughters/insert                      wedge 
@@ -231,7 +231,7 @@
 /gate/mlc_y1_kill/geometry/setYLength          5 mm 
 /gate/mlc_y1_kill/geometry/setZLength          3 mm 
 /gate/mlc_y1_kill/placement/setTranslation     -3 0 0 mm 
-/gate/mlc_y1_kill/vis/setVisible               0 
+/gate/mlc_y1_kill/vis/setVisible               1 
 /gate/mlc_y1_kill/vis/setColor                 white 
 /gate/mlc_y2/daughters/name                      mlc_y2_kill 
 /gate/mlc_y2/daughters/insert                      wedge 
@@ -241,7 +241,7 @@
 /gate/mlc_y2_kill/geometry/setYLength          5 mm 
 /gate/mlc_y2_kill/geometry/setZLength          3 mm 
 /gate/mlc_y2_kill/placement/setTranslation     -3 0 0 mm 
-/gate/mlc_y2_kill/vis/setVisible               0 
+/gate/mlc_y2_kill/vis/setVisible               1 
 /gate/mlc_y2_kill/vis/setColor                 white 
 /gate/mlc_y3/daughters/name                      mlc_y3_kill 
 /gate/mlc_y3/daughters/insert                      wedge 
@@ -251,7 +251,7 @@
 /gate/mlc_y3_kill/geometry/setYLength          5 mm 
 /gate/mlc_y3_kill/geometry/setZLength          3 mm 
 /gate/mlc_y3_kill/placement/setTranslation     -3 0 0 mm 
-/gate/mlc_y3_kill/vis/setVisible               0 
+/gate/mlc_y3_kill/vis/setVisible               1 
 /gate/mlc_y3_kill/vis/setColor                 white 
 /gate/mlc_y4/daughters/name                      mlc_y4_kill 
 /gate/mlc_y4/daughters/insert                      wedge 
@@ -261,7 +261,7 @@
 /gate/mlc_y4_kill/geometry/setYLength          5 mm 
 /gate/mlc_y4_kill/geometry/setZLength          3 mm 
 /gate/mlc_y4_kill/placement/setTranslation     -3 0 0 mm 
-/gate/mlc_y4_kill/vis/setVisible               0 
+/gate/mlc_y4_kill/vis/setVisible               1 
 /gate/mlc_y4_kill/vis/setColor                 white 
 /gate/mlc_y5/daughters/name                      mlc_y5_kill 
 /gate/mlc_y5/daughters/insert                      wedge 
@@ -271,7 +271,7 @@
 /gate/mlc_y5_kill/geometry/setYLength          5 mm 
 /gate/mlc_y5_kill/geometry/setZLength          3 mm 
 /gate/mlc_y5_kill/placement/setTranslation     -3 0 0 mm 
-/gate/mlc_y5_kill/vis/setVisible               0 
+/gate/mlc_y5_kill/vis/setVisible               1 
 /gate/mlc_y5_kill/vis/setColor                 white 
 /gate/mlc_y6/daughters/name                      mlc_y6_kill 
 /gate/mlc_y6/daughters/insert                      wedge 
@@ -281,7 +281,7 @@
 /gate/mlc_y6_kill/geometry/setYLength          5 mm 
 /gate/mlc_y6_kill/geometry/setZLength          3 mm 
 /gate/mlc_y6_kill/placement/setTranslation     -3 0 0 mm 
-/gate/mlc_y6_kill/vis/setVisible               0 
+/gate/mlc_y6_kill/vis/setVisible               1 
 /gate/mlc_y6_kill/vis/setColor                 white 
 /gate/mlc_y7/daughters/name                      mlc_y7_kill 
 /gate/mlc_y7/daughters/insert                      wedge 
@@ -291,7 +291,7 @@
 /gate/mlc_y7_kill/geometry/setYLength          5 mm 
 /gate/mlc_y7_kill/geometry/setZLength          3 mm 
 /gate/mlc_y7_kill/placement/setTranslation     -3 0 0 mm 
-/gate/mlc_y7_kill/vis/setVisible               0 
+/gate/mlc_y7_kill/vis/setVisible               1 
 /gate/mlc_y7_kill/vis/setColor                 white 
 /gate/mlc_y8/daughters/name                      mlc_y8_kill 
 /gate/mlc_y8/daughters/insert                      wedge 
@@ -301,7 +301,7 @@
 /gate/mlc_y8_kill/geometry/setYLength          5 mm 
 /gate/mlc_y8_kill/geometry/setZLength          3 mm 
 /gate/mlc_y8_kill/placement/setTranslation     -3 0 0 mm 
-/gate/mlc_y8_kill/vis/setVisible               0 
+/gate/mlc_y8_kill/vis/setVisible               1 
 /gate/mlc_y8_kill/vis/setColor                 white 
 /gate/mlc_y9/daughters/name                      mlc_y9_kill 
 /gate/mlc_y9/daughters/insert                      wedge 
@@ -311,7 +311,7 @@
 /gate/mlc_y9_kill/geometry/setYLength          5 mm 
 /gate/mlc_y9_kill/geometry/setZLength          3 mm 
 /gate/mlc_y9_kill/placement/setTranslation     -3 0 0 mm 
-/gate/mlc_y9_kill/vis/setVisible               0 
+/gate/mlc_y9_kill/vis/setVisible               1 
 /gate/mlc_y9_kill/vis/setColor                 white 
 /gate/mlc_y10/daughters/name                      mlc_y10_kill 
 /gate/mlc_y10/daughters/insert                      wedge 
@@ -321,7 +321,7 @@
 /gate/mlc_y10_kill/geometry/setYLength          5 mm 
 /gate/mlc_y10_kill/geometry/setZLength          3 mm 
 /gate/mlc_y10_kill/placement/setTranslation     -3 0 0 mm 
-/gate/mlc_y10_kill/vis/setVisible               0 
+/gate/mlc_y10_kill/vis/setVisible               1 
 /gate/mlc_y10_kill/vis/setColor                 white 
 /gate/mlc_y11/daughters/name                      mlc_y11_kill 
 /gate/mlc_y11/daughters/insert                      wedge 
@@ -331,7 +331,7 @@
 /gate/mlc_y11_kill/geometry/setYLength          5 mm 
 /gate/mlc_y11_kill/geometry/setZLength          3 mm 
 /gate/mlc_y11_kill/placement/setTranslation     -3 0 0 mm 
-/gate/mlc_y11_kill/vis/setVisible               0 
+/gate/mlc_y11_kill/vis/setVisible               1 
 /gate/mlc_y11_kill/vis/setColor                 white 
 /gate/mlc_y12/daughters/name                      mlc_y12_kill 
 /gate/mlc_y12/daughters/insert                      wedge 
@@ -341,7 +341,7 @@
 /gate/mlc_y12_kill/geometry/setYLength          5 mm 
 /gate/mlc_y12_kill/geometry/setZLength          3 mm 
 /gate/mlc_y12_kill/placement/setTranslation     -3 0 0 mm 
-/gate/mlc_y12_kill/vis/setVisible               0 
+/gate/mlc_y12_kill/vis/setVisible               1 
 /gate/mlc_y12_kill/vis/setColor                 white 
 /gate/mlc_y13/daughters/name                      mlc_y13_kill 
 /gate/mlc_y13/daughters/insert                      wedge 
@@ -351,7 +351,7 @@
 /gate/mlc_y13_kill/geometry/setYLength          5 mm 
 /gate/mlc_y13_kill/geometry/setZLength          3 mm 
 /gate/mlc_y13_kill/placement/setTranslation     -3 0 0 mm 
-/gate/mlc_y13_kill/vis/setVisible               0 
+/gate/mlc_y13_kill/vis/setVisible               1 
 /gate/mlc_y13_kill/vis/setColor                 white 
 /gate/mlc_y14/daughters/name                      mlc_y14_kill 
 /gate/mlc_y14/daughters/insert                      wedge 
@@ -361,30 +361,30 @@
 /gate/mlc_y14_kill/geometry/setYLength          5 mm 
 /gate/mlc_y14_kill/geometry/setZLength          3 mm 
 /gate/mlc_y14_kill/placement/setTranslation     -3 0 0 mm 
-/gate/mlc_y14_kill/vis/setVisible               0 
+/gate/mlc_y14_kill/vis/setVisible               1 
 /gate/mlc_y14_kill/vis/setColor                 white 
 
 
 
-# /gate/actor/addActor   KillActor                         MyActor 
-# /gate/actor/MyActor/save                                 MyOutputFile.txt
-# /gate/actor/MyActor/attachTo                             mlc_leaf 
-# /gate/actor/MyActor/addFilter                            volumeFilter 
-# /gate/actor/MyActor/volumeFilter/addVolume mlc_y0_kill
-# /gate/actor/MyActor/volumeFilter/addVolume mlc_y1_kill
-# /gate/actor/MyActor/volumeFilter/addVolume mlc_y2_kill
-# /gate/actor/MyActor/volumeFilter/addVolume mlc_y3_kill
-# /gate/actor/MyActor/volumeFilter/addVolume mlc_y4_kill
-# /gate/actor/MyActor/volumeFilter/addVolume mlc_y5_kill
-# /gate/actor/MyActor/volumeFilter/addVolume mlc_y6_kill
-# /gate/actor/MyActor/volumeFilter/addVolume mlc_y7_kill
-# /gate/actor/MyActor/volumeFilter/addVolume mlc_y8_kill
-# /gate/actor/MyActor/volumeFilter/addVolume mlc_y9_kill
-# /gate/actor/MyActor/volumeFilter/addVolume mlc_y10_kill
-# /gate/actor/MyActor/volumeFilter/addVolume mlc_y11_kill
-# /gate/actor/MyActor/volumeFilter/addVolume mlc_y12_kill
-# /gate/actor/MyActor/volumeFilter/addVolume mlc_y13_kill
-# /gate/actor/MyActor/volumeFilter/addVolume mlc_y14_kill
+/gate/actor/addActor   KillActor                         MyActor 
+/gate/actor/MyActor/save                                 MyOutputFile.txt
+/gate/actor/MyActor/attachTo                             mlc_leaf 
+/gate/actor/MyActor/addFilter                            volumeFilter 
+/gate/actor/MyActor/volumeFilter/addVolume mlc_y0_kill
+/gate/actor/MyActor/volumeFilter/addVolume mlc_y1_kill
+/gate/actor/MyActor/volumeFilter/addVolume mlc_y2_kill
+/gate/actor/MyActor/volumeFilter/addVolume mlc_y3_kill
+/gate/actor/MyActor/volumeFilter/addVolume mlc_y4_kill
+/gate/actor/MyActor/volumeFilter/addVolume mlc_y5_kill
+/gate/actor/MyActor/volumeFilter/addVolume mlc_y6_kill
+/gate/actor/MyActor/volumeFilter/addVolume mlc_y7_kill
+/gate/actor/MyActor/volumeFilter/addVolume mlc_y8_kill
+/gate/actor/MyActor/volumeFilter/addVolume mlc_y9_kill
+/gate/actor/MyActor/volumeFilter/addVolume mlc_y10_kill
+/gate/actor/MyActor/volumeFilter/addVolume mlc_y11_kill
+/gate/actor/MyActor/volumeFilter/addVolume mlc_y12_kill
+/gate/actor/MyActor/volumeFilter/addVolume mlc_y13_kill
+/gate/actor/MyActor/volumeFilter/addVolume mlc_y14_kill
 
 
 
