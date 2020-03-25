@@ -9,7 +9,7 @@
 # VISUALISATION
 #=====================================================
 
-# /control/execute mac/visu.mac
+/control/execute mac/visu.mac
 
 # =====================================================
 # GEOMETRY
@@ -190,7 +190,7 @@
 
 #/tracking/verbose 2
 
-/gate/application/setTotalNumberOfPrimaries 10000000
+/gate/application/setTotalNumberOfPrimaries 1000
 /gate/application/start
 
 
