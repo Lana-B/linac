@@ -368,7 +368,7 @@
 
 
 /gate/actor/addActor   KillActor                         KillInsides 
-/gate/actor/KillInsides/save                                 MyOutputFile.txt
+# /gate/actor/KillInsides/save                                 MyOutputFile.txt
 /gate/actor/KillInsides/attachTo                             mlc_leaf 
 /gate/actor/KillInsides/addFilter                            volumeFilter 
 /gate/actor/KillInsides/volumeFilter/addVolume mlc_y0_kill
@@ -608,26 +608,26 @@
 
 
 /gate/actor/addActor   KillActor                         KillInsides2 
-/gate/actor/KillInsides2/save                            MyOutputFile2.txt
+# /gate/actor/KillInsides2/save                            MyOutputFile2.txt
 /gate/actor/KillInsides2/attachTo                        jaws_y1Vol 
 /gate/actor/KillInsides2/addFilter                       volumeFilter 
 /gate/actor/KillInsides2/volumeFilter/addVolume          jaws_y1_kill
 
 
 /gate/actor/addActor   KillActor                         KillInsides4 
-/gate/actor/KillInsides4/save                            MyOutputFile4.txt
+# /gate/actor/KillInsides4/save                            MyOutputFile4.txt
 /gate/actor/KillInsides4/attachTo                        jaws_y2Vol 
 /gate/actor/KillInsides4/addFilter                       volumeFilter 
 /gate/actor/KillInsides4/volumeFilter/addVolume          jaws_y2_kill
 
 /gate/actor/addActor   KillActor                         KillInsides3
-/gate/actor/KillInsides3/save                            MyOutputFile3.txt
+# /gate/actor/KillInsides3/save                            MyOutputFile3.txt
 /gate/actor/KillInsides3/attachTo                        jaws_x1Vol 
 /gate/actor/KillInsides3/addFilter                       volumeFilter 
 /gate/actor/KillInsides3/volumeFilter/addVolume          jaws_x1_kill
 
 /gate/actor/addActor   KillActor                         KillInsides5 
-/gate/actor/KillInsides5/save                            MyOutputFile5.txt
+# /gate/actor/KillInsides5/save                            MyOutputFile5.txt
 /gate/actor/KillInsides5/attachTo                        jaws_x2Vol 
 /gate/actor/KillInsides5/addFilter                       volumeFilter 
 /gate/actor/KillInsides5/volumeFilter/addVolume          jaws_x2_kill
