@@ -9,7 +9,7 @@
 # VISUALISATION
 #=====================================================
 
-/control/execute mac/visu.mac
+# /control/execute mac/visu.mac
 
 # =====================================================
 # GEOMETRY

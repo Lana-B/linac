@@ -429,9 +429,9 @@
 /gate/jaws_y1/daughters/name              jaws_y1_kill
 /gate/jaws_y1/daughters/insert            wedge
 /gate/jaws_y1_kill/setMaterial              Tungsten
-/gate/jaws_y1_kill/geometry/setNarrowerXLength  18.85 cm 
-/gate/jaws_y1_kill/geometry/setXLength      19 cm  	
-/gate/jaws_y1_kill/geometry/setYLength      2 cm
+/gate/jaws_y1_kill/geometry/setNarrowerXLength  17.85 cm 
+/gate/jaws_y1_kill/geometry/setXLength      18 cm  	
+/gate/jaws_y1_kill/geometry/setYLength      2.5 cm
 /gate/jaws_y1_kill/geometry/setZLength      29 cm
 /gate/jaws_y1_kill/vis/setVisible           1
 /gate/jaws_y1_kill/vis/setColor             white 
@@ -467,9 +467,9 @@
 /gate/jaws_y2/daughters/name              jaws_y2_kill
 /gate/jaws_y2/daughters/insert            wedge
 /gate/jaws_y2_kill/setMaterial              Tungsten
-/gate/jaws_y2_kill/geometry/setNarrowerXLength  18.85 cm 
-/gate/jaws_y2_kill/geometry/setXLength      19 cm  	
-/gate/jaws_y2_kill/geometry/setYLength      2 cm
+/gate/jaws_y2_kill/geometry/setNarrowerXLength  17.85 cm 
+/gate/jaws_y2_kill/geometry/setXLength      18 cm  	
+/gate/jaws_y2_kill/geometry/setYLength      2.5 cm
 /gate/jaws_y2_kill/geometry/setZLength      29 cm
 /gate/jaws_y2_kill/vis/setVisible           1
 /gate/jaws_y2_kill/vis/setColor             white 
@@ -538,12 +538,12 @@
 
 /gate/jaws_x1/daughters/name              jaws_x1_kill
 /gate/jaws_x1/daughters/insert            wedge
-/gate/jaws_x1_kill/setMaterial              Vacuum
-/gate/jaws_x1_kill/geometry/setNarrowerXLength      13.61 cm  	
-/gate/jaws_x1_kill/geometry/setXLength      14 cm  	
-/gate/jaws_x1_kill/geometry/setYLength      5 mm
+/gate/jaws_x1_kill/setMaterial              Tungsten
+/gate/jaws_x1_kill/geometry/setNarrowerXLength      15.61 cm  	
+/gate/jaws_x1_kill/geometry/setXLength      16 cm  	
+/gate/jaws_x1_kill/geometry/setYLength      1 mm
 /gate/jaws_x1_kill/geometry/setZLength      29 cm
-/gate/jaws_x1_kill/placement/setTranslation 0 -3.3 0 cm
+/gate/jaws_x1_kill/placement/setTranslation 0 -3.7 0 cm
 /gate/jaws_x1_kill/vis/setVisible           1
 /gate/jaws_x1_kill/vis/setColor             white
 # /gate/jaws_x1_kill/placement/setRotationAxis  0 1 0
@@ -576,12 +576,12 @@
 
 /gate/jaws_x2/daughters/name                     jaws_x2_kill
 /gate/jaws_x2/daughters/insert                   wedge
-/gate/jaws_x2_kill/setMaterial              Vacuum
-/gate/jaws_x2_kill/geometry/setNarrowerXLength      13.61 cm  	
-/gate/jaws_x2_kill/geometry/setXLength      14 cm  	
-/gate/jaws_x2_kill/geometry/setYLength      5 mm
+/gate/jaws_x2_kill/setMaterial              Tungsten
+/gate/jaws_x2_kill/geometry/setNarrowerXLength      15.61 cm  	
+/gate/jaws_x2_kill/geometry/setXLength      16 cm  	
+/gate/jaws_x2_kill/geometry/setYLength      1 mm
 /gate/jaws_x2_kill/geometry/setZLength      29 cm
-/gate/jaws_x2_kill/placement/setTranslation 0 -3.3 0 cm
+/gate/jaws_x2_kill/placement/setTranslation 0 -3.7 0 cm
 /gate/jaws_x2_kill/vis/setVisible           1
 /gate/jaws_x2_kill/vis/setColor             white
 # /gate/jaws_x2_kill/placement/setRotationAxis  0 1 0
@@ -629,7 +629,7 @@
 /gate/actor/addActor   KillActor                         KillInsides5 
 /gate/actor/KillInsides5/save                            MyOutputFile5.txt
 /gate/actor/KillInsides5/attachTo                        jaws_x2Vol 
-/gate/actor/KillInside5s/addFilter                       volumeFilter 
+/gate/actor/KillInsides5/addFilter                       volumeFilter 
 /gate/actor/KillInsides5/volumeFilter/addVolume          jaws_x2_kill
 
 
