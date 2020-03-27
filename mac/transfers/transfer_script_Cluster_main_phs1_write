@@ -1,0 +1,5 @@
+#!/bin/sh 
+/usr/bin/time --verbose /usr/bin/hdfs dfs -copyFromLocal *.root /user/lb8075/Cluster_main_phs1_write  
+/usr/bin/hdfs dfs -copyFromLocal *.txt /user/lb8075/Cluster_main_phs1_write  
+rm *.root  
+rm *.txt   

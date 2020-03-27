@@ -1,0 +1,20 @@
+universe = vanilla
+getenv = false
+environment = SINGULARITY_CACHEDIR=.
+Executable     = /hdfs/user/lb8075/gateSingularityImage/gateExecScriptSing.sh
+transfer_input_files = transfers/transfer_script_ClusterAllOne_main_phs2_test, data/GateMaterials.db, Materials.xml, data/leafedge.txt
+request_cpus = 1
+request_memory = 120
+when_to_transfer_output = on_exit_or_evict
++SingularityImage = "docker://opengatecollaboration/gate"
++PostCmd        = "transfer_script_ClusterAllOne_main_phs2_test" 
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs2_test1.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs2_test/ClusterAllOne_main_phs2_test1.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs2_test/ClusterAllOne_main_phs2_test1.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs2_test/ClusterAllOne_main_phs2_test1.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs2_test2.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs2_test/ClusterAllOne_main_phs2_test2.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs2_test/ClusterAllOne_main_phs2_test2.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs2_test/ClusterAllOne_main_phs2_test2.log
+Queue
