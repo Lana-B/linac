@@ -18,7 +18,7 @@
 /gate/world/geometry/setXLength 0.80 m
 /gate/world/geometry/setYLength 0.80 m
 /gate/world/geometry/setZLength 2.1 m
-/gate/world/vis/setVisible 1
+/gate/world/vis/setVisible 0
 /gate/world/daughters/name linacGantry
 /gate/world/daughters/insert box
 /gate/linacGantry/setMaterial Air
@@ -27,7 +27,7 @@
 /gate/linacGantry/geometry/setZLength 1.0 mm
 /gate/linacGantry/placement/setRotationAxis 0 1 0
 /gate/linacGantry/placement/setRotationAngle 0 deg
-/gate/linacGantry/vis/setVisible 1
+/gate/linacGantry/vis/setVisible 0
 /gate/linacGantry/daughters/name linac
 /gate/linacGantry/daughters/insert box
 /gate/linac/setMaterial Air
@@ -35,7 +35,7 @@
 /gate/linac/geometry/setYLength 1.0 mm
 /gate/linac/geometry/setZLength 1.0 mm
 /gate/linac/placement/setTranslation 0 0 1000 mm
-/gate/linac/vis/setVisible 1
+/gate/linac/vis/setVisible 0
 /gate/linac/daughters/name PhS_Plane
 /gate/linac/daughters/insert cylinder
 /gate/PhS_Plane/setMaterial Vacuum
@@ -44,7 +44,7 @@
 /gate/PhS_Plane/geometry/setHeight 1 nm
 /gate/PhS_Plane/placement/setTranslation 0.0 0.0 -297 mm
 /gate/PhS_Plane/vis/setColor white
-/gate/PhS_Plane/vis/setVisible 1
+/gate/PhS_Plane/vis/setVisible 0
 /gate/world/daughters/name mlc_system
 /gate/world/daughters/insert box
 /gate/mlc_system/setMaterial Air
@@ -73,7 +73,7 @@
 /gate/mlc_y0/placement/setTranslation 98.725 0 30 mm
 /gate/mlc_y0/placement/setRotationAxis 1 0 0
 /gate/mlc_y0/placement/setRotationAngle 90 deg
-/gate/mlc_y0/vis/setVisible 1
+/gate/mlc_y0/vis/setVisible 0
 /gate/mlc_y0/vis/setColor magenta
 /gate/mlc_leaf/daughters/name mlc_y1
 /gate/mlc_leaf/daughters/insert wedge
@@ -85,7 +85,7 @@
 /gate/mlc_y1/placement/setTranslation 99.19999999999999 0 25 mm
 /gate/mlc_y1/placement/setRotationAxis 1 0 0
 /gate/mlc_y1/placement/setRotationAngle 90 deg
-/gate/mlc_y1/vis/setVisible 1
+/gate/mlc_y1/vis/setVisible 0
 /gate/mlc_y1/vis/setColor magenta
 /gate/mlc_leaf/daughters/name mlc_y2
 /gate/mlc_leaf/daughters/insert wedge
@@ -97,7 +97,7 @@
 /gate/mlc_y2/placement/setTranslation 99.6 0 20 mm
 /gate/mlc_y2/placement/setRotationAxis 1 0 0
 /gate/mlc_y2/placement/setRotationAngle 90 deg
-/gate/mlc_y2/vis/setVisible 1
+/gate/mlc_y2/vis/setVisible 0
 /gate/mlc_y2/vis/setColor magenta
 /gate/mlc_leaf/daughters/name mlc_y3
 /gate/mlc_leaf/daughters/insert wedge
@@ -109,7 +109,7 @@
 /gate/mlc_y3/placement/setTranslation 99.875 0 15 mm
 /gate/mlc_y3/placement/setRotationAxis 1 0 0
 /gate/mlc_y3/placement/setRotationAngle 90 deg
-/gate/mlc_y3/vis/setVisible 1
+/gate/mlc_y3/vis/setVisible 0
 /gate/mlc_y3/vis/setColor magenta
 /gate/mlc_leaf/daughters/name mlc_y4
 /gate/mlc_leaf/daughters/insert wedge
@@ -121,7 +121,7 @@
 /gate/mlc_y4/placement/setTranslation 100.07499999999999 0 10 mm
 /gate/mlc_y4/placement/setRotationAxis 1 0 0
 /gate/mlc_y4/placement/setRotationAngle 90 deg
-/gate/mlc_y4/vis/setVisible 1
+/gate/mlc_y4/vis/setVisible 0
 /gate/mlc_y4/vis/setColor magenta
 /gate/mlc_leaf/daughters/name mlc_y5
 /gate/mlc_leaf/daughters/insert wedge
@@ -133,7 +133,7 @@
 /gate/mlc_y5/placement/setTranslation 100.225 0 5 mm
 /gate/mlc_y5/placement/setRotationAxis 1 0 0
 /gate/mlc_y5/placement/setRotationAngle 90 deg
-/gate/mlc_y5/vis/setVisible 1
+/gate/mlc_y5/vis/setVisible 0
 /gate/mlc_y5/vis/setColor magenta
 /gate/mlc_leaf/daughters/name mlc_y6
 /gate/mlc_leaf/daughters/insert wedge
@@ -145,7 +145,7 @@
 /gate/mlc_y6/placement/setTranslation 100.225 0 0 mm
 /gate/mlc_y6/placement/setRotationAxis 1 0 0
 /gate/mlc_y6/placement/setRotationAngle 90 deg
-/gate/mlc_y6/vis/setVisible 1
+/gate/mlc_y6/vis/setVisible 0
 /gate/mlc_y6/vis/setColor magenta
 /gate/mlc_leaf/daughters/name mlc_y7
 /gate/mlc_leaf/daughters/insert wedge
@@ -157,7 +157,7 @@
 /gate/mlc_y7/placement/setTranslation 100.1 0 -5 mm
 /gate/mlc_y7/placement/setRotationAxis 1 0 0
 /gate/mlc_y7/placement/setRotationAngle 90 deg
-/gate/mlc_y7/vis/setVisible 1
+/gate/mlc_y7/vis/setVisible 0
 /gate/mlc_y7/vis/setColor magenta
 /gate/mlc_leaf/daughters/name mlc_y8
 /gate/mlc_leaf/daughters/insert wedge
@@ -169,7 +169,7 @@
 /gate/mlc_y8/placement/setTranslation 99.92499999999998 0 -10 mm
 /gate/mlc_y8/placement/setRotationAxis 1 0 0
 /gate/mlc_y8/placement/setRotationAngle 90 deg
-/gate/mlc_y8/vis/setVisible 1
+/gate/mlc_y8/vis/setVisible 0
 /gate/mlc_y8/vis/setColor magenta
 /gate/mlc_leaf/daughters/name mlc_y9
 /gate/mlc_leaf/daughters/insert wedge
@@ -181,7 +181,7 @@
 /gate/mlc_y9/placement/setTranslation 99.725 0 -15 mm
 /gate/mlc_y9/placement/setRotationAxis 1 0 0
 /gate/mlc_y9/placement/setRotationAngle 90 deg
-/gate/mlc_y9/vis/setVisible 1
+/gate/mlc_y9/vis/setVisible 0
 /gate/mlc_y9/vis/setColor magenta
 /gate/mlc_leaf/daughters/name mlc_y10
 /gate/mlc_leaf/daughters/insert wedge
@@ -193,7 +193,7 @@
 /gate/mlc_y10/placement/setTranslation 99.475 0 -20 mm
 /gate/mlc_y10/placement/setRotationAxis 1 0 0
 /gate/mlc_y10/placement/setRotationAngle 90 deg
-/gate/mlc_y10/vis/setVisible 1
+/gate/mlc_y10/vis/setVisible 0
 /gate/mlc_y10/vis/setColor magenta
 /gate/mlc_leaf/daughters/name mlc_y11
 /gate/mlc_leaf/daughters/insert wedge
@@ -205,7 +205,7 @@
 /gate/mlc_y11/placement/setTranslation 99.1 0 -25 mm
 /gate/mlc_y11/placement/setRotationAxis 1 0 0
 /gate/mlc_y11/placement/setRotationAngle 90 deg
-/gate/mlc_y11/vis/setVisible 1
+/gate/mlc_y11/vis/setVisible 0
 /gate/mlc_y11/vis/setColor magenta
 /gate/mlc_leaf/daughters/name mlc_y12
 /gate/mlc_leaf/daughters/insert wedge
@@ -217,7 +217,7 @@
 /gate/mlc_y12/placement/setTranslation 98.57499999999999 0 -30 mm
 /gate/mlc_y12/placement/setRotationAxis 1 0 0
 /gate/mlc_y12/placement/setRotationAngle 90 deg
-/gate/mlc_y12/vis/setVisible 1
+/gate/mlc_y12/vis/setVisible 0
 /gate/mlc_y12/vis/setColor magenta
 /gate/mlc_leaf/daughters/name mlc_y13
 /gate/mlc_leaf/daughters/insert wedge
@@ -229,7 +229,7 @@
 /gate/mlc_y13/placement/setTranslation 98.0 0 -35 mm
 /gate/mlc_y13/placement/setRotationAxis 1 0 0
 /gate/mlc_y13/placement/setRotationAngle 90 deg
-/gate/mlc_y13/vis/setVisible 1
+/gate/mlc_y13/vis/setVisible 0
 /gate/mlc_y13/vis/setColor magenta
 /gate/mlc_leaf/daughters/name mlc_y14
 /gate/mlc_leaf/daughters/insert wedge
@@ -241,7 +241,7 @@
 /gate/mlc_y14/placement/setTranslation 97.35 0 -40 mm
 /gate/mlc_y14/placement/setRotationAxis 1 0 0
 /gate/mlc_y14/placement/setRotationAngle 90 deg
-/gate/mlc_y14/vis/setVisible 1
+/gate/mlc_y14/vis/setVisible 0
 /gate/mlc_y14/vis/setColor magenta
 /gate/mlc_y0/daughters/name mlc_y0_kill
 /gate/mlc_y0/daughters/insert wedge
@@ -251,7 +251,7 @@
 /gate/mlc_y0_kill/geometry/setYLength 5 mm
 /gate/mlc_y0_kill/geometry/setZLength 3 mm
 /gate/mlc_y0_kill/placement/setTranslation -5 0 0 mm
-/gate/mlc_y0_kill/vis/setVisible 1
+/gate/mlc_y0_kill/vis/setVisible 0
 /gate/mlc_y0_kill/vis/setColor white
 /gate/mlc_y1/daughters/name mlc_y1_kill
 /gate/mlc_y1/daughters/insert wedge
@@ -261,7 +261,7 @@
 /gate/mlc_y1_kill/geometry/setYLength 5 mm
 /gate/mlc_y1_kill/geometry/setZLength 3 mm
 /gate/mlc_y1_kill/placement/setTranslation -5 0 0 mm
-/gate/mlc_y1_kill/vis/setVisible 1
+/gate/mlc_y1_kill/vis/setVisible 0
 /gate/mlc_y1_kill/vis/setColor white
 /gate/mlc_y2/daughters/name mlc_y2_kill
 /gate/mlc_y2/daughters/insert wedge
@@ -271,7 +271,7 @@
 /gate/mlc_y2_kill/geometry/setYLength 5 mm
 /gate/mlc_y2_kill/geometry/setZLength 3 mm
 /gate/mlc_y2_kill/placement/setTranslation -5 0 0 mm
-/gate/mlc_y2_kill/vis/setVisible 1
+/gate/mlc_y2_kill/vis/setVisible 0
 /gate/mlc_y2_kill/vis/setColor white
 /gate/mlc_y3/daughters/name mlc_y3_kill
 /gate/mlc_y3/daughters/insert wedge
@@ -281,7 +281,7 @@
 /gate/mlc_y3_kill/geometry/setYLength 5 mm
 /gate/mlc_y3_kill/geometry/setZLength 3 mm
 /gate/mlc_y3_kill/placement/setTranslation -5 0 0 mm
-/gate/mlc_y3_kill/vis/setVisible 1
+/gate/mlc_y3_kill/vis/setVisible 0
 /gate/mlc_y3_kill/vis/setColor white
 /gate/mlc_y4/daughters/name mlc_y4_kill
 /gate/mlc_y4/daughters/insert wedge
@@ -291,7 +291,7 @@
 /gate/mlc_y4_kill/geometry/setYLength 5 mm
 /gate/mlc_y4_kill/geometry/setZLength 3 mm
 /gate/mlc_y4_kill/placement/setTranslation -5 0 0 mm
-/gate/mlc_y4_kill/vis/setVisible 1
+/gate/mlc_y4_kill/vis/setVisible 0
 /gate/mlc_y4_kill/vis/setColor white
 /gate/mlc_y5/daughters/name mlc_y5_kill
 /gate/mlc_y5/daughters/insert wedge
@@ -301,7 +301,7 @@
 /gate/mlc_y5_kill/geometry/setYLength 5 mm
 /gate/mlc_y5_kill/geometry/setZLength 3 mm
 /gate/mlc_y5_kill/placement/setTranslation -5 0 0 mm
-/gate/mlc_y5_kill/vis/setVisible 1
+/gate/mlc_y5_kill/vis/setVisible 0
 /gate/mlc_y5_kill/vis/setColor white
 /gate/mlc_y6/daughters/name mlc_y6_kill
 /gate/mlc_y6/daughters/insert wedge
@@ -311,7 +311,7 @@
 /gate/mlc_y6_kill/geometry/setYLength 5 mm
 /gate/mlc_y6_kill/geometry/setZLength 3 mm
 /gate/mlc_y6_kill/placement/setTranslation -5 0 0 mm
-/gate/mlc_y6_kill/vis/setVisible 1
+/gate/mlc_y6_kill/vis/setVisible 0
 /gate/mlc_y6_kill/vis/setColor white
 /gate/mlc_y7/daughters/name mlc_y7_kill
 /gate/mlc_y7/daughters/insert wedge
@@ -321,7 +321,7 @@
 /gate/mlc_y7_kill/geometry/setYLength 5 mm
 /gate/mlc_y7_kill/geometry/setZLength 3 mm
 /gate/mlc_y7_kill/placement/setTranslation -5 0 0 mm
-/gate/mlc_y7_kill/vis/setVisible 1
+/gate/mlc_y7_kill/vis/setVisible 0
 /gate/mlc_y7_kill/vis/setColor white
 /gate/mlc_y8/daughters/name mlc_y8_kill
 /gate/mlc_y8/daughters/insert wedge
@@ -331,7 +331,7 @@
 /gate/mlc_y8_kill/geometry/setYLength 5 mm
 /gate/mlc_y8_kill/geometry/setZLength 3 mm
 /gate/mlc_y8_kill/placement/setTranslation -5 0 0 mm
-/gate/mlc_y8_kill/vis/setVisible 1
+/gate/mlc_y8_kill/vis/setVisible 0
 /gate/mlc_y8_kill/vis/setColor white
 /gate/mlc_y9/daughters/name mlc_y9_kill
 /gate/mlc_y9/daughters/insert wedge
@@ -341,7 +341,7 @@
 /gate/mlc_y9_kill/geometry/setYLength 5 mm
 /gate/mlc_y9_kill/geometry/setZLength 3 mm
 /gate/mlc_y9_kill/placement/setTranslation -5 0 0 mm
-/gate/mlc_y9_kill/vis/setVisible 1
+/gate/mlc_y9_kill/vis/setVisible 0
 /gate/mlc_y9_kill/vis/setColor white
 /gate/mlc_y10/daughters/name mlc_y10_kill
 /gate/mlc_y10/daughters/insert wedge
@@ -351,7 +351,7 @@
 /gate/mlc_y10_kill/geometry/setYLength 5 mm
 /gate/mlc_y10_kill/geometry/setZLength 3 mm
 /gate/mlc_y10_kill/placement/setTranslation -5 0 0 mm
-/gate/mlc_y10_kill/vis/setVisible 1
+/gate/mlc_y10_kill/vis/setVisible 0
 /gate/mlc_y10_kill/vis/setColor white
 /gate/mlc_y11/daughters/name mlc_y11_kill
 /gate/mlc_y11/daughters/insert wedge
@@ -361,7 +361,7 @@
 /gate/mlc_y11_kill/geometry/setYLength 5 mm
 /gate/mlc_y11_kill/geometry/setZLength 3 mm
 /gate/mlc_y11_kill/placement/setTranslation -5 0 0 mm
-/gate/mlc_y11_kill/vis/setVisible 1
+/gate/mlc_y11_kill/vis/setVisible 0
 /gate/mlc_y11_kill/vis/setColor white
 /gate/mlc_y12/daughters/name mlc_y12_kill
 /gate/mlc_y12/daughters/insert wedge
@@ -371,7 +371,7 @@
 /gate/mlc_y12_kill/geometry/setYLength 5 mm
 /gate/mlc_y12_kill/geometry/setZLength 3 mm
 /gate/mlc_y12_kill/placement/setTranslation -5 0 0 mm
-/gate/mlc_y12_kill/vis/setVisible 1
+/gate/mlc_y12_kill/vis/setVisible 0
 /gate/mlc_y12_kill/vis/setColor white
 /gate/mlc_y13/daughters/name mlc_y13_kill
 /gate/mlc_y13/daughters/insert wedge
@@ -381,7 +381,7 @@
 /gate/mlc_y13_kill/geometry/setYLength 5 mm
 /gate/mlc_y13_kill/geometry/setZLength 3 mm
 /gate/mlc_y13_kill/placement/setTranslation -5 0 0 mm
-/gate/mlc_y13_kill/vis/setVisible 1
+/gate/mlc_y13_kill/vis/setVisible 0
 /gate/mlc_y13_kill/vis/setColor white
 /gate/actor/addActor KillActor KillInsides
 # /gate/actor/KillInsides/save MyOutputFile1.txt
@@ -420,7 +420,7 @@
 /gate/jaws_y1/geometry/setXLength 20 cm 	
 /gate/jaws_y1/geometry/setYLength 3 cm
 /gate/jaws_y1/geometry/setZLength 30 cm
-/gate/jaws_y1/vis/setVisible 1
+/gate/jaws_y1/vis/setVisible 0
 /gate/jaws_y1/vis/setColor yellow
 /gate/jaws_y1/placement/setTranslation 0 0 0 cm
 /gate/jaws_y1/placement/setRotationAxis 1 0 0
@@ -432,7 +432,7 @@
 /gate/jaws_y1_kill/geometry/setXLength 18 cm 	
 /gate/jaws_y1_kill/geometry/setYLength 2.5 cm
 /gate/jaws_y1_kill/geometry/setZLength 29 cm
-/gate/jaws_y1_kill/vis/setVisible 1
+/gate/jaws_y1_kill/vis/setVisible 0
 /gate/jaws_y1_kill/vis/setColor white
 /gate/jaws_y1_kill/placement/setTranslation 0 0 0 cm
 /gate/world/daughters/name jaws_y2Vol
@@ -453,7 +453,7 @@
 /gate/jaws_y2/geometry/setXLength 20 cm 	
 /gate/jaws_y2/geometry/setYLength 3 cm
 /gate/jaws_y2/geometry/setZLength 30 cm
-/gate/jaws_y2/vis/setVisible 1
+/gate/jaws_y2/vis/setVisible 0
 /gate/jaws_y2/vis/setColor yellow
 /gate/jaws_y2/placement/setTranslation 0 0 0 cm
 /gate/jaws_y2/placement/setRotationAxis 0 0 1
@@ -465,7 +465,7 @@
 /gate/jaws_y2_kill/geometry/setXLength 18 cm 	
 /gate/jaws_y2_kill/geometry/setYLength 2.5 cm
 /gate/jaws_y2_kill/geometry/setZLength 29 cm
-/gate/jaws_y2_kill/vis/setVisible 1
+/gate/jaws_y2_kill/vis/setVisible 0
 /gate/jaws_y2_kill/vis/setColor white
 /gate/jaws_y2_kill/placement/setTranslation 0 0 0 cm
 /gate/world/daughters/name jaws_x1Vol
@@ -487,7 +487,7 @@
 /gate/jaws_x1/geometry/setYLength 78 mm
 /gate/jaws_x1/geometry/setZLength 30 cm
 /gate/jaws_x1/placement/setTranslation 0 0 0 cm
-/gate/jaws_x1/vis/setVisible 1
+/gate/jaws_x1/vis/setVisible 0
 /gate/jaws_x1/vis/setColor cyan
 /gate/jaws_x1/placement/setRotationAxis 0 1 0
 /gate/jaws_x1/placement/setRotationAngle 90 deg
@@ -499,7 +499,7 @@
 /gate/jaws_x1_kill/geometry/setYLength 1 mm
 /gate/jaws_x1_kill/geometry/setZLength 29 cm
 /gate/jaws_x1_kill/placement/setTranslation 0 -3.7 0 cm
-/gate/jaws_x1_kill/vis/setVisible 1
+/gate/jaws_x1_kill/vis/setVisible 0
 /gate/jaws_x1_kill/vis/setColor white
 /gate/world/daughters/name jaws_x2Vol
 /gate/world/daughters/insert box
@@ -520,7 +520,7 @@
 /gate/jaws_x2/geometry/setYLength 78 mm
 /gate/jaws_x2/geometry/setZLength 30 cm
 /gate/jaws_x2/placement/setTranslation 0 0 0 cm
-/gate/jaws_x2/vis/setVisible 1
+/gate/jaws_x2/vis/setVisible 0
 /gate/jaws_x2/vis/setColor cyan
 /gate/jaws_x2/placement/setRotationAxis 0 1 0
 /gate/jaws_x2/placement/setRotationAngle 270 deg
@@ -532,7 +532,7 @@
 /gate/jaws_x2_kill/geometry/setYLength 1 mm
 /gate/jaws_x2_kill/geometry/setZLength 29 cm
 /gate/jaws_x2_kill/placement/setTranslation 0 -3.7 0 cm
-/gate/jaws_x2_kill/vis/setVisible 1
+/gate/jaws_x2_kill/vis/setVisible 0
 /gate/jaws_x2_kill/vis/setColor white
 /gate/actor/addActor KillActor KillInsides2
 # /gate/actor/KillInsides2/save MyOutputFile21.txt
@@ -563,7 +563,7 @@
 /gate/PhS_Plane_Two/geometry/setZLength 1 nm
 /gate/PhS_Plane_Two/placement/setTranslation 0.0 0.0 471 mm
 /gate/PhS_Plane_Two/vis/setColor cyan
-/gate/PhS_Plane_Two/vis/setVisible 1
+/gate/PhS_Plane_Two/vis/setVisible 0
 /gate/world/daughters/name FS_Plane
 /gate/world/daughters/insert box
 /gate/FS_Plane/setMaterial Air	
@@ -572,7 +572,7 @@
 /gate/FS_Plane/geometry/setZLength 1 nm
 /gate/FS_Plane/placement/setTranslation 0.0 0.0 0.0 mm
 /gate/FS_Plane/vis/setColor cyan
-/gate/FS_Plane/vis/setVisible 1
+/gate/FS_Plane/vis/setVisible 0
 /gate/world/daughters/name Kill_BackPlane
 /gate/world/daughters/insert box
 /gate/Kill_BackPlane/setMaterial Air	
@@ -581,7 +581,7 @@
 /gate/Kill_BackPlane/geometry/setZLength 1 nm
 /gate/Kill_BackPlane/placement/setTranslation 0.0 0.0 730 mm
 /gate/Kill_BackPlane/vis/setColor red
-/gate/Kill_BackPlane/vis/setVisible 1
+/gate/Kill_BackPlane/vis/setVisible 0
 /gate/world/daughters/name Kill_FrontPlane
 /gate/world/daughters/insert box
 /gate/Kill_FrontPlane/setMaterial Air	
@@ -590,7 +590,7 @@
 /gate/Kill_FrontPlane/geometry/setZLength 1 nm
 /gate/Kill_FrontPlane/placement/setTranslation 0.0 0.0 -10 mm
 /gate/Kill_FrontPlane/vis/setColor red
-/gate/Kill_FrontPlane/vis/setVisible 1
+/gate/Kill_FrontPlane/vis/setVisible 0
 /gate/physics/addPhysicsList emstandard_opt3
 /gate/physics/Gamma/SetCutInRegion world 1 mm
 /gate/physics/Electron/SetCutInRegion world 1 mm
@@ -610,12 +610,15 @@
 /gate/physics/Gamma/SetCutInRegion jaws_x2 0.001 mm
 /gate/physics/Electron/SetCutInRegion jaws_x2 0.001 mm
 /gate/physics/Positron/SetCutInRegion jaws_x2 0.001 mm
+/gate/physics/addProcess Compton
+/gate/physics/processes/Compton/setModel StandardModel gamma
+/gate/physics/processes/Compton/activateSplitting gamma 50
 /gate/actor/addActor PhaseSpaceActor PhS_g
 /gate/actor/PhS_g/attachTo PhS_Plane_Two
 /gate/actor/PhS_g/save 	 output-lana2-PhS-g.root
 /gate/actor/PhS_g/enableParticleName false
-/gate/actor/PhS_g/enableProductionVolume false
-/gate/actor/PhS_g/enableProductionProcess false
+/gate/actor/PhS_g/enableProductionVolume true
+/gate/actor/PhS_g/enableProductionProcess true
 /gate/actor/PhS_g/useVolumeFrame true
 /gate/actor/PhS_g/addFilter particleFilter
 /gate/actor/PhS_g/particleFilter/addParticle gamma
@@ -624,8 +627,8 @@
 /gate/actor/PhS_e/attachTo PhS_Plane_Two
 /gate/actor/PhS_e/save 	 output-lana2-PhS-e.root
 /gate/actor/PhS_e/enableParticleName false
-/gate/actor/PhS_e/enableProductionVolume false
-/gate/actor/PhS_e/enableProductionProcess false
+/gate/actor/PhS_e/enableProductionVolume true
+/gate/actor/PhS_e/enableProductionProcess true
 /gate/actor/PhS_e/useVolumeFrame true
 /gate/actor/PhS_e/addFilter particleFilter
 /gate/actor/PhS_e/particleFilter/addParticle e-
@@ -635,8 +638,8 @@
 /gate/actor/FieldSizeChecker/attachTo FS_Plane
 /gate/actor/FieldSizeChecker/save 	 FieldSizeChecker.root
 /gate/actor/FieldSizeChecker/enableParticleName false
-/gate/actor/FieldSizeChecker/enableProductionVolume false
-/gate/actor/FieldSizeChecker/enableProductionProcess false
+/gate/actor/FieldSizeChecker/enableProductionVolume true
+/gate/actor/FieldSizeChecker/enableProductionProcess true
 /gate/actor/FieldSizeChecker/useVolumeFrame true
 /gate/actor/FieldSizeChecker/addFilter particleFilter
 /gate/actor/FieldSizeChecker/particleFilter/addParticle gamma
@@ -654,6 +657,7 @@
 /gate/random/setEngineName MersenneTwister
 
 /gate/application/noGlobalOutput
+
 /gate/application/setTotalNumberOfPrimaries 1000000
 /gate/random/setEngineSeed 1363166736874990365
 /gate/application/setTimeStart 0. s

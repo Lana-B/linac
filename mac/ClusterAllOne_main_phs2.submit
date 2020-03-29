@@ -1,0 +1,3 @@
+#! /bin/sh
+echo sbatch /mnt/shared/home/lb8075/linac/gateSplitDir/.Gate//ClusterAllOne_main_phs2//ClusterAllOne_main_phs21.slm
+sbatch /mnt/shared/home/lb8075/linac/gateSplitDir/.Gate//ClusterAllOne_main_phs2//ClusterAllOne_main_phs21.slm
