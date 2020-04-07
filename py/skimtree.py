@@ -4,8 +4,8 @@ import pickle
 import numpy as np
 
 for filenum in range(1,2):
-      inFile="output-lana2-PhS-e"+str(filenum)+".root";
-      outFile="Skimmed-PhS2-e"+str(filenum);
+      inFile="../PhS2_5x5/output-lana2-PhS-e"+str(filenum)+".root";
+      outFile="../PhS2_5x5/Shoutput-lana2-PhS-e"+str(filenum);
 
       oldfile = TFile(inFile);
       oldtree = oldfile.Get("PhaseSpace");
@@ -44,12 +44,14 @@ for filenum in range(1,2):
          # print(oldtree.Ekine)
          newtree.Fill();
 
-      newtree.Print()
+      newtree.AutoSave()
 
       with lzma.open(str(outFile+".pkl"), "w") as f:
             pickle.dump(newtree, f)
 
+
       oldfile.Close()
       newfile.Close()
+
 
 
