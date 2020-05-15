@@ -78,15 +78,15 @@
 /gate/PhS_Plane_Two/vis/setColor             cyan
 /gate/PhS_Plane_Two/vis/setVisible           1
 
-/gate/world/daughters/name                   FS_Plane
-/gate/world/daughters/insert                 box
-/gate/FS_Plane/setMaterial                   Air	
-/gate/FS_Plane/geometry/setXLength           40 cm
-/gate/FS_Plane/geometry/setYLength           40 cm
-/gate/FS_Plane/geometry/setZLength           1 nm
-/gate/FS_Plane/placement/setTranslation      0.0 0.0 0.0 mm
-/gate/FS_Plane/vis/setColor                  cyan
-/gate/FS_Plane/vis/setVisible                1
+# /gate/world/daughters/name                   FS_Plane
+# /gate/world/daughters/insert                 box
+# /gate/FS_Plane/setMaterial                   Air	
+# /gate/FS_Plane/geometry/setXLength           40 cm
+# /gate/FS_Plane/geometry/setYLength           40 cm
+# /gate/FS_Plane/geometry/setZLength           1 nm
+# /gate/FS_Plane/placement/setTranslation      0.0 0.0 0.0 mm
+# /gate/FS_Plane/vis/setColor                  cyan
+# /gate/FS_Plane/vis/setVisible                1
 
 /gate/world/daughters/name                   Kill_BackPlane
 /gate/world/daughters/insert                 box
@@ -94,7 +94,7 @@
 /gate/Kill_BackPlane/geometry/setXLength           80 cm
 /gate/Kill_BackPlane/geometry/setYLength           80 cm
 /gate/Kill_BackPlane/geometry/setZLength           1 nm
-/gate/Kill_BackPlane/placement/setTranslation      0.0 0.0 730 mm
+/gate/Kill_BackPlane/placement/setTranslation      0.0 0.0 710 mm
 /gate/Kill_BackPlane/vis/setColor                  red
 /gate/Kill_BackPlane/vis/setVisible                1
 
@@ -104,7 +104,7 @@
 /gate/Kill_FrontPlane/geometry/setXLength           80 cm
 /gate/Kill_FrontPlane/geometry/setYLength           80 cm
 /gate/Kill_FrontPlane/geometry/setZLength           1 nm
-/gate/Kill_FrontPlane/placement/setTranslation      0.0 0.0 -10 mm
+/gate/Kill_FrontPlane/placement/setTranslation      0.0 0.0 360 mm
 /gate/Kill_FrontPlane/vis/setColor                  red
 /gate/Kill_FrontPlane/vis/setVisible                1
 
@@ -144,7 +144,14 @@
 
 /gate/physics/addProcess Compton
 /gate/physics/processes/Compton/setModel StandardModel gamma
-/gate/physics/processes/Compton/activateSplitting gamma 50
+/gate/physics/processes/Compton/activateSplitting gamma 100
+/gate/physics/processes/Compton/addFilter             volumeFilter  secondaries
+/gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         world      
+# /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         mlc_leaf     
+# /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         jaws_x1      
+# /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         jaws_y1      
+# /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         jaws_x2      
+# /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         jaws_y2 
 
 #=====================================================
 # DETECTORS
@@ -166,7 +173,7 @@
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_g
 /gate/actor/PhS_g/attachTo                   PhS_Plane_Two
-/gate/actor/PhS_g/save 	                     output-lana2-PhS-g.root
+/gate/actor/PhS_g/save 	                     output-lana2-PhS-g_500g4x1.root
 /gate/actor/PhS_g/enableParticleName         false
 /gate/actor/PhS_g/enableProductionVolume     false
 /gate/actor/PhS_g/enableProductionProcess    false
@@ -178,7 +185,7 @@
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_e
 /gate/actor/PhS_e/attachTo                   PhS_Plane_Two
-/gate/actor/PhS_e/save 	                     output-lana2-PhS-e.root
+/gate/actor/PhS_e/save 	                     output-lana2-PhS-e_500g4x3.root
 /gate/actor/PhS_e/enableParticleName         false
 /gate/actor/PhS_e/enableProductionVolume     false
 /gate/actor/PhS_e/enableProductionProcess    false
@@ -187,18 +194,20 @@
 /gate/actor/PhS_e/particleFilter/addParticle e-
 /gate/actor/PhS_e/particleFilter/addParticle e+
 /gate/actor/PhS_e/enableZPosition            true
+/gate/actor/PhS_e/enableProductionVolume true
+/gate/actor/PhS_e/enableProductionProcess true
 # /gate/actor/PhS_e/saveEveryNSeconds          20
 
-/gate/actor/addActor                                    PhaseSpaceActor FieldSizeChecker
-/gate/actor/FieldSizeChecker/attachTo                   FS_Plane
-/gate/actor/FieldSizeChecker/save 	                    FieldSizeChecker.root
-/gate/actor/FieldSizeChecker/enableParticleName         false
-/gate/actor/FieldSizeChecker/enableProductionVolume     false
-/gate/actor/FieldSizeChecker/enableProductionProcess    false
-/gate/actor/FieldSizeChecker/useVolumeFrame             true
-/gate/actor/FieldSizeChecker/addFilter                  particleFilter
-/gate/actor/FieldSizeChecker/particleFilter/addParticle gamma
-/gate/actor/FieldSizeChecker/enableZPosition            true
+# /gate/actor/addActor                                    PhaseSpaceActor FieldSizeChecker
+# /gate/actor/FieldSizeChecker/attachTo                   FS_Plane
+# /gate/actor/FieldSizeChecker/save 	                    FieldSizeChecker.root
+# /gate/actor/FieldSizeChecker/enableParticleName         false
+# /gate/actor/FieldSizeChecker/enableProductionVolume     false
+# /gate/actor/FieldSizeChecker/enableProductionProcess    false
+# /gate/actor/FieldSizeChecker/useVolumeFrame             true
+# /gate/actor/FieldSizeChecker/addFilter                  particleFilter
+# /gate/actor/FieldSizeChecker/particleFilter/addParticle gamma
+# /gate/actor/FieldSizeChecker/enableZPosition            true
 
 /gate/actor/addActor   KillActor                         Kill_BP 
 # /gate/actor/Kill_BP/save                                 MyOutputFile7.txt
@@ -212,14 +221,24 @@
 # INITIALISATION
 #=====================================================
 
+
 /gate/run/initialize
 
-# /process/em/setSecBiasing compt world 100 100 MeV
-# /process/em/setSecBiasing compt mlc_leaf 100 100 MeV
-# /process/em/setSecBiasing compt jaw_y1 100 100 MeV
-# /process/em/setSecBiasing compt jaw_y2 100 100 MeV
-# /process/em/setSecBiasing compt jaw_x1 100 100 MeV
-# /process/em/setSecBiasing compt jaw_x2 100 100 MeV
+# /process/em/setSecBiasing compt world 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y0 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y1 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y2 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y3 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y4 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y5 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y6 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y7 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y8 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y9 100 1000 MeV
+# /process/em/setSecBiasing compt jaws_y1 100 1000 MeV
+# /process/em/setSecBiasing compt jaws_y2 100 1000 MeV
+# /process/em/setSecBiasing compt jaws_x1 100 1000 MeV
+# /process/em/setSecBiasing compt jaws_x2 100 1000 MeV
 #=====================================================
 # BEAMS
 #=====================================================
@@ -231,9 +250,9 @@
 # symmetry.
 
 /gate/source/addSource                         beam_g phaseSpace
-/gate/source/beam_g/addPhaseSpaceFile          output-lana2-PhS-e1.root
-# /gate/source/beam_g/addPhaseSpaceFile          output/ClusterAllOne_main_phs1_gamma.root 
-/gate/source/beam_g/setParticleType            e-
+# /gate/source/beam_g/addPhaseSpaceFile          output-lana2-PhS-e1.root
+/gate/source/beam_g/addPhaseSpaceFile          output/ClusterAllOne_main_phs1_gamma.root 
+/gate/source/beam_g/setParticleType            gamma
 /gate/source/beam_g/attachTo                   PhS_Plane
 /gate/source/beam_g/useRandomSymmetry          true
 
@@ -243,12 +262,12 @@
 #=====================================================
 
 /gate/random/setEngineName MersenneTwister
-/gate/random/setEngineSeed auto
+/gate/random/setEngineSeed 1363166736874990365
 /gate/application/noGlobalOutput
 
 #/tracking/verbose 2
 
-/gate/application/setTotalNumberOfPrimaries 85000
+/gate/application/setTotalNumberOfPrimaries 1000000
 /gate/application/start
 
 

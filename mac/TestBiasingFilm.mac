@@ -1,0 +1,246 @@
+
+#=====================================================
+# VERBOSITY
+#=====================================================
+
+/control/execute mac/verbose.mac
+
+#=====================================================
+# VISUALISATION
+#=====================================================
+
+# /control/execute mac/visu.mac
+
+# =====================================================
+# GEOMETRY
+# =====================================================
+
+/gate/geometry/setMaterialDatabase GateMaterials.db
+
+# WORLD
+/gate/world/setMaterial            Air
+/gate/world/geometry/setXLength    0.80 m
+/gate/world/geometry/setYLength    0.80 m
+/gate/world/geometry/setZLength    2.1 m
+/gate/world/vis/setVisible 1
+
+
+# VIRTUAL PLANE FOR PHASE SPACE
+# It should be the same geometry than PhS generation Here we add a
+# "gantry" rotation. To do that easily, we define two box, on for the
+# rotation (according to the isocenter=world origin), then one another
+# to translation the phase-space plane to the right distance
+
+# /gate/world/daughters/name                     linacGantry
+# /gate/world/daughters/insert                   box
+# /gate/linacGantry/setMaterial                  Air
+# /gate/linacGantry/geometry/setXLength          1.0 mm
+# /gate/linacGantry/geometry/setYLength          1.0 mm
+# /gate/linacGantry/geometry/setZLength          1.0 mm
+# /gate/linacGantry/placement/setRotationAxis    0 1 0
+# /gate/linacGantry/placement/setRotationAngle   0 deg
+# /gate/linacGantry/vis/setVisible               1
+
+# /gate/linacGantry/daughters/name         linac
+# /gate/linacGantry/daughters/insert       box
+# /gate/linac/setMaterial                  Air
+# /gate/linac/geometry/setXLength          1.0 mm
+# /gate/linac/geometry/setYLength          1.0 mm
+# /gate/linac/geometry/setZLength          1.0 mm
+# /gate/linac/placement/setTranslation     0 0 1000 mm
+# /gate/linac/vis/setVisible               1
+
+
+
+/gate/world/daughters/name               PhS_Plane
+/gate/world/daughters/insert             cylinder
+/gate/PhS_Plane/setMaterial              Vacuum
+/gate/PhS_Plane/geometry/setRmin         0 mm
+/gate/PhS_Plane/geometry/setRmax         70 mm
+/gate/PhS_Plane/geometry/setHeight       1 nm
+/gate/PhS_Plane/placement/setTranslation 0.0 0.0 703 mm
+/gate/PhS_Plane/vis/setColor             white
+/gate/PhS_Plane/vis/setVisible           1
+
+/gate/world/daughters/name              Holder
+/gate/world/daughters/insert            box
+/gate/Holder/setMaterial                  Air
+/gate/Holder/geometry/setXLength          50 cm  	
+/gate/Holder/geometry/setYLength          50 cm
+/gate/Holder/geometry/setZLength          10 mm
+/gate/Holder/placement/setTranslation     0 0.0 50 cm
+/gate/Holder/vis/setVisible               0
+/gate/Holder/vis/setColor                 cyan
+
+/gate/Holder/daughters/name              FilmA
+/gate/Holder/daughters/insert            box
+/gate/FilmA/setMaterial                  Lead
+/gate/FilmA/geometry/setXLength          15 cm  	
+/gate/FilmA/geometry/setYLength          15 cm
+/gate/FilmA/geometry/setZLength          1 mm
+/gate/FilmA/placement/setTranslation     7.5 0.0 0 cm
+/gate/FilmA/vis/setVisible               1
+/gate/FilmA/vis/setColor                 cyan
+
+/gate/Holder/daughters/name              FilmB
+/gate/Holder/daughters/insert            box
+/gate/FilmB/setMaterial                 Lead
+/gate/FilmB/geometry/setXLength         15 cm  	
+/gate/FilmB/geometry/setYLength         15 cm
+/gate/FilmB/geometry/setZLength         1 mm
+/gate/FilmB/placement/setTranslation    -7.5 0.0 0 cm
+/gate/FilmB/vis/setVisible              1
+/gate/FilmB/vis/setColor                magenta
+
+
+/gate/world/daughters/name                   PhS_Plane_Two
+/gate/world/daughters/insert                 box
+/gate/PhS_Plane_Two/setMaterial              Vacuum
+/gate/PhS_Plane_Two/geometry/setXLength      15 cm
+/gate/PhS_Plane_Two/geometry/setYLength      15 cm
+/gate/PhS_Plane_Two/geometry/setZLength      1 nm
+/gate/PhS_Plane_Two/placement/setTranslation 0.0 0.0 471 mm #(-529)
+/gate/PhS_Plane_Two/vis/setColor             cyan
+/gate/PhS_Plane_Two/vis/setVisible           1
+
+
+
+/gate/world/daughters/name                   Kill_BackPlane
+/gate/world/daughters/insert                 box
+/gate/Kill_BackPlane/setMaterial                   Air	
+/gate/Kill_BackPlane/geometry/setXLength           80 cm
+/gate/Kill_BackPlane/geometry/setYLength           80 cm
+/gate/Kill_BackPlane/geometry/setZLength           1 nm
+/gate/Kill_BackPlane/placement/setTranslation      0.0 0.0 710 mm
+/gate/Kill_BackPlane/vis/setColor                  red
+/gate/Kill_BackPlane/vis/setVisible                1
+
+/gate/world/daughters/name                   Kill_FrontPlane
+/gate/world/daughters/insert                 box
+/gate/Kill_FrontPlane/setMaterial                   Air	
+/gate/Kill_FrontPlane/geometry/setXLength           80 cm
+/gate/Kill_FrontPlane/geometry/setYLength           80 cm
+/gate/Kill_FrontPlane/geometry/setZLength           1 nm
+/gate/Kill_FrontPlane/placement/setTranslation      0.0 0.0 360 mm
+/gate/Kill_FrontPlane/vis/setColor                  red
+/gate/Kill_FrontPlane/vis/setVisible                1
+
+# =====================================================
+# PHYSICS
+# =====================================================
+
+/gate/physics/addPhysicsList emstandard_opt4
+
+
+/gate/physics/processList Enabled
+/gate/physics/processList Initialized
+
+/gate/physics/Gamma/SetCutInRegion      world 1 mm
+/gate/physics/Electron/SetCutInRegion   world 1 mm
+/gate/physics/Positron/SetCutInRegion   world 1 mm
+
+/gate/physics/Gamma/SetCutInRegion      FilmA 0.05 mm
+/gate/physics/Electron/SetCutInRegion   FilmA 0.05 mm
+/gate/physics/Positron/SetCutInRegion   FilmA 0.05 mm
+
+
+/gate/physics/Gamma/SetCutInRegion      FilmB 0.05 mm
+/gate/physics/Electron/SetCutInRegion   FilmB 0.05 mm
+/gate/physics/Positron/SetCutInRegion   FilmB 0.05 mm
+
+# /gate/physics/addProcess Compton
+# /gate/physics/processes/Compton/setModel StandardModel gamma
+# /gate/physics/processes/Compton/activateSplitting gamma 100
+# /gate/physics/processes/Compton/addFilter             volumeFilter  secondaries
+# /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         jaws_x1      
+
+
+#=====================================================
+# DETECTORS
+#=====================================================
+
+# ----------------------------------------------------
+# the following actor stores 3D Dose/Edep distributions
+
+# ----------------------------------------------------
+# Phase space storage (a PhS for gamma, another for e-)
+
+# /gate/actor/addActor                         PhaseSpaceActor PhS_g
+# /gate/actor/PhS_g/attachTo                   PhS_Plane_Two
+# /gate/actor/PhS_g/save 	                     output-lana2-PhS-g_500g4x1.root
+# /gate/actor/PhS_g/enableParticleName         false
+# /gate/actor/PhS_g/enableProductionVolume     false
+# /gate/actor/PhS_g/enableProductionProcess    false
+# /gate/actor/PhS_g/useVolumeFrame             true
+# /gate/actor/PhS_g/addFilter                  particleFilter
+# /gate/actor/PhS_g/particleFilter/addParticle gamma
+# /gate/actor/PhS_g/enableZPosition            true
+# # #/gate/actor/PhS_g/saveEveryNSeconds          20
+
+/gate/actor/addActor                         PhaseSpaceActor PhS_e
+/gate/actor/PhS_e/attachTo                   PhS_Plane_Two
+/gate/actor/PhS_e/save 	                     testBiasingFilmABHolder-Hx100.root
+/gate/actor/PhS_e/enableParticleName         false
+/gate/actor/PhS_e/enableProductionVolume     true
+/gate/actor/PhS_e/enableProductionProcess    true
+/gate/actor/PhS_e/useVolumeFrame             true
+/gate/actor/PhS_e/addFilter                  particleFilter
+/gate/actor/PhS_e/particleFilter/addParticle e-
+/gate/actor/PhS_e/particleFilter/addParticle e+
+/gate/actor/PhS_e/enableZPosition            true
+/gate/actor/PhS_e/enableProductionVolume true
+/gate/actor/PhS_e/enableProductionProcess true
+# /gate/actor/PhS_e/saveEveryNSeconds          20
+
+
+/gate/actor/addActor   KillActor                         Kill_BP 
+# /gate/actor/Kill_BP/save                                 MyOutputFile7.txt
+/gate/actor/Kill_BP/attachTo                             Kill_BackPlane 
+
+/gate/actor/addActor   KillActor                         Kill_FP 
+# /gate/actor/Kill_FP/save                                 MyOutputFile8.txt
+/gate/actor/Kill_FP/attachTo                             Kill_FrontPlane 
+
+#=====================================================
+# INITIALISATION
+#=====================================================
+
+
+/gate/run/initialize
+
+# /process/em/setSecBiasing compt world 100 1000 MeV
+/process/em/setSecBiasing compt Holder 100 1000 MeV
+# /process/em/setSecBiasing compt FilmA 100 1000 MeV
+# /process/em/setSecBiasing compt FilmB 100 1000 MeV
+
+#=====================================================
+# BEAMS
+#=====================================================
+
+# Read from Phase Space files. Here we indicate the type of particle
+# (gamma) because this information is not stored in the PhS to gain
+# space. Moreover, we set 'useRandomSymmetry' to generate more
+# particle than the number of particle in the PhS, using a Z axis
+# symmetry.
+
+/gate/source/addSource                         beam_g phaseSpace
+/gate/source/beam_g/addPhaseSpaceFile          output/ClusterAllOne_main_phs1_gamma.root 
+/gate/source/beam_g/setParticleType            gamma
+/gate/source/beam_g/attachTo                   PhS_Plane
+/gate/source/beam_g/useRandomSymmetry          true
+
+
+#=====================================================
+# START BEAMS
+#=====================================================
+
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed 1363166736874990365
+/gate/application/noGlobalOutput
+
+/gate/application/setTotalNumberOfPrimaries 1000000
+/gate/application/start
+
+
+/gate/physics/processList Enabled
+/gate/physics/processList Initialized
