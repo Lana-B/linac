@@ -142,11 +142,11 @@
 # /gate/physics/Electron/SetCutInRegion   waterbox 0.5 mm
 # /gate/physics/Positron/SetCutInRegion   waterbox 0.5 mm
 
-/gate/physics/addProcess Compton
-/gate/physics/processes/Compton/setModel StandardModel gamma
-/gate/physics/processes/Compton/activateSplitting gamma 100
-/gate/physics/processes/Compton/addFilter             volumeFilter  secondaries
-/gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         world      
+# /gate/physics/addProcess Compton
+# /gate/physics/processes/Compton/setModel StandardModel gamma
+# /gate/physics/processes/Compton/activateSplitting gamma 100
+# /gate/physics/processes/Compton/addFilter             volumeFilter  secondaries
+# /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         world      
 # /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         mlc_leaf     
 # /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         jaws_x1      
 # /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         jaws_y1      
@@ -173,7 +173,7 @@
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_g
 /gate/actor/PhS_g/attachTo                   PhS_Plane_Two
-/gate/actor/PhS_g/save 	                     output-lana2-PhS-g_500g4x1.root
+/gate/actor/PhS_g/save 	                     output-lana2-PhS-g_nobias.root
 /gate/actor/PhS_g/enableParticleName         false
 /gate/actor/PhS_g/enableProductionVolume     false
 /gate/actor/PhS_g/enableProductionProcess    false
@@ -185,8 +185,8 @@
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_e
 /gate/actor/PhS_e/attachTo                   PhS_Plane_Two
-/gate/actor/PhS_e/save 	                     output-lana2-PhS-e_500g4x3.root
-/gate/actor/PhS_e/enableParticleName         false
+/gate/actor/PhS_e/save 	                     output-lana2-PhS-e_nobias.root
+/gate/actor/PhS_e/enableParticleName         true
 /gate/actor/PhS_e/enableProductionVolume     false
 /gate/actor/PhS_e/enableProductionProcess    false
 /gate/actor/PhS_e/useVolumeFrame             true
@@ -267,7 +267,7 @@
 
 #/tracking/verbose 2
 
-/gate/application/setTotalNumberOfPrimaries 1000000
+/gate/application/setTotalNumberOfPrimaries 10000000
 /gate/application/start
 
 

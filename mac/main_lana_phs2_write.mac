@@ -138,6 +138,14 @@
 /gate/physics/Electron/SetCutInRegion   jaws_x2 0.001 mm
 /gate/physics/Positron/SetCutInRegion   jaws_x2 0.001 mm
 
+/gate/physics/Gamma/SetCutInRegion      jaws_x1_kill 0.001 mm
+/gate/physics/Electron/SetCutInRegion   jaws_x1_kill 0.001 mm
+/gate/physics/Positron/SetCutInRegion   jaws_x1_kill 0.001 mm
+
+/gate/physics/Gamma/SetCutInRegion      jaws_x2_kill 0.001 mm
+/gate/physics/Electron/SetCutInRegion   jaws_x2_kill 0.001 mm
+/gate/physics/Positron/SetCutInRegion   jaws_x2_kill 0.001 mm
+
 # /gate/physics/Gamma/SetCutInRegion      waterbox 0.5 mm
 # /gate/physics/Electron/SetCutInRegion   waterbox 0.5 mm
 # /gate/physics/Positron/SetCutInRegion   waterbox 0.5 mm
@@ -189,16 +197,16 @@
 /gate/actor/PhS_e/enableZPosition            true
 # /gate/actor/PhS_e/saveEveryNSeconds          20
 
-/gate/actor/addActor                                    PhaseSpaceActor FieldSizeChecker
-/gate/actor/FieldSizeChecker/attachTo                   FS_Plane
-/gate/actor/FieldSizeChecker/save 	                    FieldSizeChecker.root
-/gate/actor/FieldSizeChecker/enableParticleName         false
-/gate/actor/FieldSizeChecker/enableProductionVolume     false
-/gate/actor/FieldSizeChecker/enableProductionProcess    false
-/gate/actor/FieldSizeChecker/useVolumeFrame             true
-/gate/actor/FieldSizeChecker/addFilter                  particleFilter
-/gate/actor/FieldSizeChecker/particleFilter/addParticle gamma
-/gate/actor/FieldSizeChecker/enableZPosition            true
+# /gate/actor/addActor                                    PhaseSpaceActor FieldSizeChecker
+# /gate/actor/FieldSizeChecker/attachTo                   FS_Plane
+# /gate/actor/FieldSizeChecker/save 	                    FieldSizeChecker.root
+# /gate/actor/FieldSizeChecker/enableParticleName         false
+# /gate/actor/FieldSizeChecker/enableProductionVolume     false
+# /gate/actor/FieldSizeChecker/enableProductionProcess    false
+# /gate/actor/FieldSizeChecker/useVolumeFrame             true
+# /gate/actor/FieldSizeChecker/addFilter                  particleFilter
+# /gate/actor/FieldSizeChecker/particleFilter/addParticle gamma
+# /gate/actor/FieldSizeChecker/enableZPosition            true
 
 /gate/actor/addActor   KillActor                         Kill_BP 
 # /gate/actor/Kill_BP/save                                 MyOutputFile7.txt
@@ -247,7 +255,7 @@
 
 #/tracking/verbose 2
 
-/gate/application/setTotalNumberOfPrimaries 200
+/gate/application/setTotalNumberOfPrimaries 8000
 /gate/application/start
 
 
