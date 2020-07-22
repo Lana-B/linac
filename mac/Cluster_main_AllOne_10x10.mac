@@ -847,8 +847,8 @@
 /gate/actor/PhS_g/attachTo                   PhS_Plane_Two
 /gate/actor/PhS_g/save 	                     output-lana2-PhS-g_nobias.root
 /gate/actor/PhS_g/enableParticleName         false
-/gate/actor/PhS_g/enableProductionVolume     false
-/gate/actor/PhS_g/enableProductionProcess    false
+/gate/actor/PhS_g/enableProductionVolume     true
+/gate/actor/PhS_g/enableProductionProcess    true
 /gate/actor/PhS_g/useVolumeFrame             true
 /gate/actor/PhS_g/addFilter                  particleFilter
 /gate/actor/PhS_g/particleFilter/addParticle gamma
@@ -859,8 +859,8 @@
 /gate/actor/PhS_e/attachTo                   PhS_Plane_Two
 /gate/actor/PhS_e/save 	                     output-lana2-PhS-e_nobias.root
 /gate/actor/PhS_e/enableParticleName         true
-/gate/actor/PhS_e/enableProductionVolume     false
-/gate/actor/PhS_e/enableProductionProcess    false
+/gate/actor/PhS_e/enableProductionVolume     true
+/gate/actor/PhS_e/enableProductionProcess    true
 /gate/actor/PhS_e/useVolumeFrame             true
 /gate/actor/PhS_e/addFilter                  particleFilter
 /gate/actor/PhS_e/particleFilter/addParticle e-
