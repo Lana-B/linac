@@ -1,7 +1,9 @@
-
-/vis/open OGLIQt
+/vis/open RayTracer
+#/vis/open OGLIQt
+/vis/enable
 /vis/drawVolume
 /vis/viewer/flush
+/vis/viewer/rebuild
 /tracking/storeTrajectory             1
 /vis/scene/add/trajectories
 /vis/scene/endOfEventAction           accumulate 1000000

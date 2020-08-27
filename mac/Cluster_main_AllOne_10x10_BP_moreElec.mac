@@ -857,7 +857,7 @@
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_e
 /gate/actor/PhS_e/attachTo                   PhS_Plane_Two
-/gate/actor/PhS_e/save 	                     /work/lb8075/PhaseSpaces/PhS2Elec/output-lana2-PhS-e_nobias{id}.root
+/gate/actor/PhS_e/save 	                     /work/lb8075/PhaseSpaces/PhS2Elec/output2e9primaries-lana2-PhS-e_nobias{id}.root
 /gate/actor/PhS_e/enableParticleName         true
 /gate/actor/PhS_e/enableProductionVolume     true
 /gate/actor/PhS_e/enableProductionProcess    true
@@ -945,3 +945,4 @@
 
 /gate/physics/processList Enabled
 /gate/physics/processList Initialized
+
