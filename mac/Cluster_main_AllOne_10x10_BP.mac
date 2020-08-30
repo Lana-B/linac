@@ -843,16 +843,16 @@
 # ----------------------------------------------------
 # Phase space storage (a PhS for gamma, another for e-)
 
-# /gate/actor/addActor                         PhaseSpaceActor PhS_g
-# /gate/actor/PhS_g/attachTo                   PhS_Plane_Two
-# /gate/actor/PhS_g/save 	                     /work/lb8075/PhaseSpaces/PhS2Gamma/output-lana2-PhS-g_nobias{id}.root
-# /gate/actor/PhS_g/enableParticleName         false
-# /gate/actor/PhS_g/enableProductionVolume     true
-# /gate/actor/PhS_g/enableProductionProcess    true
-# /gate/actor/PhS_g/useVolumeFrame             true
-# /gate/actor/PhS_g/addFilter                  particleFilter
-# /gate/actor/PhS_g/particleFilter/addParticle gamma
-# /gate/actor/PhS_g/enableZPosition            true
+/gate/actor/addActor                         PhaseSpaceActor PhS_g
+/gate/actor/PhS_g/attachTo                   PhS_Plane_Two
+/gate/actor/PhS_g/save 	                     /work/lb8075/PhaseSpaces/PhS2Gamma/output-lana2-PhS-g_nobias{id}.root
+/gate/actor/PhS_g/enableParticleName         false
+/gate/actor/PhS_g/enableProductionVolume     true
+/gate/actor/PhS_g/enableProductionProcess    true
+/gate/actor/PhS_g/useVolumeFrame             true
+/gate/actor/PhS_g/addFilter                  particleFilter
+/gate/actor/PhS_g/particleFilter/addParticle gamma
+/gate/actor/PhS_g/enableZPosition            true
 # #/gate/actor/PhS_g/saveEveryNSeconds          20
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_e
@@ -939,7 +939,7 @@
 
 #/tracking/verbose 2
 
-/gate/application/setTotalNumberOfPrimaries 2000000000
+/gate/application/setTotalNumberOfPrimaries 100000000
 /gate/application/start
 
 
