@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#PBS -l walltime=4:00:00 
+#PBS -j oe
+
+#PBS -l select=1:ncpus=1
+#PBS -l select=1:ncpus=1:mem=500mb
+#PBS -J 1-2
+#PBS -o /work/lb8075/job_logfiles
+
+module add apps/gate/8.2
+#mkdir -p /work/lb8075/job_output/dir.${PBS_JOBID}/rootfiles
+#mkdir -p /work/lb8075/job_output/dir.${PBS_JOBID}/logfiles
+#cd    /work/lb8075/job_output/dir.${PBS_JOBID}/rootfiles
+
+cat /home/lb8075/linac/mac/Cluster_main_AllOne_10x10_BP.mac
+mycommand="Gate /home/lb8075/linac/mac/Cluster_main_AllOne_10x10_BP.mac -a'[id,$PBS_ARRAY_INDEX] [seed,$RANDOM$RANDOM$RANDOM]'"
+eval $mycommand
+
+now=$(date +"%T")
+echo "Time of completion : $now"
