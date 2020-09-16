@@ -3,7 +3,7 @@
 # VISUALISATION
 #=====================================================
 
-# /control/execute mac/visu.mac
+/control/execute mac/visu.mac
 
 # =====================================================
 # GEOMETRY
@@ -17,7 +17,7 @@
 /gate/world/geometry/setXLength    0.3 m
 /gate/world/geometry/setYLength    0.3 m
 /gate/world/geometry/setZLength    1 m
-# /gate/world/vis/setVisible 1
+/gate/world/vis/setVisible 1
 
 
 /gate/world/daughters/name                   PhS_Plane_Two
@@ -85,7 +85,7 @@
 
 /gate/world/daughters/name         peakLayer1 
 /gate/world/daughters/insert       box 
-/gate/peakLayer1/setMaterial                  Silicon 
+/gate/peakLayer1/setMaterial                  {peak_material} 
 /gate/peakLayer1/geometry/setXLength          5.0 mm 
 /gate/peakLayer1/geometry/setYLength          5.0 mm 
 /gate/peakLayer1/geometry/setZLength          {peakzlength_um} um 
@@ -99,7 +99,7 @@
 
 /gate/world/daughters/name         lightcover 
 /gate/world/daughters/insert       box 
-/gate/lightcover/setMaterial                  Polyethylene 
+/gate/lightcover/setMaterial                  {lightcover_material} 
 /gate/lightcover/geometry/setXLength          100.0 mm 
 /gate/lightcover/geometry/setYLength          100.0 mm 
 /gate/lightcover/geometry/setZLength          {lightcoverzlength_um} um
