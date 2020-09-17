@@ -6,7 +6,7 @@ import os
 ###############################################################
 # blackout_first=True #from epi layer
 gamma=True #else electrons
-jobtime="36:00:00"
+jobtime="12:00:00"
 
 ###############################################################
 ### Run different settings depending on computer or cluster ###
@@ -34,7 +34,7 @@ elif nodename=="bp1-login01.data.bp.acrc.priv":
 		phasespace_in="/work/lb8075/PhaseSpaces/PhS2Elec/output-lana2-PhS-e_nobias{id}.root"
 	file_number="$PBS_ARRAY_INDEX"
 	how_many_primaries="${Nparts[$PBS_ARRAY_INDEX-1]}"
-	out_dir="/work/lb8075/PhaseSpaces/"
+	out_dir="/work/lb8075/PhaseSpaces/Flex"
 	mac_loc="/home/lb8075/linac/mac/"
 	seed_rand="$RANDOM$RANDOM$RANDOM"
 else:
@@ -45,8 +45,8 @@ else:
 ###############################################################
 
 grating_thicknesses=np.array([500]) #um 30,50,80,100,200,300,350,400,500
-plastic_distances=np.array([0,10]) #mm
-plastic_thickness=np.array([1000]) #um 100,200,300,500,1000
+BlackOut_distances=np.array([0,10]) #mm
+BlackOut_thickness=np.array([1000]) #um 100,200,300,500,1000
 blackout_material=np.array(['Polyethylene','Silicon','Aluminium'])
 peak_material=np.array(['Lead','Silicon','Aluminium'])
 
@@ -56,9 +56,9 @@ front_face_epi_um=front_face_epi_mm*1000 #um
 translation_BO_um=0
 translation_peak_um=0
 
-# distance_plastic_to_peaks_mm=10 #mm
+# distance_BlackOut_to_peaks_mm=10 #mm
 
-####### plastic distance from surface?!!
+####### BlackOut distance from surface?!!
 
 ###############################################################
 ###        Create start of pbs submission file              ###
@@ -181,19 +181,21 @@ pbs_string+=f"cat  {macrofile} \n "
 
 if (gamma):
 	particle_type_input="/gate/source/beam_g/setParticleType gamma"
+	particle_outfilename="Gamma"
 else:
 	particle_type_input=" "
+	particle_outfilename="Elec"
 
 
 for blackout_first in ([True,False]):
 	if blackout_first:
 		for grating_thick in grating_thicknesses:
-			for plastic_thick in plastic_thickness:
+			for BlackOut_thick in BlackOut_thickness:
 				for peak_mat in peak_material:
 					for blackout_mat in blackout_material:
-							translation_BO_um=front_face_epi_um+(plastic_thick/2.0)
-							translation_peak_um=front_face_epi_um+plastic_thick+(grating_thick/2.0)
-							output_file_path=f"{out_dir}PhS3DoseFromGamma_{grating_thick}umpeak_{plastic_thick}umplastic_plastic-under-peaks"
+							translation_BO_um=front_face_epi_um+(BlackOut_thick/2.0)
+							translation_peak_um=front_face_epi_um+BlackOut_thick+(grating_thick/2.0)
+							output_file_path=f"{out_dir}PhS3DoseFrom{particle_outfilename}_{grating_thick}umpeak_{BlackOut_thick}umBlackOut_peakMat_{peak_mat}_BOmat_{blackout_mat}_BlackOut-under-peaks"
 
 							if not (os.path.isdir(output_file_path)):
 								os.mkdir(output_file_path)
@@ -201,7 +203,7 @@ for blackout_first in ([True,False]):
 							translation_peak_mm=translation_peak_um/1000.0
 							translation_BO_mm=translation_BO_um/1000.0
 
-							param_list=f'[peakzlength_um,{grating_thick}] [peakztrans_mm,{translation_peak_mm}] [lightcoverzlength_um,{plastic_thick}]'
+							param_list=f'[peakzlength_um,{grating_thick}] [peakztrans_mm,{translation_peak_mm}] [lightcoverzlength_um,{BlackOut_thick}]'
 							param_list+=f' [lightcoverztrans_mm,{translation_BO_mm}] [pathOutputDose,{output_file_path}] [inputParticleType,{particle_type_input}] [pathGateMaterials,{materials_path}]'
 							param_list+=f' [id,{file_number}] [inputPhaseSpaceFile,{phasespace_in}] [seed,{seed_rand}] [primaries,{how_many_primaries}]'
 							param_list+=f' [lightcover_material,{blackout_mat}] [peak_material,{peak_mat}]]'
@@ -218,15 +220,15 @@ for blackout_first in ([True,False]):
 
 	else:
 		for grating_thick in grating_thicknesses:
-			for plastic_thick in plastic_thickness:
+			for BlackOut_thick in BlackOut_thickness:
 				for peak_mat in peak_material:
 					for blackout_mat in blackout_material:
-						for distance_plastic_to_peaks_mm in plastic_distances:
+						for distance_BlackOut_to_peaks_mm in BlackOut_distances:
 
-							distance_plastic_to_peaks_um=distance_plastic_to_peaks_mm*1000 #mm
-							translation_BO_um=front_face_epi_um+grating_thick+(plastic_thick/2.0)+distance_plastic_to_peaks_um
+							distance_BlackOut_to_peaks_um=distance_BlackOut_to_peaks_mm*1000 #mm
+							translation_BO_um=front_face_epi_um+grating_thick+(BlackOut_thick/2.0)+distance_BlackOut_to_peaks_um
 							translation_peak_um=front_face_epi_um+grating_thick/2.0
-							output_file_path=f"{out_dir}PhS3DoseFromGamma_{grating_thick}umpeak_{plastic_thick}umplastic_peaks-under-plastic_{distance_plastic_to_peaks_mm}mm"
+							output_file_path=f"{out_dir}PhS3DoseFromGamma_{grating_thick}umpeak_{BlackOut_thick}umBlackOut_peakMat_{peak_mat}_BOmat_{blackout_mat}_peaks-under-BlackOut_{distance_BlackOut_to_peaks_mm}mm"
 
 							if not (os.path.isdir(output_file_path)):
 								os.mkdir(output_file_path)
@@ -234,7 +236,7 @@ for blackout_first in ([True,False]):
 							translation_peak_mm=translation_peak_um/1000.0
 							translation_BO_mm=translation_BO_um/1000.0
 
-							param_list=f'[peakzlength_um,{grating_thick}] [peakztrans_mm,{translation_peak_mm}] [lightcoverzlength_um,{plastic_thick}]'
+							param_list=f'[peakzlength_um,{grating_thick}] [peakztrans_mm,{translation_peak_mm}] [lightcoverzlength_um,{BlackOut_thick}]'
 							param_list+=f' [lightcoverztrans_mm,{translation_BO_mm}] [pathOutputDose,{output_file_path}] [inputParticleType,/gate/source/beam_g/setParticleType gamma] [pathGateMaterials,{materials_path}]'
 							param_list+=f' [id,{file_number}] [inputPhaseSpaceFile,{phasespace_in}] [seed,{seed_rand}] [primaries,{how_many_primaries}]'
 							param_list+=f' [lightcover_material,{blackout_mat}] [peak_material,{peak_mat}]'
@@ -244,7 +246,10 @@ for blackout_first in ([True,False]):
 							# print (mycommand)
 							pbs_string+=f"mycommand={mycommandpy}"
 							pbs_string+=f"echo $mycommand \neval $mycommand\n"
-							
+							pbs_string+=f"hadd Total-Edep.root {output_file_path}/*Edep.root \n"
+							pbs_string+=f"hadd Total-Edep-Squared.root {output_file_path}/*Edep-Squared.root \n"
+							pbs_string+=f"hadd Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
+							pbs_string+="\"Time of interum job ending : $(date)\" \n"
 							print(param_list)
 							print("")
 
