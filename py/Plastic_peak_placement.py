@@ -6,7 +6,8 @@ import os
 ###############################################################
 # blackout_first=True #from epi layer
 gamma=True #else electrons
-jobtime="12:00:00"
+jobtime="13:00:00"
+jobtime_hadd="5:00:00"
 
 ###############################################################
 ### Run different settings depending on computer or cluster ###
@@ -34,7 +35,7 @@ elif nodename=="bp1-login01.data.bp.acrc.priv":
 		phasespace_in="/work/lb8075/PhaseSpaces/PhS2Elec/output-lana2-PhS-e_nobias{id}.root"
 	file_number="$PBS_ARRAY_INDEX"
 	how_many_primaries="${Nparts[$PBS_ARRAY_INDEX-1]}"
-	out_dir="/work/lb8075/PhaseSpaces/Flex"
+	out_dir="/work/lb8075/PhaseSpaces/Flex/"
 	mac_loc="/home/lb8075/linac/mac/"
 	seed_rand="$RANDOM$RANDOM$RANDOM"
 else:
@@ -44,9 +45,9 @@ else:
 ###       Set up dimensions, materials, translations        ###
 ###############################################################
 
-grating_thicknesses=np.array([500]) #um 30,50,80,100,200,300,350,400,500
+grating_thicknesses=np.array([30,50,80,100,200,300,350,400]) #um 30,50,80,100,200,300,350,400,500
 BlackOut_distances=np.array([0,10]) #mm
-BlackOut_thickness=np.array([1000]) #um 100,200,300,500,1000
+BlackOut_thickness=np.array([100,200,300,500]) #um 100,200,300,500,1000
 blackout_material=np.array(['Polyethylene','Silicon','Aluminium'])
 peak_material=np.array(['Lead','Silicon','Aluminium'])
 
@@ -65,6 +66,14 @@ translation_peak_um=0
 ###############################################################
 
 macrofile=f"{mac_loc}Main_PhS3_10x10_Flexible.mac"
+hadd_string=f"#!/bin/bash \n\
+#PBS -l walltime={jobtime_hadd} \n\
+#PBS -j oe\n\
+#PBS -l select=1:ncpus=1\n\
+#PBS -l select=1:ncpus=1:mem=500mb\n\
+#PBS -o /work/lb8075/job_logfiles\n\
+\n\
+module add apps/gate/8.2\n"
 
 pbs_string=f"#!/bin/bash \n\
 #PBS -l walltime={jobtime} \n\
@@ -213,10 +222,13 @@ for blackout_first in ([True,False]):
 							# print (mycommand)
 							pbs_string+=f"mycommand={mycommandpy}"
 							pbs_string+=f"echo $mycommand \neval $mycommand\n"
-							pbs_string+=f"hadd Total-Edep.root {output_file_path}/*Edep.root \n"
-							pbs_string+=f"hadd Total-Edep-Squared.root {output_file_path}/*Edep-Squared.root \n"
-							pbs_string+=f"hadd Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
-							pbs_string+="\"Time of interum job ending : $(date)\" \n"
+							hadd_string+=f"hadd {output_file_path}/Total-Edep.root {output_file_path}/*Edep.root \n"
+							hadd_string+=f"hadd {output_file_path}/Total-Edep-Squared.root {output_file_path}/*Edep-Squared.root \n"
+							hadd_string+=f"hadd {output_file_path}/Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
+							pbs_string+="echo \"Time of interum job ending : $(date)\" \n"
+							hadd_string+="echo \"Time of interum job ending : $(date)\" \n"
+
+
 							print(param_list)
 							print("")
 
@@ -249,15 +261,18 @@ for blackout_first in ([True,False]):
 							# print (mycommand)
 							pbs_string+=f"mycommand={mycommandpy}"
 							pbs_string+=f"echo $mycommand \neval $mycommand\n"
-							pbs_string+=f"hadd Total-Edep.root {output_file_path}/*Edep.root \n"
-							pbs_string+=f"hadd Total-Edep-Squared.root {output_file_path}/*Edep-Squared.root \n"
-							pbs_string+=f"hadd Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
-							pbs_string+="\"Time of interum job ending : $(date)\" \n"
+							hadd_string+=f"hadd {output_file_path}/Total-Edep.root {output_file_path}/*Edep.root \n"
+							hadd_string+=f"hadd {output_file_path}/Total-Edep-Squared.root {output_file_path}/*Edep-Squared.root \n"
+							hadd_string+=f"hadd {output_file_path}/Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
+							pbs_string+="echo \"Time of interum job ending : $(date)\" \n"
+							hadd_string+="echo \"Time of interum job ending : $(date)\" \n"
+
 							print(param_list)
 							print("")
 
 
 pbs_string+="now=$(date) \necho \"Time of completion : $now\" " 
+hadd_string+="now=$(date) \necho \"Time of completion : $now\" " 
 
 print(pbs_string)
 
@@ -268,3 +283,6 @@ else:
 
 with open(f"flex_script_{script_ending}.pbs", "w") as text_file:
     print(pbs_string, file=text_file)
+
+with open(f"hadd_flex_script_{script_ending}.pbs", "w") as text_file:
+    print(hadd_string, file=text_file)
