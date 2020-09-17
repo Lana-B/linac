@@ -213,7 +213,10 @@ for blackout_first in ([True,False]):
 							# print (mycommand)
 							pbs_string+=f"mycommand={mycommandpy}"
 							pbs_string+=f"echo $mycommand \neval $mycommand\n"
-							
+							pbs_string+=f"hadd Total-Edep.root {output_file_path}/*Edep.root \n"
+							pbs_string+=f"hadd Total-Edep-Squared.root {output_file_path}/*Edep-Squared.root \n"
+							pbs_string+=f"hadd Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
+							pbs_string+="\"Time of interum job ending : $(date)\" \n"
 							print(param_list)
 							print("")
 
