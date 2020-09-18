@@ -272,6 +272,8 @@ for blackout_first in ([False]): #True,
 							mycommandpy=f"\"Gate {macrofile} -a '{param_list}'\"\n"
 							# print (mycommand)
 							if (distance_BlackOut_to_peaks_mm==0):
+								print("PRINT")
+
 								pbs_string_BOclose+=f"mycommand={mycommandpy}"
 								pbs_string_BOclose+=f"echo $mycommand \neval $mycommand\n"
 								hadd_string_BOclose+=f"hadd {output_file_path}/Total-Edep.root {output_file_path}/*Edep.root \n"
@@ -288,8 +290,8 @@ for blackout_first in ([False]): #True,
 								pbs_string_BOfar+="echo \"Time of interum job ending : $(date)\" \n"
 								hadd_string_BOfar+="echo \"Time of interum job ending : $(date)\" \n"
 
-							print(param_list)
-							print("")
+							# print(param_list)
+							# print("")
 
 
 pbs_string_BOclose+="now=$(date) \necho \"Time of completion : $now\" " 
