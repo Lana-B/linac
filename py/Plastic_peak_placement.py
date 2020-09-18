@@ -302,19 +302,19 @@ if gamma:
 else:
 	script_ending="elec"
 
-with open(f"flex_script_{script_ending}.pbs", "w") as text_file:
+with open(f"flex_script_{script_ending}BOclose.pbs", "w") as text_file:
     print(pbs_string_BOclose, file=text_file)
 
-with open(f"hadd_flex_script_{script_ending}.pbs", "w") as text_file:
+with open(f"hadd_flex_script_{script_ending}BOclose.pbs", "w") as text_file:
     print(hadd_string_BOclose, file=text_file)
 
 pbs_string_BOfar+="now=$(date) \necho \"Time of completion : $now\" " 
 hadd_string_BOfar+="now=$(date) \necho \"Time of completion : $now\" " 
 
-with open(f"flex_script_{script_ending}.pbs", "w") as text_file:
+with open(f"flex_script_{script_ending}BOfar.pbs", "w") as text_file:
     print(pbs_string_BOfar, file=text_file)
 
-with open(f"hadd_flex_script_{script_ending}.pbs", "w") as text_file:
+with open(f"hadd_flex_script_{script_ending}BOfar.pbs", "w") as text_file:
     print(hadd_string_BOfar, file=text_file)
 
 
