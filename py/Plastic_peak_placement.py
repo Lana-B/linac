@@ -219,7 +219,7 @@ for blackout_first in ([False]): #True,
 							param_list=f'[peakzlength_um,{grating_thick}] [peakztrans_mm,{translation_peak_mm}] [lightcoverzlength_um,{BlackOut_thick}]'
 							param_list+=f' [lightcoverztrans_mm,{translation_BO_mm}] [pathOutputDose,{output_file_path}] [inputParticleType,{particle_type_input}] [pathGateMaterials,{materials_path}]'
 							param_list+=f' [id,{file_number}] [inputPhaseSpaceFile,{phasespace_in}] [seed,{seed_rand}] [primaries,{how_many_primaries}]'
-							param_list+=f' [lightcover_material,{blackout_mat}] [peak_material,{peak_mat}]]'
+							param_list+=f' [lightcover_material,{blackout_mat}] [peak_material,{peak_mat}]'
 
 
 							mycommandpy=f"\"Gate {macrofile} -a '{param_list}'\"\n"
@@ -265,10 +265,7 @@ for blackout_first in ([False]): #True,
 							param_list+=f' [lightcoverztrans_mm,{translation_BO_mm}] [pathOutputDose,{output_file_path}] [inputParticleType,/gate/source/beam_g/setParticleType gamma] [pathGateMaterials,{materials_path}]'
 							param_list+=f' [id,{file_number}] [inputPhaseSpaceFile,{phasespace_in}] [seed,{seed_rand}] [primaries,{how_many_primaries}]'
 							param_list+=f' [lightcover_material,{blackout_mat}] [peak_material,{peak_mat}]'
-							pbs_string_BOclose=pbs_string
-							hadd_string_BOclose=hadd_string
-							pbs_string_BOclose=pbs_string
-							hadd_string_BOclose=hadd_string
+
 							mycommandpy=f"\"Gate {macrofile} -a '{param_list}'\"\n"
 							# print (mycommand)
 							if (distance_BlackOut_to_peaks_mm==0):
