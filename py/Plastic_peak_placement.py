@@ -180,7 +180,7 @@ else:
 725633 725402 725197 724882 725968 726279 724051 724640 725070 725656 725849 724992 725398 726931 724011 726092 725189 724881 726380 725921 723508\
 723801 722647 725571 725071 725615 723821 725878 724801 723297 723522 726741 725006 726868 723097 722454 725400 726336 726770 724213 726892 723735\
 723965 723437 721171 724848 724442 726249 724052 721633 726365 723620 722816 723914 725057 725204 725070 724887 724684 724803 722529 728010 720530)\n"
-pbs_string+=f"cat  {macrofile} \n "
+pbs_string+=f"cat  {macrofile} \n"
 
 
 ###############################################################
@@ -224,8 +224,7 @@ for blackout_first in ([False]): #True,
 
 							mycommandpy=f"\"Gate {macrofile} -a '{param_list}'\"\n"
 							# print (mycommand)
-							pbs_string_BOclose=pbs_string
-							hadd_string_BOclose=hadd_string
+
 							pbs_string_BOclose+=f"mycommand={mycommandpy}"
 							pbs_string_BOclose+=f"echo $mycommand \neval $mycommand\n"
 							hadd_string_BOclose+=f"hadd {output_file_path}/Total-Edep.root {output_file_path}/*Edep.root \n"
