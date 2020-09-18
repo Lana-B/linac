@@ -45,11 +45,11 @@ else:
 ###       Set up dimensions, materials, translations        ###
 ###############################################################
 
-grating_thicknesses=np.array([30,50,80,100,300]) #um 30,50,80,100,200,300,350,400,500
-BlackOut_distances=np.array([0,10]) #mm
-BlackOut_thickness=np.array([20,100,300]) #um 100,200,300,500,1000
-blackout_material=np.array(['Polyethylene','Silicon','Aluminium'])
-peak_material=np.array(['Lead','Silicon','Aluminium'])
+grating_thicknesses=np.array([50,100]) #um 30,50,80,100,200,300,350,400,500
+BlackOut_distances=np.array([0,10]) # 0,10 mm
+BlackOut_thickness=np.array([20,300]) #um 100,200,300,500,1000
+blackout_material=np.array(['Polyethylene','Aluminium'])  #'Polyethylene','Aluminium''silicon'
+peak_material=np.array(['Lead','Aluminium']) #'Lead','Aluminium','silicon'
 
 front_face_epi_mm=450 #mm
 front_face_epi_um=front_face_epi_mm*1000 #um
@@ -59,7 +59,7 @@ translation_peak_um=0
 
 # distance_BlackOut_to_peaks_mm=10 #mm
 
-####### BlackOut distance from surface?!!
+####### grating? distance from surface?!!
 
 ###############################################################
 ###        Create start of pbs submission file              ###
@@ -196,11 +196,13 @@ else:
 	particle_outfilename="Elec"
 
 
-for blackout_first in ([True,False]):
+for blackout_first in ([False]): #True,
 	if blackout_first:
+		pbs_string_BOclose=pbs_string
+		hadd_string_BOclose=hadd_string
 		for grating_thick in grating_thicknesses:
-			if grating_thick>99:
-				continue
+			# if grating_thick>99:
+			# 	continue
 			for BlackOut_thick in BlackOut_thickness:
 				for peak_mat in peak_material:
 					for blackout_mat in blackout_material:
@@ -222,13 +224,15 @@ for blackout_first in ([True,False]):
 
 							mycommandpy=f"\"Gate {macrofile} -a '{param_list}'\"\n"
 							# print (mycommand)
-							pbs_string+=f"mycommand={mycommandpy}"
-							pbs_string+=f"echo $mycommand \neval $mycommand\n"
-							hadd_string+=f"hadd {output_file_path}/Total-Edep.root {output_file_path}/*Edep.root \n"
-							hadd_string+=f"hadd {output_file_path}/Total-Edep-Squared.root {output_file_path}/*Edep-Squared.root \n"
-							hadd_string+=f"hadd {output_file_path}/Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
-							pbs_string+="echo \"Time of interum job ending : $(date)\" \n"
-							hadd_string+="echo \"Time of interum job ending : $(date)\" \n"
+							pbs_string_BOclose=pbs_string
+							hadd_string_BOclose=hadd_string
+							pbs_string_BOclose+=f"mycommand={mycommandpy}"
+							pbs_string_BOclose+=f"echo $mycommand \neval $mycommand\n"
+							hadd_string_BOclose+=f"hadd {output_file_path}/Total-Edep.root {output_file_path}/*Edep.root \n"
+							hadd_string_BOclose+=f"hadd {output_file_path}/Total-Edep-Squared.root {output_file_path}/*Edep-Squared.root \n"
+							hadd_string_BOclose+=f"hadd {output_file_path}/Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
+							pbs_string_BOclose+="echo \"Time of interum job ending : $(date)\" \n"
+							hadd_string_BOclose+="echo \"Time of interum job ending : $(date)\" \n"
 
 
 							print(param_list)
@@ -236,6 +240,10 @@ for blackout_first in ([True,False]):
 
 
 	else:
+		pbs_string_BOclose=pbs_string
+		hadd_string_BOclose=hadd_string
+		pbs_string_BOfar=pbs_string
+		hadd_string_BOfar=hadd_string
 		for grating_thick in grating_thicknesses:
 			for BlackOut_thick in BlackOut_thickness:
 				for peak_mat in peak_material:
@@ -257,26 +265,37 @@ for blackout_first in ([True,False]):
 							param_list+=f' [lightcoverztrans_mm,{translation_BO_mm}] [pathOutputDose,{output_file_path}] [inputParticleType,/gate/source/beam_g/setParticleType gamma] [pathGateMaterials,{materials_path}]'
 							param_list+=f' [id,{file_number}] [inputPhaseSpaceFile,{phasespace_in}] [seed,{seed_rand}] [primaries,{how_many_primaries}]'
 							param_list+=f' [lightcover_material,{blackout_mat}] [peak_material,{peak_mat}]'
-
-
+							pbs_string_BOclose=pbs_string
+							hadd_string_BOclose=hadd_string
+							pbs_string_BOclose=pbs_string
+							hadd_string_BOclose=hadd_string
 							mycommandpy=f"\"Gate {macrofile} -a '{param_list}'\"\n"
 							# print (mycommand)
-							pbs_string+=f"mycommand={mycommandpy}"
-							pbs_string+=f"echo $mycommand \neval $mycommand\n"
-							hadd_string+=f"hadd {output_file_path}/Total-Edep.root {output_file_path}/*Edep.root \n"
-							hadd_string+=f"hadd {output_file_path}/Total-Edep-Squared.root {output_file_path}/*Edep-Squared.root \n"
-							hadd_string+=f"hadd {output_file_path}/Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
-							pbs_string+="echo \"Time of interum job ending : $(date)\" \n"
-							hadd_string+="echo \"Time of interum job ending : $(date)\" \n"
+							if (distance_BlackOut_to_peaks_mm==0):
+								pbs_string_BOclose+=f"mycommand={mycommandpy}"
+								pbs_string_BOclose+=f"echo $mycommand \neval $mycommand\n"
+								hadd_string_BOclose+=f"hadd {output_file_path}/Total-Edep.root {output_file_path}/*Edep.root \n"
+								hadd_string_BOclose+=f"hadd {output_file_path}/Total-Edep-Squared.root {output_file_path}/*Edep-Squared.root \n"
+								hadd_string_BOclose+=f"hadd {output_file_path}/Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
+								pbs_string_BOclose+="echo \"Time of interum job ending : $(date)\" \n"
+								hadd_string_BOclose+="echo \"Time of interum job ending : $(date)\" \n"
+							else:
+								pbs_string_BOfar+=f"mycommand={mycommandpy}"
+								pbs_string_BOfar+=f"echo $mycommand \neval $mycommand\n"
+								hadd_string_BOfar+=f"hadd {output_file_path}/Total-Edep.root {output_file_path}/*Edep.root \n"
+								hadd_string_BOfar+=f"hadd {output_file_path}/Total-Edep-Squared.root {output_file_path}/*Edep-Squared.root \n"
+								hadd_string_BOfar+=f"hadd {output_file_path}/Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
+								pbs_string_BOfar+="echo \"Time of interum job ending : $(date)\" \n"
+								hadd_string_BOfar+="echo \"Time of interum job ending : $(date)\" \n"
 
 							print(param_list)
 							print("")
 
 
-pbs_string+="now=$(date) \necho \"Time of completion : $now\" " 
-hadd_string+="now=$(date) \necho \"Time of completion : $now\" " 
+pbs_string_BOclose+="now=$(date) \necho \"Time of completion : $now\" " 
+hadd_string_BOclose+="now=$(date) \necho \"Time of completion : $now\" " 
 
-print(pbs_string)
+# print(pbs_string)
 
 if gamma:
 	script_ending="gamma"
@@ -284,7 +303,18 @@ else:
 	script_ending="elec"
 
 with open(f"flex_script_{script_ending}.pbs", "w") as text_file:
-    print(pbs_string, file=text_file)
+    print(pbs_string_BOclose, file=text_file)
 
 with open(f"hadd_flex_script_{script_ending}.pbs", "w") as text_file:
-    print(hadd_string, file=text_file)
+    print(hadd_string_BOclose, file=text_file)
+
+pbs_string_BOfar+="now=$(date) \necho \"Time of completion : $now\" " 
+hadd_string_BOfar+="now=$(date) \necho \"Time of completion : $now\" " 
+
+with open(f"flex_script_{script_ending}.pbs", "w") as text_file:
+    print(pbs_string_BOfar, file=text_file)
+
+with open(f"hadd_flex_script_{script_ending}.pbs", "w") as text_file:
+    print(hadd_string_BOfar, file=text_file)
+
+
