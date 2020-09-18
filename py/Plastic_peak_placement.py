@@ -45,9 +45,9 @@ else:
 ###       Set up dimensions, materials, translations        ###
 ###############################################################
 
-grating_thicknesses=np.array([30,50,80,100,200,300,350,400]) #um 30,50,80,100,200,300,350,400,500
+grating_thicknesses=np.array([30,50,80,100,300]) #um 30,50,80,100,200,300,350,400,500
 BlackOut_distances=np.array([0,10]) #mm
-BlackOut_thickness=np.array([100,200,300,500]) #um 100,200,300,500,1000
+BlackOut_thickness=np.array([20,100,300]) #um 100,200,300,500,1000
 blackout_material=np.array(['Polyethylene','Silicon','Aluminium'])
 peak_material=np.array(['Lead','Silicon','Aluminium'])
 
@@ -199,6 +199,8 @@ else:
 for blackout_first in ([True,False]):
 	if blackout_first:
 		for grating_thick in grating_thicknesses:
+			if grating_thick>99:
+				continue
 			for BlackOut_thick in BlackOut_thickness:
 				for peak_mat in peak_material:
 					for blackout_mat in blackout_material:
