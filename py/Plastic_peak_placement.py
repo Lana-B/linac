@@ -46,7 +46,7 @@ else:
 ###############################################################
 
 grating_thicknesses=np.array([50,100]) #um 30,50,80,100,200,300,350,400,500
-BlackOut_distances=np.array([0]) # 0,10 mm
+BlackOut_distances=np.array([10]) # 0,10 mm
 BlackOut_thickness=np.array([20,300]) #um 100,200,300,500,1000
 blackout_material=np.array(['Polyethylene','Aluminium'])  #'Polyethylene','Aluminium''silicon'
 peak_material=np.array(['Lead','Aluminium']) #'Lead','Aluminium','silicon'
