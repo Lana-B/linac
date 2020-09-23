@@ -200,7 +200,7 @@ if (gamma):
 	print("gamma")
 	script_ending="gamma"
 else:
-	particle_type_input=" "
+	particle_type_input="/gate/physics/processList Enabled" #to avoid setting particle type
 	particle_outfilename="Elec"
 	print("elec")
 	script_ending="elec"
