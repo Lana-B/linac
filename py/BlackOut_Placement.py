@@ -255,6 +255,7 @@ for blackout_first in ([True,False]): #True,
 
 						with open(f"hadd_flex_script_{script_ending}_{grating_thick}umpeak_{BlackOut_thick}umBlackOut_peakMat_{peak_mat}_BOmat_{blackout_mat}_BlackOut-under-peaks.pbs", "w") as text_file:
 						    print(hadd_string_BOclose, file=text_file)
+
 					else:
 
 						for distance_BlackOut_to_peaks_mm in BlackOut_distances:
@@ -296,8 +297,10 @@ for blackout_first in ([True,False]): #True,
 							hadd_string_BOclose+=f"hadd {output_file_path}/Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
 							hadd_string_BOclose+="now=$(date) \necho \"Time of completion : $now\" " 
 
-							with open(f"hadd_flex_script_{script_ending}_{grating_thick}umpeak_{BlackOut_thick}umBlackOut_peakMat_{peak_mat}_BOmat_{blackout_mat}_BlackOut-under-peaks.pbs", "w") as text_file:
+							with open(f"hadd_flex_script_{script_ending}_{grating_thick}umpeak_{BlackOut_thick}umBlackOut_peakMat_{peak_mat}_BOmat_{blackout_mat}_peaks-under-BlackOut_{distance_BlackOut_to_peaks_mm}mm", "w") as text_file:
 							    print(hadd_string_BOclose, file=text_file)
+
+
 
 
 pbs_string_end="now=$(date) \necho \"Time of completion : $now\" " 
