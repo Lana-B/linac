@@ -6,7 +6,7 @@ import os
 ###############################################################
 # blackout_first=True #from epi layer
 gamma=False #else electrons
-jobtime="36:00:00"
+jobtime="72:00:00"
 jobtime_hadd="01:00:00"
 
 ###############################################################
@@ -32,7 +32,7 @@ elif nodename=="bp1-login01.data.bp.acrc.priv":
 	if gamma:
 		phasespace_in="/work/lb8075/PhaseSpaces/PhS2Gamma/output-lana2-PhS-g_nobias{id}.root"
 	else:
-		phasespace_in="/work/lb8075/PhaseSpaces/PhS2Elec/output-lana2-PhS-e_nobias{id}.root"
+		phasespace_in="/work/lb8075/PhaseSpaces/PhS2Elec/output2e9primaries-lana2-PhS-e_nobias{id}.root"
 	file_number="$PBS_ARRAY_INDEX"
 	how_many_primaries="${Nparts[$PBS_ARRAY_INDEX-1]}"
 	out_dir="/work/lb8075/PhaseSpaces/Flex/"
@@ -54,7 +54,7 @@ grating_thicknesses=np.array([50,100]) #um 30,50,80,100,200,300,350,400,500
 BlackOut_distances=np.array([0,10]) # 0,10 mm
 BlackOut_thickness=np.array([20,300]) #um 100,200,300,500,1000
 blackout_material=np.array(['Polyethylene','Aluminium'])  #'Polyethylene','Aluminium''silicon'
-peak_material=np.array(['Lead','Aluminium']) #'Lead','Aluminium','silicon'
+peak_material=np.array(['Aluminium']) #'Lead','Aluminium','silicon'
 
 front_face_epi_mm=450 #mm
 front_face_epi_um=front_face_epi_mm*1000 #um
@@ -248,9 +248,9 @@ for blackout_first in ([True,False]): #True,
 
 						hadd_string_BOclose=hadd_string
 
-						hadd_string_BOclose+=f"hadd {output_file_path}/Total-Edep.root {output_file_path}/*Edep.root \n"
-						hadd_string_BOclose+=f"hadd {output_file_path}/Total-Edep-Squared.root {output_file_path}/*Edep-Squared.root \n"
-						hadd_string_BOclose+=f"hadd {output_file_path}/Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
+						hadd_string_BOclose+=f"hadd -f {output_file_path}/Total-Edep.root {output_file_path}/*Edep.root \n"
+						hadd_string_BOclose+=f"hadd -f {output_file_path}/Total-Edep-Squared.root {output_file_path}/*Edep-Squared.root \n"
+						hadd_string_BOclose+=f"hadd -f {output_file_path}/Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
 						hadd_string_BOclose+="now=$(date) \necho \"Time of completion : $now\" " 
 
 						with open(f"hadd_flex_script_{script_ending}_{grating_thick}umpeak_{BlackOut_thick}umBlackOut_peakMat_{peak_mat}_BOmat_{blackout_mat}_BlackOut-under-peaks.pbs", "w") as text_file:
@@ -292,9 +292,9 @@ for blackout_first in ([True,False]): #True,
 
 							hadd_string_BOclose=hadd_string
 
-							hadd_string_BOclose+=f"hadd {output_file_path}/Total-Edep.root {output_file_path}/*Edep.root \n"
-							hadd_string_BOclose+=f"hadd {output_file_path}/Total-Edep-Squared.root {output_file_path}/*Edep-Squared.root \n"
-							hadd_string_BOclose+=f"hadd {output_file_path}/Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
+							hadd_string_BOclose+=f"hadd -f {output_file_path}/Total-Edep.root {output_file_path}/*Edep.root \n"
+							hadd_string_BOclose+=f"hadd -f {output_file_path}/Total-Edep-Squared.root {output_file_path}/*Edep-Squared.root \n"
+							hadd_string_BOclose+=f"hadd -f {output_file_path}/Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
 							hadd_string_BOclose+="now=$(date) \necho \"Time of completion : $now\" " 
 
 							with open(f"hadd_flex_script_{script_ending}_{grating_thick}umpeak_{BlackOut_thick}umBlackOut_peakMat_{peak_mat}_BOmat_{blackout_mat}_peaks-under-BlackOut_{distance_BlackOut_to_peaks_mm}mm.pbs", "w") as text_file:
