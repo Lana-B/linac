@@ -66,6 +66,11 @@ front_face_epi_um=front_face_epi_mm*1000 #um
 translation_BO_um=0
 translation_peak_um=0
 
+airbox_half_thick_mm=5.5 #mm
+airbox_half_thick_um=5500 #um
+
+all_qsub_hadd="!#/bin/bash\n\n"
+
 # distance_BlackOut_to_peaks_mm=10 #mm
 
 ####### grating? distance from surface?!!
@@ -310,8 +315,8 @@ for blackout_first in ([True,False]): #True,
 				for blackout_mat in blackout_material:
 					if blackout_first:
 
-						translation_BO_um=front_face_epi_um+(BlackOut_thick/2.0)
-						translation_peak_um=front_face_epi_um+BlackOut_thick+(grating_thick/2.0)
+						translation_BO_um=-airbox_half_thick_um+(BlackOut_thick/2.0)
+						translation_peak_um=-airbox_half_thick_um+BlackOut_thick+(grating_thick/2.0)
 						# translation_peak_mm=translation_peak_um/1000.0
 						# translation_BO_mm=translation_BO_um/1000.0
 						output_file_path=f"{out_dir}PhS3DoseFrom{particle_outfilename}_{grating_thick}umpeak_{BlackOut_thick}umBlackOut_peakMat_{peak_mat}_BOmat_{blackout_mat}_BlackOut-under-peaks"
@@ -343,7 +348,9 @@ for blackout_first in ([True,False]): #True,
 						hadd_string_BOclose+=f"hadd -f {output_file_path}/Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
 						hadd_string_BOclose+="now=$(date) \necho \"Time of completion : $now\" " 
 
-						with open(f"hadd_flex_script_{script_ending}_{grating_thick}umpeak_{BlackOut_thick}umBlackOut_peakMat_{peak_mat}_BOmat_{blackout_mat}_BlackOut-under-peaks.pbs", "w") as text_file:
+						hadd_file_name=f"hadd_flex_script_{script_ending}_{grating_thick}umpeak_{BlackOut_thick}umBlackOut_peakMat_{peak_mat}_BOmat_{blackout_mat}_BlackOut-under-peaks.pbs"
+						all_qsub_hadd+=f"qsub {hadd_file_name}\n"
+						with open(hadd_file_name, "w") as text_file:
 						    print(hadd_string_BOclose, file=text_file)
 
 					else:
@@ -351,8 +358,8 @@ for blackout_first in ([True,False]): #True,
 						for distance_BlackOut_to_peaks_mm in BlackOut_distances:
 
 							distance_BlackOut_to_peaks_um=distance_BlackOut_to_peaks_mm*1000 #mm
-							translation_BO_um=front_face_epi_um+grating_thick+(BlackOut_thick/2.0)+distance_BlackOut_to_peaks_um
-							translation_peak_um=front_face_epi_um+grating_thick/2.0
+							translation_BO_um=-airbox_half_thick_um+grating_thick+(BlackOut_thick/2.0)+distance_BlackOut_to_peaks_um
+							translation_peak_um=-airbox_half_thick_um+grating_thick/2.0
 							output_file_path=f"{out_dir}PhS3DoseFrom{particle_outfilename}_{grating_thick}umpeak_{BlackOut_thick}umBlackOut_peakMat_{peak_mat}_BOmat_{blackout_mat}_peaks-under-BlackOut_{distance_BlackOut_to_peaks_mm}mm"
 							which_output=f"BO_Second_{distance_BlackOut_to_peaks_mm}mm"
 
@@ -387,9 +394,10 @@ for blackout_first in ([True,False]): #True,
 							hadd_string_BOclose+=f"hadd -f {output_file_path}/Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
 							hadd_string_BOclose+="now=$(date) \necho \"Time of completion : $now\" " 
 
-							with open(f"hadd_flex_script_{script_ending}_{grating_thick}umpeak_{BlackOut_thick}umBlackOut_peakMat_{peak_mat}_BOmat_{blackout_mat}_peaks-under-BlackOut_{distance_BlackOut_to_peaks_mm}mm.pbs", "w") as text_file:
+							hadd_file_name=f"hadd_flex_script_{script_ending}_{grating_thick}umpeak_{BlackOut_thick}umBlackOut_peakMat_{peak_mat}_BOmat_{blackout_mat}_peaks-under-BlackOut_{distance_BlackOut_to_peaks_mm}mm.pbs"
+							all_qsub_hadd+=f"qsub {hadd_file_name}\n"
+							with open(hadd_file_name, "w") as text_file:
 							    print(hadd_string_BOclose, file=text_file)
-
 
 
 
@@ -403,6 +411,9 @@ with open(f"flex_script_{script_ending}BO_Second_0mm.pbs", "w") as text_file:
 
 with open(f"flex_script_{script_ending}BO_Second_10mm.pbs", "w") as text_file:
     print(pbs_string_start+pbs_string_second_10+pbs_string_end, file=text_file)
+
+with open(f"all_hadd_script_{script_ending}.sh", "w") as text_file:
+    print(all_qsub_hadd, file=text_file)
 
 
 
