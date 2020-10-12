@@ -5,7 +5,7 @@ import os
 ###                   User Settings                         ###
 ###############################################################
 # blackout_first=True #from epi layer
-gamma=False #else electrons
+gamma=True #else electrons
 jobtime="72:00:00"
 jobtime_hadd="01:00:00"
 
