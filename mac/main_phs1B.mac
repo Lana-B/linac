@@ -28,8 +28,19 @@
 # World origin is in the center of the beam e- source (not the real
 # isocenter of the gantry room)
 /gate/geometry/setMaterialDatabase data/LinacMaterials.db
-/control/execute mac/linac_head.mac
+/control/execute mac/linac_head_1B.mac
 
+
+# VIRTUAL PLANE FOR PHASE SPACE
+/gate/linac/daughters/name               PhS_Plane_b4FF
+/gate/linac/daughters/insert             cylinder
+/gate/PhS_Plane_b4FF/setMaterial              Air
+/gate/PhS_Plane_b4FF/geometry/setRmin         0 mm
+/gate/PhS_Plane_b4FF/geometry/setRmax         35 mm
+/gate/PhS_Plane_b4FF/geometry/setHeight       1 nm
+/gate/PhS_Plane_b4FF/placement/setTranslation 0.0 0.0 -121 mm
+/gate/PhS_Plane_b4FF/vis/setColor             yellow
+/gate/PhS_Plane_b4FF/vis/setVisible           1
 # VIRTUAL PLANE FOR PHASE SPACE
 /gate/linac/daughters/name               PhS_Plane
 /gate/linac/daughters/insert             cylinder
@@ -57,11 +68,6 @@
 /gate/physics/Electron/SetCutInRegion   world 1 mm
 /gate/physics/Positron/SetCutInRegion   world 1 mm
 
-
-/gate/physics/Gamma/SetCutInRegion      primary_collimator 0.5 mm
-/gate/physics/Electron/SetCutInRegion   primary_collimator 0.5 mm
-/gate/physics/Positron/SetCutInRegion   primary_collimator 0.5 mm
-
 /gate/physics/Gamma/SetCutInRegion      ionizing_chamber 0.5 mm
 /gate/physics/Electron/SetCutInRegion   ionizing_chamber 0.5 mm
 /gate/physics/Positron/SetCutInRegion   ionizing_chamber 0.5 mm
@@ -74,10 +80,23 @@
 /gate/physics/Electron/SetCutInRegion   mirror 0.5 mm
 /gate/physics/Positron/SetCutInRegion   mirror 0.5 mm
 
+/gate/physics/Gamma/SetCutInRegion      flattening_filter_cone6 0.5 mm
+/gate/physics/Electron/SetCutInRegion   flattening_filter_cone6 0.5 mm
+/gate/physics/Positron/SetCutInRegion   flattening_filter_cone6 0.5 mm
 
-/gate/physics/Gamma/SetCutInRegion      flattening_filter 0.5 mm
-/gate/physics/Electron/SetCutInRegion   flattening_filter 0.5 mm
-/gate/physics/Positron/SetCutInRegion   flattening_filter 0.5 mm
+# /gate/physics/addProcess Bremsstrahlung
+# /gate/physics/processes/Bremsstrahlung/setModel StandardModel e-
+# /gate/physics/processes/Bremsstrahlung/setModel StandardModel e+
+# /gate/physics/processes/Bremsstrahlung/activateSplitting e- 20
+# /gate/physics/processes/Bremsstrahlung/addFilter volumeFilter secondaries
+# /gate/physics/processes/Bremsstrahlung/secondaries/volumeFilter/addVolume target
+
+# /gate/physics/addProcess Compton
+# /gate/physics/processes/Compton/setModel StandardModel gamma
+# /gate/physics/processes/Compton/activateSplitting gamma 100
+# /gate/physics/processes/Compton/addFilter volumeFilter secondaries
+# /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume flattening_filter
+
 
 /gate/physics/processList Enabled
 /gate/physics/processList Initialized
@@ -109,7 +128,7 @@
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_g
 /gate/actor/PhS_g/attachTo                   PhS_Plane
-/gate/actor/PhS_g/save 	                     output/output-lana-PhS-gb2.root
+/gate/actor/PhS_g/save 	                     output/output-PhS-g.root
 /gate/actor/PhS_g/enableParticleName         false
 /gate/actor/PhS_g/enableProductionVolume     false
 /gate/actor/PhS_g/enableProductionProcess    false
@@ -121,7 +140,7 @@
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_e
 /gate/actor/PhS_e/attachTo                   PhS_Plane
-/gate/actor/PhS_e/save 	                     output/output-lana-PhS-eb2.root
+/gate/actor/PhS_e/save 	                     output/output-PhS-e.root
 /gate/actor/PhS_e/enableParticleName         false
 /gate/actor/PhS_e/enableProductionVolume     false
 /gate/actor/PhS_e/enableProductionProcess    false
@@ -140,31 +159,19 @@
 /gate/run/initialize
 # Bremsstrahlung splitting : generate 100 photon (if below 100 MeV) with weight 1/100
 
-# /process/em/setSecBiasing compt flattening_filter_cone6 100 100 MeV
-/process/em/setSecBiasing eBrem target 100 100 MeV
-
+/process/em/setBiasingFactor compt 100 True
+/process/em/setSecBiasing compt flattening_filter_cone6 100 100 MeV
 
 #====================================================
 # BEAMS
 #=====================================================
 
-/gate/source/addSource                mybeam gps
-/gate/source/mybeam/gps/particle      e-
-/gate/source/mybeam/gps/pos/type      Beam
-/gate/source/mybeam/gps/pos/rot1      0 1 0
-/gate/source/mybeam/gps/pos/rot2      1 0 0
-/gate/source/mybeam/gps/pos/shape     Circle
-/gate/source/mybeam/gps/pos/centre    0. 0. 1000.6 mm
-/gate/source/mybeam/gps/pos/sigma_x   1.274 mm
-/gate/source/mybeam/gps/pos/sigma_y   1.274 mm
-/gate/source/mybeam/gps/ang/rot1      1 0 0
-/gate/source/mybeam/gps/ang/rot2      0 1 0
-/gate/source/mybeam/gps/ang/type      beam1d
-/gate/source/mybeam/gps/ang/sigma_r   0 deg
-/gate/source/mybeam/gps/ene/type      Gauss
-/gate/source/mybeam/gps/ene/mono      6.7 MeV
-/gate/source/mybeam/gps/ene/sigma     0.077 MeV
-/gate/source/mybeam/gps/direction     0 0 -1
+/gate/source/addSource                         beam_g phaseSpace
+/gate/source/beam_g/addPhaseSpaceFile          output/output-phs1A-gb2_Biasx100.root
+# /gate/source/beam_g/setParticleType            gamma
+/gate/source/beam_g/attachTo                   PhS_Plane_b4FF
+/gate/source/beam_g/useRandomSymmetry          true
+
 
 #=====================================================
 # START BEAMS
@@ -176,7 +183,7 @@
 
 #/tracking/verbose 2
 
-/gate/application/setTotalNumberOfPrimaries 20
+/gate/application/setTotalNumberOfPrimaries 2000
 /gate/application/start
 
 
