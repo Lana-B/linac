@@ -1,1 +1,3 @@
 # linac
+
+Developed from https://www.researchgate.net/publication/49768230_Simulation_of_a_6_MV_Elekta_Precise_Linac_photon_beam_using_GATEGEANT4
