@@ -3,13 +3,13 @@
 # VERBOSITY
 #=====================================================
 
-/control/execute mac/verbose.mac
+# /control/execute mac/verbose.mac
 
 #=====================================================
 # VISUALISATION
 #=====================================================
 
-/control/execute mac/visu.mac
+# /control/execute mac/visu.mac
 
 # =====================================================
 # GEOMETRY
@@ -100,16 +100,16 @@
 # the following actor regularly store the current number of
 # event/track/step in a file
 
-/gate/actor/addActor               SimulationStatisticActor stat
-/gate/actor/stat/save              output/output-writePhS-stat.txt
-/gate/actor/stat/saveEveryNSeconds 20
+# /gate/actor/addActor               SimulationStatisticActor stat
+# /gate/actor/stat/save              output/output-writePhS-stat.txt
+# /gate/actor/stat/saveEveryNSeconds 20
 
 # ----------------------------------------------------
 # Phase space storage (a PhS for gamma, another for e-)
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_g
 /gate/actor/PhS_g/attachTo                   PhS_Plane
-/gate/actor/PhS_g/save 	                     output/output-lana-PhS-gb2.root
+/gate/actor/PhS_g/save 	                     output/output-lana-PhS-gb{id}.root
 /gate/actor/PhS_g/enableParticleName         false
 /gate/actor/PhS_g/enableProductionVolume     false
 /gate/actor/PhS_g/enableProductionProcess    false
@@ -121,7 +121,7 @@
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_e
 /gate/actor/PhS_e/attachTo                   PhS_Plane
-/gate/actor/PhS_e/save 	                     output/output-lana-PhS-eb2.root
+/gate/actor/PhS_e/save 	                     output/output-lana-PhS-eb{id}.root
 /gate/actor/PhS_e/enableParticleName         false
 /gate/actor/PhS_e/enableProductionVolume     false
 /gate/actor/PhS_e/enableProductionProcess    false
@@ -171,12 +171,12 @@
 #=====================================================
 
 /gate/random/setEngineName MersenneTwister
-/gate/random/setEngineSeed auto
+/gate/random/setEngineSeed {seed}
 /gate/application/noGlobalOutput
 
 #/tracking/verbose 2
 
-/gate/application/setTotalNumberOfPrimaries 20
+/gate/application/setTotalNumberOfPrimaries {primaries}
 /gate/application/start
 
 
