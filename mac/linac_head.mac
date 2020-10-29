@@ -18,39 +18,39 @@
 # TARGET
 # -----------------------------------------------------
 
-/control/execute mac/linac_target.mac
+/control/execute /home/lb8075/linac/mac/linac_target.mac
 
 # -----------------------------------------------------
 # PRIMARY_COLLIMATOR
 # -----------------------------------------------------
 
-/control/execute mac/linac_primary_collimator.mac
+/control/execute /home/lb8075/linac/mac/linac_primary_collimator.mac
 
 
 # -----------------------------------------------------
 # FLATTENING_FILTER
 # -----------------------------------------------------
 
-/control/execute mac/linac_flattening_filter.mac
+/control/execute /home/lb8075/linac/mac/linac_flattening_filter.mac
 
 # -----------------------------------------------------
 # IONIZING_CHAMBER
 # -----------------------------------------------------
 
-/control/execute mac/linac_ionizing_chamber.mac
+/control/execute /home/lb8075/linac/mac/linac_ionizing_chamber.mac
 
 
 # -----------------------------------------------------
 # BACK_SCATTER_PLATE
 # -----------------------------------------------------
 
-/control/execute mac/linac_back_scatter_plate.mac
+/control/execute /home/lb8075/linac/mac/linac_back_scatter_plate.mac
 
 # -----------------------------------------------------
 # MIRROR
 # -----------------------------------------------------
 
-/control/execute mac/linac_mirror.mac
+/control/execute /home/lb8075/linac/mac/linac_mirror.mac
 
 
 # -----------------------------------------------------

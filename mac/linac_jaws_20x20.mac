@@ -551,9 +551,6 @@
 /gate/jaws_x2_kill_entry/placement/setTranslation -0.5 -3.85 0  cm 
  
 
- 
-
-
 
 ##----------------##
 ## end paste here ##
@@ -561,6 +558,40 @@
 
 
 
+#-------------------------Kill volumes------------------------
+
+#-------------------------Kill MLC------------------------
+
+
+/gate/actor/addActor   KillActor                         KillInsides 
+# /gate/actor/KillInsides/save                                 MyOutputFile.txt
+/gate/actor/KillInsides/attachTo                             mlc_leaf 
+/gate/actor/KillInsides/addFilter                            volumeFilter 
+/gate/actor/KillInsides/volumeFilter/addVolume mlc_y0_kill
+/gate/actor/KillInsides/volumeFilter/addVolume mlc_y1_kill
+/gate/actor/KillInsides/volumeFilter/addVolume mlc_y2_kill
+/gate/actor/KillInsides/volumeFilter/addVolume mlc_y3_kill
+/gate/actor/KillInsides/volumeFilter/addVolume mlc_y4_kill
+/gate/actor/KillInsides/volumeFilter/addVolume mlc_y5_kill
+/gate/actor/KillInsides/volumeFilter/addVolume mlc_y6_kill
+/gate/actor/KillInsides/volumeFilter/addVolume mlc_y7_kill
+/gate/actor/KillInsides/volumeFilter/addVolume mlc_y8_kill
+/gate/actor/KillInsides/volumeFilter/addVolume mlc_y9_kill
+/gate/actor/KillInsides/volumeFilter/addVolume mlc_y10_kill
+/gate/actor/KillInsides/volumeFilter/addVolume mlc_y11_kill
+/gate/actor/KillInsides/volumeFilter/addVolume mlc_y12_kill
+/gate/actor/KillInsides/volumeFilter/addVolume mlc_y13_kill
+/gate/actor/KillInsides/volumeFilter/addVolume mlc_y14_kill
+/gate/actor/KillInsides/volumeFilter/addVolume mlc_y0_kill_entry
+
+
+
+
+/gate/mlc_leaf/repeaters/insert		genericRepeater
+/gate/mlc_leaf/genericRepeater/setPlacementsFilename	/home/lb8075/linac/data/leafedge.txt
+/gate/mlc_leaf/genericRepeater/useRelativeTranslation	0
+
+#-------------------------Kill X and Y jaws------------------------
 
 /gate/actor/addActor   KillActor                         KillInsides2 
 # /gate/actor/KillInsides2/save                            MyOutputFile2.txt
@@ -613,3 +644,4 @@
 /gate/actor/KillInsides9/attachTo                        jaws_y2Vol 
 /gate/actor/KillInsides9/addFilter                       volumeFilter 
 /gate/actor/KillInsides9/volumeFilter/addVolume          jaws_y2_kill_entry
+
