@@ -109,7 +109,7 @@
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_g
 /gate/actor/PhS_g/attachTo                   PhS_Plane
-/gate/actor/PhS_g/save 	                     output/output-lana-PhS-gb{id}.root
+/gate/actor/PhS_g/save 	                     output-lana-PhS-gb{id}.root
 /gate/actor/PhS_g/enableParticleName         false
 /gate/actor/PhS_g/enableProductionVolume     false
 /gate/actor/PhS_g/enableProductionProcess    false
@@ -121,7 +121,7 @@
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_e
 /gate/actor/PhS_e/attachTo                   PhS_Plane
-/gate/actor/PhS_e/save 	                     output/output-lana-PhS-eb{id}.root
+/gate/actor/PhS_e/save 	                     output-lana-PhS-eb{id}.root
 /gate/actor/PhS_e/enableParticleName         false
 /gate/actor/PhS_e/enableProductionVolume     false
 /gate/actor/PhS_e/enableProductionProcess    false
@@ -154,7 +154,7 @@
 /gate/source/mybeam/gps/pos/rot1      0 1 0
 /gate/source/mybeam/gps/pos/rot2      1 0 0
 /gate/source/mybeam/gps/pos/shape     Circle
-/gate/source/mybeam/gps/pos/centre    0. 0. 1000.6 mm
+/gate/source/mybeam/gps/pos/centre    0. 0. 0.6 mm
 /gate/source/mybeam/gps/pos/sigma_x   1.274 mm
 /gate/source/mybeam/gps/pos/sigma_y   1.274 mm
 /gate/source/mybeam/gps/ang/rot1      1 0 0
