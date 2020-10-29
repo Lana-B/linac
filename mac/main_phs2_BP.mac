@@ -1,0 +1,236 @@
+
+# inputs :
+# jaws
+# PSactor
+# id
+# seed
+# primaries
+
+#=====================================================
+# VERBOSITY
+#=====================================================
+
+# /control/execute mac/verbose.mac
+
+#=====================================================
+# VISUALISATION
+#=====================================================
+
+# /control/execute mac/visu.mac
+
+# =====================================================
+# GEOMETRY
+# =====================================================
+
+/gate/geometry/setMaterialDatabase /home/lb8075/linac/data/GateMaterials.db
+
+# WORLD
+/gate/world/setMaterial            Air
+/gate/world/geometry/setXLength    0.80 m
+/gate/world/geometry/setYLength    0.80 m
+/gate/world/geometry/setZLength    2.1 m
+/gate/world/vis/setVisible 1
+
+
+# VIRTUAL PLANE FOR PHASE SPACE
+# It should be the same geometry than PhS generation Here we add a
+# "gantry" rotation. To do that easily, we define two box, on for the
+# rotation (according to the isocenter=world origin), then one another
+# to translation the phase-space plane to the right distance
+
+/gate/world/daughters/name                     linacGantry
+/gate/world/daughters/insert                   box
+/gate/linacGantry/setMaterial                  Air
+/gate/linacGantry/geometry/setXLength          1.0 mm
+/gate/linacGantry/geometry/setYLength          1.0 mm
+/gate/linacGantry/geometry/setZLength          1.0 mm
+/gate/linacGantry/placement/setRotationAxis    0 1 0
+/gate/linacGantry/placement/setRotationAngle   0 deg
+/gate/linacGantry/vis/setVisible               1
+
+/gate/linacGantry/daughters/name         linac
+/gate/linacGantry/daughters/insert       box
+/gate/linac/setMaterial                  Air
+/gate/linac/geometry/setXLength          1.0 mm
+/gate/linac/geometry/setYLength          1.0 mm
+/gate/linac/geometry/setZLength          1.0 mm
+/gate/linac/placement/setTranslation     0 0 1000 mm
+/gate/linac/vis/setVisible               1
+
+
+# /gate/geometry/setMaterialDatabase data/PreciseMaterials.db
+# /control/execute mac/linac_head.mac
+
+/gate/linac/daughters/name               PhS_Plane
+/gate/linac/daughters/insert             cylinder
+/gate/PhS_Plane/setMaterial              Vacuum
+/gate/PhS_Plane/geometry/setRmin         0 mm
+/gate/PhS_Plane/geometry/setRmax         85 mm
+/gate/PhS_Plane/geometry/setHeight       1 nm
+/gate/PhS_Plane/placement/setTranslation 0.0 0.0 -297 mm
+/gate/PhS_Plane/vis/setColor             white
+/gate/PhS_Plane/vis/setVisible           1
+
+# -----------------------------------------------------
+# Jaws
+# -----------------------------------------------------
+
+/control/execute /home/lb8075/linac/mac/linac_jaws_{jaws}.mac
+
+/gate/world/daughters/name                   PhS_Plane_Two
+/gate/world/daughters/insert                 box
+/gate/PhS_Plane_Two/setMaterial              Vacuum
+/gate/PhS_Plane_Two/geometry/setXLength      22 cm
+/gate/PhS_Plane_Two/geometry/setYLength      22 cm
+/gate/PhS_Plane_Two/geometry/setZLength      1 nm
+/gate/PhS_Plane_Two/placement/setTranslation 0.0 0.0 471 mm #(-529)
+/gate/PhS_Plane_Two/vis/setColor             cyan
+/gate/PhS_Plane_Two/vis/setVisible           1
+
+# /gate/world/daughters/name                   FS_Plane
+# /gate/world/daughters/insert                 box
+# /gate/FS_Plane/setMaterial                   Air	
+# /gate/FS_Plane/geometry/setXLength           40 cm
+# /gate/FS_Plane/geometry/setYLength           40 cm
+# /gate/FS_Plane/geometry/setZLength           1 nm
+# /gate/FS_Plane/placement/setTranslation      0.0 0.0 0.0 mm
+# /gate/FS_Plane/vis/setColor                  cyan
+# /gate/FS_Plane/vis/setVisible                1
+
+/gate/world/daughters/name                   Kill_BackPlane
+/gate/world/daughters/insert                 box
+/gate/Kill_BackPlane/setMaterial                   Air	
+/gate/Kill_BackPlane/geometry/setXLength           80 cm
+/gate/Kill_BackPlane/geometry/setYLength           80 cm
+/gate/Kill_BackPlane/geometry/setZLength           1 nm
+/gate/Kill_BackPlane/placement/setTranslation      0.0 0.0 710 mm
+/gate/Kill_BackPlane/vis/setColor                  red
+/gate/Kill_BackPlane/vis/setVisible                1
+
+/gate/world/daughters/name                   Kill_FrontPlane
+/gate/world/daughters/insert                 box
+/gate/Kill_FrontPlane/setMaterial                   Air	
+/gate/Kill_FrontPlane/geometry/setXLength           80 cm
+/gate/Kill_FrontPlane/geometry/setYLength           80 cm
+/gate/Kill_FrontPlane/geometry/setZLength           1 nm
+/gate/Kill_FrontPlane/placement/setTranslation      0.0 0.0 360 mm
+/gate/Kill_FrontPlane/vis/setColor                  red
+/gate/Kill_FrontPlane/vis/setVisible                1
+
+# =====================================================
+# PHYSICS
+# =====================================================
+
+/gate/physics/addPhysicsList emstandard_opt3
+
+/gate/physics/Gamma/SetCutInRegion      world 1 mm
+/gate/physics/Electron/SetCutInRegion   world 1 mm
+/gate/physics/Positron/SetCutInRegion   world 1 mm
+
+/gate/physics/Gamma/SetCutInRegion      mlc_leaf 0.001 mm
+/gate/physics/Electron/SetCutInRegion   mlc_leaf 0.001 mm
+/gate/physics/Positron/SetCutInRegion   mlc_leaf 0.001 mm
+
+/gate/physics/Gamma/SetCutInRegion      jaws_y1 0.001 mm
+/gate/physics/Electron/SetCutInRegion   jaws_y1 0.001 mm
+/gate/physics/Positron/SetCutInRegion   jaws_y1 0.001 mm
+
+/gate/physics/Gamma/SetCutInRegion      jaws_y2 0.001 mm
+/gate/physics/Electron/SetCutInRegion   jaws_y2 0.001 mm
+/gate/physics/Positron/SetCutInRegion   jaws_y2 0.001 mm
+
+/gate/physics/Gamma/SetCutInRegion      jaws_x1 0.001 mm
+/gate/physics/Electron/SetCutInRegion   jaws_x1 0.001 mm
+/gate/physics/Positron/SetCutInRegion   jaws_x1 0.001 mm
+
+/gate/physics/Gamma/SetCutInRegion      jaws_x2 0.001 mm
+/gate/physics/Electron/SetCutInRegion   jaws_x2 0.001 mm
+/gate/physics/Positron/SetCutInRegion   jaws_x2 0.001 mm
+
+# /gate/physics/Gamma/SetCutInRegion      waterbox 0.5 mm
+# /gate/physics/Electron/SetCutInRegion   waterbox 0.5 mm
+# /gate/physics/Positron/SetCutInRegion   waterbox 0.5 mm
+
+
+#=====================================================
+# DETECTORS
+#=====================================================
+
+# ----------------------------------------------------
+# the following actor regularly store the current number of
+# event/track/step in a file
+
+# /gate/actor/addActor               SimulationStatisticActor stat
+# /gate/actor/stat/save              output-readPhS-stat.txt
+# /gate/actor/stat/saveEveryNSeconds 10
+
+# ----------------------------------------------------
+# the following actor stores 3D Dose/Edep distributions
+
+# ----------------------------------------------------
+# Phase space storage (a PhS for gamma, another for e-)
+
+
+
+/control/execute {PSactor}
+
+# /gate/actor/addActor                                    PhaseSpaceActor FieldSizeChecker
+# /gate/actor/FieldSizeChecker/attachTo                   FS_Plane
+# /gate/actor/FieldSizeChecker/save 	                    FieldSizeChecker.root
+# /gate/actor/FieldSizeChecker/enableParticleName         false
+# /gate/actor/FieldSizeChecker/enableProductionVolume     false
+# /gate/actor/FieldSizeChecker/enableProductionProcess    false
+# /gate/actor/FieldSizeChecker/useVolumeFrame             true
+# /gate/actor/FieldSizeChecker/addFilter                  particleFilter
+# /gate/actor/FieldSizeChecker/particleFilter/addParticle gamma
+# /gate/actor/FieldSizeChecker/enableZPosition            true
+
+/gate/actor/addActor   KillActor                         Kill_BP 
+# /gate/actor/Kill_BP/save                                 MyOutputFile7.txt
+/gate/actor/Kill_BP/attachTo                             Kill_BackPlane 
+
+/gate/actor/addActor   KillActor                         Kill_FP 
+# /gate/actor/Kill_FP/save                                 MyOutputFile8.txt
+/gate/actor/Kill_FP/attachTo                             Kill_FrontPlane 
+
+#=====================================================
+# INITIALISATION
+#=====================================================
+
+
+/gate/run/initialize
+
+
+#=====================================================
+# BEAMS
+#=====================================================
+
+# Read from Phase Space files. Here we indicate the type of particle
+# (gamma) because this information is not stored in the PhS to gain
+# space. Moreover, we set 'useRandomSymmetry' to generate more
+# particle than the number of particle in the PhS, using a Z axis
+# symmetry.
+
+/gate/source/addSource                         beam_g phaseSpace
+/gate/source/beam_g/addPhaseSpaceFile          /work/lb8075/PhaseSpaces/PhS1AB_Gamma/output-PhS{id}.root
+/gate/source/beam_g/setParticleType            gamma
+/gate/source/beam_g/attachTo                   PhS_Plane
+/gate/source/beam_g/useRandomSymmetry          true
+
+
+#=====================================================
+# START BEAMS
+#=====================================================
+
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed {seed}
+/gate/application/noGlobalOutput
+
+#/tracking/verbose 2
+
+/gate/application/setTotalNumberOfPrimaries {primaries}
+/gate/application/start
+
+
+/gate/physics/processList Enabled
+/gate/physics/processList Initialized
