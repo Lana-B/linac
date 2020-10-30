@@ -1,5 +1,5 @@
 #!/bin/bash 
-#PBS -l walltime=02:59:00 
+#PBS -l walltime=04:59:00 
 #PBS -j oe
 #PBS -l select=1:ncpus=1
 #PBS -l select=1:ncpus=1:mem=500mb
@@ -9,18 +9,18 @@
 module add apps/gate/8.2
 
 myScript=/home/lb8075/linac/mac/main_phs2_BP.mac
-prim=100000000 #500000000
+prim=10000000 #500000000
 cat $myScript
 
 
 now=$(date) 
 echo "Start: $now" 
 
-myCommand="Gate $myScript -a '[id,$PBS_ARRAY_INDEX] [seed,$RANDOM$RANDOM$RANDOM] [primaries,$prim] [PSactor,/home/lb8075/linac/mac/linac_elecPSactor.mac] [jaws,10x10_p1]'"
+myCommand="Gate $myScript -a '[id,$PBS_ARRAY_INDEX] [seed,$RANDOM$RANDOM$RANDOM] [primaries,$prim] [PSactor,/home/lb8075/linac/mac/linac_elecPSactor.mac] [jaws,30x30_p1]'"
 eval $myCommand
 now=$(date) 
 
-myCommand="Gate $myScript -a '[id,$PBS_ARRAY_INDEX] [seed,$RANDOM$RANDOM$RANDOM] [primaries,$prim] [PSactor,/home/lb8075/linac/mac/linac_elecPSactor.mac] [jaws,20x20_p1]'"
+myCommand="Gate $myScript -a '[id,$PBS_ARRAY_INDEX] [seed,$RANDOM$RANDOM$RANDOM] [primaries,$prim] [PSactor,/home/lb8075/linac/mac/linac_elecPSactor.mac] [jaws,40x40_p1]'"
 eval $myCommand
 now=$(date)
 

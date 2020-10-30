@@ -4,8 +4,8 @@ from ROOT import TFile, TTree
 
 stringy=""
 
-for i in range (1,401):
-	filename="/work/lb8075/PhaseSpaces/PhS2Elec/output2e9primaries-lana2-PhS-e_nobias"+str(i)+".root"
+for i in range (1,361):
+	filename="/work/lb8075/PhaseSpaces/PhS2Elec/ElecFromElec/output2e9primaries-lana2-PhS-e_nobias"+str(i)+".root"
 	rfile=TFile(filename)
 	rtree=rfile.Get("PhaseSpace")
 	ent=rtree.GetEntries()
@@ -13,7 +13,6 @@ for i in range (1,401):
 	# print(ent)
 	if i==1:
 		stringy=stringy+"["+str(ent)
-	else:
-		stringy=stringy+" "+str(ent)
+	stringy=stringy+" "+str(ent)
 stringy=stringy+"]"
 print(stringy)

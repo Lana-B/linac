@@ -206,7 +206,9 @@
 #=====================================================
 
 /gate/run/initialize
-/process/em/setBiasingFactor compt 100 True
+
+{comptbias}
+# /process/em/setBiasingFactor compt 100 True
 
 # /process/em/setSecBiasing compt peakLayer1 100 1000 MeV
 # /particle/process/dump
