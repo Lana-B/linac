@@ -1,0 +1,882 @@
+
+#=====================================================
+# VERBOSITY
+#=====================================================
+
+# /control/execute mac/verbose.mac
+
+#=====================================================
+# VISUALISATION
+#=====================================================
+
+# /control/execute mac/visu.mac
+
+# =====================================================
+# GEOMETRY
+# =====================================================
+
+/gate/geometry/setMaterialDatabase /home/lb8075/linac/data/GateMaterials.db
+
+# WORLD
+/gate/world/setMaterial            Air
+/gate/world/geometry/setXLength    0.80 m
+/gate/world/geometry/setYLength    0.80 m
+/gate/world/geometry/setZLength    2.1 m
+#/gate/world/vis/setVisible 1
+
+
+# VIRTUAL PLANE FOR PHASE SPACE
+# It should be the same geometry than PhS generation Here we add a
+# "gantry" rotation. To do that easily, we define two box, on for the
+# rotation (according to the isocenter=world origin), then one another
+# to translation the phase-space plane to the right distance
+
+/gate/world/daughters/name                     linacGantry
+/gate/world/daughters/insert                   box
+/gate/linacGantry/setMaterial                  Air
+/gate/linacGantry/geometry/setXLength          1.0 mm
+/gate/linacGantry/geometry/setYLength          1.0 mm
+/gate/linacGantry/geometry/setZLength          1.0 mm
+/gate/linacGantry/placement/setRotationAxis    0 1 0
+/gate/linacGantry/placement/setRotationAngle   0 deg
+#/gate/linacGantry/vis/setVisible               1
+
+/gate/linacGantry/daughters/name         linac
+/gate/linacGantry/daughters/insert       box
+/gate/linac/setMaterial                  Air
+/gate/linac/geometry/setXLength          1.0 mm
+/gate/linac/geometry/setYLength          1.0 mm
+/gate/linac/geometry/setZLength          1.0 mm
+/gate/linac/placement/setTranslation     0 0 1000 mm
+#/gate/linac/vis/setVisible               1
+
+
+# /gate/geometry/setMaterialDatabase data/PreciseMaterials.db
+# /control/execute mac/linac_head.mac
+# /gate/linac/placement/setTranslation 0 0 1000 mm
+
+/gate/linac/daughters/name               PhS_Plane
+/gate/linac/daughters/insert             cylinder
+/gate/PhS_Plane/setMaterial              Vacuum
+/gate/PhS_Plane/geometry/setRmin         0 mm
+/gate/PhS_Plane/geometry/setRmax         70 mm
+/gate/PhS_Plane/geometry/setHeight       1 nm
+/gate/PhS_Plane/placement/setTranslation 0.0 0.0 -297 mm
+/gate/PhS_Plane/vis/setColor             white
+/gate/PhS_Plane/vis/setVisible           1
+
+# Jaws
+# -----------------------------------------------------
+# Jaws
+# -----------------------------------------------------
+
+# #-------------------------MLC------------------------
+
+/gate/world/daughters/name            mlc_system
+/gate/world/daughters/insert          box 
+/gate/mlc_system/setMaterial                Air
+/gate/mlc_system/geometry/setXLength        800 mm
+/gate/mlc_system/geometry/setYLength        800 mm
+/gate/mlc_system/geometry/setZLength        76.0 mm 
+/gate/mlc_system/placement/setTranslation   0.0 0.0 664.5 mm #(-335.5)
+/gate/mlc_system/vis/setVisible             0
+/gate/mlc_system/vis/setColor                 green
+
+/gate/mlc_system/daughters/name            mlc_leaf
+/gate/mlc_system/daughters/insert          box 
+/gate/mlc_leaf/setMaterial                Air
+/gate/mlc_leaf/geometry/setXLength        400 mm
+/gate/mlc_leaf/geometry/setYLength        3 mm
+/gate/mlc_leaf/geometry/setZLength        75 mm 
+/gate/mlc_leaf/placement/setTranslation   -200.0 0.0 0.0 mm #(-335.5)
+/gate/mlc_leaf/vis/setVisible             0
+/gate/mlc_leaf/vis/setColor                 blue
+
+
+/gate/mlc_leaf/daughters/name                      mlc_y0 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y0/setMaterial                  Tungsten 
+/gate/mlc_y0/geometry/setNarrowerXLength  163.5 mm 
+/gate/mlc_y0/geometry/setXLength          164.5 mm  
+/gate/mlc_y0/geometry/setYLength          5 mm 
+/gate/mlc_y0/geometry/setZLength          3 mm 
+/gate/mlc_y0/placement/setTranslation     81.7 0 30 mm 
+/gate/mlc_y0/placement/setRotationAxis    1 0 0  
+/gate/mlc_y0/placement/setRotationAngle   90 deg 
+/gate/mlc_y0/vis/setVisible               1 
+/gate/mlc_y0/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y1 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y1/setMaterial                  Tungsten 
+/gate/mlc_y1/geometry/setNarrowerXLength  164.5 mm 
+/gate/mlc_y1/geometry/setXLength          165.4 mm  
+/gate/mlc_y1/geometry/setYLength          5 mm 
+/gate/mlc_y1/geometry/setZLength          3 mm 
+/gate/mlc_y1/placement/setTranslation     82.175 0 25 mm 
+/gate/mlc_y1/placement/setRotationAxis    1 0 0  
+/gate/mlc_y1/placement/setRotationAngle   90 deg 
+/gate/mlc_y1/vis/setVisible               1 
+/gate/mlc_y1/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y2 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y2/setMaterial                  Tungsten 
+/gate/mlc_y2/geometry/setNarrowerXLength  165.4 mm 
+/gate/mlc_y2/geometry/setXLength          166.1 mm  
+/gate/mlc_y2/geometry/setYLength          5 mm 
+/gate/mlc_y2/geometry/setZLength          3 mm 
+/gate/mlc_y2/placement/setTranslation     82.575 0 20 mm 
+/gate/mlc_y2/placement/setRotationAxis    1 0 0  
+/gate/mlc_y2/placement/setRotationAngle   90 deg 
+/gate/mlc_y2/vis/setVisible               1 
+/gate/mlc_y2/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y3 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y3/setMaterial                  Tungsten 
+/gate/mlc_y3/geometry/setNarrowerXLength  166.1 mm 
+/gate/mlc_y3/geometry/setXLength          166.5 mm  
+/gate/mlc_y3/geometry/setYLength          5 mm 
+/gate/mlc_y3/geometry/setZLength          3 mm 
+/gate/mlc_y3/placement/setTranslation     82.85000000000001 0 15 mm 
+/gate/mlc_y3/placement/setRotationAxis    1 0 0  
+/gate/mlc_y3/placement/setRotationAngle   90 deg 
+/gate/mlc_y3/vis/setVisible               1 
+/gate/mlc_y3/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y4 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y4/setMaterial                  Tungsten 
+/gate/mlc_y4/geometry/setNarrowerXLength  166.5 mm 
+/gate/mlc_y4/geometry/setXLength          166.9 mm  
+/gate/mlc_y4/geometry/setYLength          5 mm 
+/gate/mlc_y4/geometry/setZLength          3 mm 
+/gate/mlc_y4/placement/setTranslation     83.05 0 10 mm 
+/gate/mlc_y4/placement/setRotationAxis    1 0 0  
+/gate/mlc_y4/placement/setRotationAngle   90 deg 
+/gate/mlc_y4/vis/setVisible               1 
+/gate/mlc_y4/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y5 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y5/setMaterial                  Tungsten 
+/gate/mlc_y5/geometry/setNarrowerXLength  166.9 mm 
+/gate/mlc_y5/geometry/setXLength          167.1 mm  
+/gate/mlc_y5/geometry/setYLength          5 mm 
+/gate/mlc_y5/geometry/setZLength          3 mm 
+/gate/mlc_y5/placement/setTranslation     83.2 0 5 mm 
+/gate/mlc_y5/placement/setRotationAxis    1 0 0  
+/gate/mlc_y5/placement/setRotationAngle   90 deg 
+/gate/mlc_y5/vis/setVisible               1 
+/gate/mlc_y5/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y6 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y6/setMaterial                  Tungsten 
+/gate/mlc_y6/geometry/setNarrowerXLength  167.1 mm 
+/gate/mlc_y6/geometry/setXLength          166.9 mm  
+/gate/mlc_y6/geometry/setYLength          5 mm 
+/gate/mlc_y6/geometry/setZLength          3 mm 
+/gate/mlc_y6/placement/setTranslation     83.2 0 0 mm 
+/gate/mlc_y6/placement/setRotationAxis    1 0 0  
+/gate/mlc_y6/placement/setRotationAngle   90 deg 
+/gate/mlc_y6/vis/setVisible               1 
+/gate/mlc_y6/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y7 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y7/setMaterial                  Tungsten 
+/gate/mlc_y7/geometry/setNarrowerXLength  166.9 mm 
+/gate/mlc_y7/geometry/setXLength          166.6 mm  
+/gate/mlc_y7/geometry/setYLength          5 mm 
+/gate/mlc_y7/geometry/setZLength          3 mm 
+/gate/mlc_y7/placement/setTranslation     83.075 0 -5 mm 
+/gate/mlc_y7/placement/setRotationAxis    1 0 0  
+/gate/mlc_y7/placement/setRotationAngle   90 deg 
+/gate/mlc_y7/vis/setVisible               1 
+/gate/mlc_y7/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y8 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y8/setMaterial                  Tungsten 
+/gate/mlc_y8/geometry/setNarrowerXLength  166.6 mm 
+/gate/mlc_y8/geometry/setXLength          166.2 mm  
+/gate/mlc_y8/geometry/setYLength          5 mm 
+/gate/mlc_y8/geometry/setZLength          3 mm 
+/gate/mlc_y8/placement/setTranslation     82.89999999999999 0 -10 mm 
+/gate/mlc_y8/placement/setRotationAxis    1 0 0  
+/gate/mlc_y8/placement/setRotationAngle   90 deg 
+/gate/mlc_y8/vis/setVisible               1 
+/gate/mlc_y8/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y9 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y9/setMaterial                  Tungsten 
+/gate/mlc_y9/geometry/setNarrowerXLength  166.2 mm 
+/gate/mlc_y9/geometry/setXLength          165.8 mm  
+/gate/mlc_y9/geometry/setYLength          5 mm 
+/gate/mlc_y9/geometry/setZLength          3 mm 
+/gate/mlc_y9/placement/setTranslation     82.7 0 -15 mm 
+/gate/mlc_y9/placement/setRotationAxis    1 0 0  
+/gate/mlc_y9/placement/setRotationAngle   90 deg 
+/gate/mlc_y9/vis/setVisible               1 
+/gate/mlc_y9/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y10 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y10/setMaterial                  Tungsten 
+/gate/mlc_y10/geometry/setNarrowerXLength  165.8 mm 
+/gate/mlc_y10/geometry/setXLength          165.2 mm  
+/gate/mlc_y10/geometry/setYLength          5 mm 
+/gate/mlc_y10/geometry/setZLength          3 mm 
+/gate/mlc_y10/placement/setTranslation     82.45 0 -20 mm 
+/gate/mlc_y10/placement/setRotationAxis    1 0 0  
+/gate/mlc_y10/placement/setRotationAngle   90 deg 
+/gate/mlc_y10/vis/setVisible               1 
+/gate/mlc_y10/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y11 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y11/setMaterial                  Tungsten 
+/gate/mlc_y11/geometry/setNarrowerXLength  165.2 mm 
+/gate/mlc_y11/geometry/setXLength          164.3 mm  
+/gate/mlc_y11/geometry/setYLength          5 mm 
+/gate/mlc_y11/geometry/setZLength          3 mm 
+/gate/mlc_y11/placement/setTranslation     82.075 0 -25 mm 
+/gate/mlc_y11/placement/setRotationAxis    1 0 0  
+/gate/mlc_y11/placement/setRotationAngle   90 deg 
+/gate/mlc_y11/vis/setVisible               1 
+/gate/mlc_y11/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y12 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y12/setMaterial                  Tungsten 
+/gate/mlc_y12/geometry/setNarrowerXLength  164.3 mm 
+/gate/mlc_y12/geometry/setXLength          163.1 mm  
+/gate/mlc_y12/geometry/setYLength          5 mm 
+/gate/mlc_y12/geometry/setZLength          3 mm 
+/gate/mlc_y12/placement/setTranslation     81.55 0 -30 mm 
+/gate/mlc_y12/placement/setRotationAxis    1 0 0  
+/gate/mlc_y12/placement/setRotationAngle   90 deg 
+/gate/mlc_y12/vis/setVisible               1 
+/gate/mlc_y12/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y13 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y13/setMaterial                  Tungsten 
+/gate/mlc_y13/geometry/setNarrowerXLength  163.1 mm 
+/gate/mlc_y13/geometry/setXLength          162.0 mm  
+/gate/mlc_y13/geometry/setYLength          5 mm 
+/gate/mlc_y13/geometry/setZLength          3 mm 
+/gate/mlc_y13/placement/setTranslation     80.97500000000001 0 -35 mm 
+/gate/mlc_y13/placement/setRotationAxis    1 0 0  
+/gate/mlc_y13/placement/setRotationAngle   90 deg 
+/gate/mlc_y13/vis/setVisible               1 
+/gate/mlc_y13/vis/setColor                 magenta 
+/gate/mlc_leaf/daughters/name                      mlc_y14 
+/gate/mlc_leaf/daughters/insert                      wedge 
+/gate/mlc_y14/setMaterial                  Tungsten 
+/gate/mlc_y14/geometry/setNarrowerXLength  162.0 mm 
+/gate/mlc_y14/geometry/setXLength          160.5 mm  
+/gate/mlc_y14/geometry/setYLength          5 mm 
+/gate/mlc_y14/geometry/setZLength          3 mm 
+/gate/mlc_y14/placement/setTranslation     80.325 0 -40 mm 
+/gate/mlc_y14/placement/setRotationAxis    1 0 0  
+/gate/mlc_y14/placement/setRotationAngle   90 deg 
+/gate/mlc_y14/vis/setVisible               1 
+/gate/mlc_y14/vis/setColor                 magenta 
+
+/gate/mlc_y0/daughters/name                      mlc_y0_kill_entry 
+/gate/mlc_y0/daughters/insert                      wedge 
+/gate/mlc_y0_kill_entry/setMaterial                  Tungsten 
+/gate/mlc_y0_kill_entry/geometry/setNarrowerXLength  161.2 mm 
+/gate/mlc_y0_kill_entry/geometry/setXLength          161.5 mm  
+/gate/mlc_y0_kill_entry/geometry/setYLength          1 mm 
+/gate/mlc_y0_kill_entry/geometry/setZLength          3 mm 
+/gate/mlc_y0_kill_entry/placement/setTranslation     0 2.0 0 mm 
+/gate/mlc_y0_kill_entry/vis/setVisible               1 
+/gate/mlc_y0_kill_entry/vis/setColor                 white 
+/gate/mlc_y0/daughters/name                      mlc_y0_kill 
+/gate/mlc_y0/daughters/insert                      wedge 
+/gate/mlc_y0_kill/setMaterial                  Tungsten 
+/gate/mlc_y0_kill/geometry/setNarrowerXLength  162.5 mm 
+/gate/mlc_y0_kill/geometry/setXLength          163.5 mm  
+/gate/mlc_y0_kill/geometry/setYLength          4 mm 
+/gate/mlc_y0_kill/geometry/setZLength          3 mm 
+/gate/mlc_y0_kill/placement/setTranslation     0 -0.5 0 mm 
+/gate/mlc_y0_kill/vis/setVisible               1 
+/gate/mlc_y0_kill/vis/setColor                 white 
+/gate/mlc_y1/daughters/name                      mlc_y1_kill 
+/gate/mlc_y1/daughters/insert                      wedge 
+/gate/mlc_y1_kill/setMaterial                  Tungsten 
+/gate/mlc_y1_kill/geometry/setNarrowerXLength  163.5 mm 
+/gate/mlc_y1_kill/geometry/setXLength          164.4 mm  
+/gate/mlc_y1_kill/geometry/setYLength          5 mm 
+/gate/mlc_y1_kill/geometry/setZLength          3 mm 
+/gate/mlc_y1_kill/placement/setTranslation     0 0 0 mm 
+/gate/mlc_y1_kill/vis/setVisible               1 
+/gate/mlc_y1_kill/vis/setColor                 white 
+/gate/mlc_y2/daughters/name                      mlc_y2_kill 
+/gate/mlc_y2/daughters/insert                      wedge 
+/gate/mlc_y2_kill/setMaterial                  Tungsten 
+/gate/mlc_y2_kill/geometry/setNarrowerXLength  164.4 mm 
+/gate/mlc_y2_kill/geometry/setXLength          165.1 mm  
+/gate/mlc_y2_kill/geometry/setYLength          5 mm 
+/gate/mlc_y2_kill/geometry/setZLength          3 mm 
+/gate/mlc_y2_kill/placement/setTranslation     0 0 0 mm 
+/gate/mlc_y2_kill/vis/setVisible               1 
+/gate/mlc_y2_kill/vis/setColor                 white 
+/gate/mlc_y3/daughters/name                      mlc_y3_kill 
+/gate/mlc_y3/daughters/insert                      wedge 
+/gate/mlc_y3_kill/setMaterial                  Tungsten 
+/gate/mlc_y3_kill/geometry/setNarrowerXLength  165.1 mm 
+/gate/mlc_y3_kill/geometry/setXLength          165.5 mm  
+/gate/mlc_y3_kill/geometry/setYLength          5 mm 
+/gate/mlc_y3_kill/geometry/setZLength          3 mm 
+/gate/mlc_y3_kill/placement/setTranslation     0 0 0 mm 
+/gate/mlc_y3_kill/vis/setVisible               1 
+/gate/mlc_y3_kill/vis/setColor                 white 
+/gate/mlc_y4/daughters/name                      mlc_y4_kill 
+/gate/mlc_y4/daughters/insert                      wedge 
+/gate/mlc_y4_kill/setMaterial                  Tungsten 
+/gate/mlc_y4_kill/geometry/setNarrowerXLength  165.5 mm 
+/gate/mlc_y4_kill/geometry/setXLength          165.9 mm  
+/gate/mlc_y4_kill/geometry/setYLength          5 mm 
+/gate/mlc_y4_kill/geometry/setZLength          3 mm 
+/gate/mlc_y4_kill/placement/setTranslation     0 0 0 mm 
+/gate/mlc_y4_kill/vis/setVisible               1 
+/gate/mlc_y4_kill/vis/setColor                 white 
+/gate/mlc_y5/daughters/name                      mlc_y5_kill 
+/gate/mlc_y5/daughters/insert                      wedge 
+/gate/mlc_y5_kill/setMaterial                  Tungsten 
+/gate/mlc_y5_kill/geometry/setNarrowerXLength  165.9 mm 
+/gate/mlc_y5_kill/geometry/setXLength          166.1 mm  
+/gate/mlc_y5_kill/geometry/setYLength          5 mm 
+/gate/mlc_y5_kill/geometry/setZLength          3 mm 
+/gate/mlc_y5_kill/placement/setTranslation     0 0 0 mm 
+/gate/mlc_y5_kill/vis/setVisible               1 
+/gate/mlc_y5_kill/vis/setColor                 white 
+/gate/mlc_y6/daughters/name                      mlc_y6_kill 
+/gate/mlc_y6/daughters/insert                      wedge 
+/gate/mlc_y6_kill/setMaterial                  Tungsten 
+/gate/mlc_y6_kill/geometry/setNarrowerXLength  166.1 mm 
+/gate/mlc_y6_kill/geometry/setXLength          165.9 mm  
+/gate/mlc_y6_kill/geometry/setYLength          5 mm 
+/gate/mlc_y6_kill/geometry/setZLength          3 mm 
+/gate/mlc_y6_kill/placement/setTranslation     0 0 0 mm 
+/gate/mlc_y6_kill/vis/setVisible               1 
+/gate/mlc_y6_kill/vis/setColor                 white 
+/gate/mlc_y7/daughters/name                      mlc_y7_kill 
+/gate/mlc_y7/daughters/insert                      wedge 
+/gate/mlc_y7_kill/setMaterial                  Tungsten 
+/gate/mlc_y7_kill/geometry/setNarrowerXLength  165.9 mm 
+/gate/mlc_y7_kill/geometry/setXLength          165.6 mm  
+/gate/mlc_y7_kill/geometry/setYLength          5 mm 
+/gate/mlc_y7_kill/geometry/setZLength          3 mm 
+/gate/mlc_y7_kill/placement/setTranslation     0 0 0 mm 
+/gate/mlc_y7_kill/vis/setVisible               1 
+/gate/mlc_y7_kill/vis/setColor                 white 
+/gate/mlc_y8/daughters/name                      mlc_y8_kill 
+/gate/mlc_y8/daughters/insert                      wedge 
+/gate/mlc_y8_kill/setMaterial                  Tungsten 
+/gate/mlc_y8_kill/geometry/setNarrowerXLength  165.6 mm 
+/gate/mlc_y8_kill/geometry/setXLength          165.2 mm  
+/gate/mlc_y8_kill/geometry/setYLength          5 mm 
+/gate/mlc_y8_kill/geometry/setZLength          3 mm 
+/gate/mlc_y8_kill/placement/setTranslation     0 0 0 mm 
+/gate/mlc_y8_kill/vis/setVisible               1 
+/gate/mlc_y8_kill/vis/setColor                 white 
+/gate/mlc_y9/daughters/name                      mlc_y9_kill 
+/gate/mlc_y9/daughters/insert                      wedge 
+/gate/mlc_y9_kill/setMaterial                  Tungsten 
+/gate/mlc_y9_kill/geometry/setNarrowerXLength  165.2 mm 
+/gate/mlc_y9_kill/geometry/setXLength          164.8 mm  
+/gate/mlc_y9_kill/geometry/setYLength          5 mm 
+/gate/mlc_y9_kill/geometry/setZLength          3 mm 
+/gate/mlc_y9_kill/placement/setTranslation     0 0 0 mm 
+/gate/mlc_y9_kill/vis/setVisible               1 
+/gate/mlc_y9_kill/vis/setColor                 white 
+/gate/mlc_y10/daughters/name                      mlc_y10_kill 
+/gate/mlc_y10/daughters/insert                      wedge 
+/gate/mlc_y10_kill/setMaterial                  Tungsten 
+/gate/mlc_y10_kill/geometry/setNarrowerXLength  164.8 mm 
+/gate/mlc_y10_kill/geometry/setXLength          164.2 mm  
+/gate/mlc_y10_kill/geometry/setYLength          5 mm 
+/gate/mlc_y10_kill/geometry/setZLength          3 mm 
+/gate/mlc_y10_kill/placement/setTranslation     0 0 0 mm 
+/gate/mlc_y10_kill/vis/setVisible               1 
+/gate/mlc_y10_kill/vis/setColor                 white 
+/gate/mlc_y11/daughters/name                      mlc_y11_kill 
+/gate/mlc_y11/daughters/insert                      wedge 
+/gate/mlc_y11_kill/setMaterial                  Tungsten 
+/gate/mlc_y11_kill/geometry/setNarrowerXLength  164.2 mm 
+/gate/mlc_y11_kill/geometry/setXLength          163.3 mm  
+/gate/mlc_y11_kill/geometry/setYLength          5 mm 
+/gate/mlc_y11_kill/geometry/setZLength          3 mm 
+/gate/mlc_y11_kill/placement/setTranslation     0 0 0 mm 
+/gate/mlc_y11_kill/vis/setVisible               1 
+/gate/mlc_y11_kill/vis/setColor                 white 
+/gate/mlc_y12/daughters/name                      mlc_y12_kill 
+/gate/mlc_y12/daughters/insert                      wedge 
+/gate/mlc_y12_kill/setMaterial                  Tungsten 
+/gate/mlc_y12_kill/geometry/setNarrowerXLength  163.3 mm 
+/gate/mlc_y12_kill/geometry/setXLength          162.1 mm  
+/gate/mlc_y12_kill/geometry/setYLength          5 mm 
+/gate/mlc_y12_kill/geometry/setZLength          3 mm 
+/gate/mlc_y12_kill/placement/setTranslation     0 0 0 mm 
+/gate/mlc_y12_kill/vis/setVisible               1 
+/gate/mlc_y12_kill/vis/setColor                 white 
+/gate/mlc_y13/daughters/name                      mlc_y13_kill 
+/gate/mlc_y13/daughters/insert                      wedge 
+/gate/mlc_y13_kill/setMaterial                  Tungsten 
+/gate/mlc_y13_kill/geometry/setNarrowerXLength  162.1 mm 
+/gate/mlc_y13_kill/geometry/setXLength          161.0 mm  
+/gate/mlc_y13_kill/geometry/setYLength          5 mm 
+/gate/mlc_y13_kill/geometry/setZLength          3 mm 
+/gate/mlc_y13_kill/placement/setTranslation     0 0 0 mm 
+/gate/mlc_y13_kill/vis/setVisible               1 
+/gate/mlc_y13_kill/vis/setColor                 white 
+/gate/mlc_y14/daughters/name                      mlc_y14_kill 
+/gate/mlc_y14/daughters/insert                      wedge 
+/gate/mlc_y14_kill/setMaterial                  Tungsten 
+/gate/mlc_y14_kill/geometry/setNarrowerXLength  161.0 mm 
+/gate/mlc_y14_kill/geometry/setXLength          159.5 mm  
+/gate/mlc_y14_kill/geometry/setYLength          5 mm 
+/gate/mlc_y14_kill/geometry/setZLength          3 mm 
+/gate/mlc_y14_kill/placement/setTranslation     0 0 0 mm 
+/gate/mlc_y14_kill/vis/setVisible               1 
+/gate/mlc_y14_kill/vis/setColor                 white 
+
+/gate/world/daughters/name            jaws_y1Vol 
+/gate/world/daughters/insert          box 
+/gate/jaws_y1Vol/setMaterial                Air 
+/gate/jaws_y1Vol/geometry/setXLength      20 cm
+/gate/jaws_y1Vol/geometry/setYLength      30 cm 
+/gate/jaws_y1Vol/geometry/setZLength      3 cm 
+/gate/jaws_y1Vol/placement/setTranslation   -14.035 0.0 58.9 cm #(-41.1) 
+/gate/jaws_y1Vol/vis/setVisible             0 
+/gate/jaws_y1Vol/vis/setColor             red  
+/gate/jaws_y1Vol/daughters/name              jaws_y1 
+/gate/jaws_y1Vol/daughters/insert            wedge 
+ 
+/gate/jaws_y1/setMaterial              Tungsten 
+/gate/jaws_y1/geometry/setNarrowerXLength  19.7 cm  
+/gate/jaws_y1/geometry/setXLength      20 cm 
+/gate/jaws_y1/geometry/setYLength      3 cm 
+/gate/jaws_y1/geometry/setZLength      30 cm 
+/gate/jaws_y1/vis/setVisible           1 
+/gate/jaws_y1/vis/setColor             yellow  
+/gate/jaws_y1/placement/setTranslation 0 0 0 cm 
+/gate/jaws_y1/placement/setRotationAxis  1 0 0 
+/gate/jaws_y1/placement/setRotationAngle 270 deg 
+ 
+/gate/jaws_y1/daughters/name              jaws_y1_kill 
+/gate/jaws_y1/daughters/insert            wedge 
+/gate/jaws_y1_kill/setMaterial              Tungsten 
+/gate/jaws_y1_kill/geometry/setNarrowerXLength  19.599999999999998 cm  
+/gate/jaws_y1_kill/geometry/setXLength      19.9 cm 
+/gate/jaws_y1_kill/geometry/setYLength      2.9 cm 
+/gate/jaws_y1_kill/geometry/setZLength      30 cm 
+/gate/jaws_y1_kill/vis/setVisible           1 
+/gate/jaws_y1_kill/vis/setColor             white  
+/gate/jaws_y1_kill/placement/setTranslation -0.05 0.05 0 cm 
+ 
+/gate/jaws_y1/daughters/name              jaws_y1_kill_entry 
+/gate/jaws_y1/daughters/insert            wedge 
+/gate/jaws_y1_kill_entry/setMaterial              Tungsten 
+/gate/jaws_y1_kill_entry/geometry/setNarrowerXLength  19.599999999999998 cm  
+/gate/jaws_y1_kill_entry/geometry/setXLength      19.9 cm 
+/gate/jaws_y1_kill_entry/geometry/setYLength      0.1 cm 
+/gate/jaws_y1_kill_entry/geometry/setZLength      30 cm 
+/gate/jaws_y1_kill_entry/vis/setVisible           1 
+/gate/jaws_y1_kill_entry/vis/setColor             white  
+/gate/jaws_y1_kill_entry/placement/setTranslation -0.05 -1.45 0 cm 
+ 
+/gate/world/daughters/name            jaws_y2Vol 
+/gate/world/daughters/insert          box 
+/gate/jaws_y2Vol/setMaterial                Air 
+/gate/jaws_y2Vol/geometry/setXLength      20 cm
+/gate/jaws_y2Vol/geometry/setYLength      3 cm 
+/gate/jaws_y2Vol/geometry/setZLength      30 cm 
+/gate/jaws_y2Vol/placement/setTranslation   14.035 0.0 58.9 cm #(-41.1) 
+/gate/jaws_y2Vol/vis/setVisible             0 
+/gate/jaws_y2Vol/vis/setColor             red  
+/gate/jaws_y2Vol/placement/setRotationAxis  1 0 0 
+/gate/jaws_y2Vol/placement/setRotationAngle 90 deg 
+/gate/jaws_y2Vol/daughters/name              jaws_y2 
+/gate/jaws_y2Vol/daughters/insert            wedge 
+ 
+/gate/jaws_y2/setMaterial              Tungsten 
+/gate/jaws_y2/geometry/setNarrowerXLength  19.7 cm  
+/gate/jaws_y2/geometry/setXLength      20 cm 
+/gate/jaws_y2/geometry/setYLength      3 cm 
+/gate/jaws_y2/geometry/setZLength      30 cm 
+/gate/jaws_y2/vis/setVisible           1 
+/gate/jaws_y2/vis/setColor             yellow  
+/gate/jaws_y2/placement/setTranslation 0 0 0 cm 
+/gate/jaws_y2/placement/setRotationAxis  0 0 1 
+/gate/jaws_y2/placement/setRotationAngle 180 deg 
+ 
+/gate/jaws_y2/daughters/name              jaws_y2_kill 
+/gate/jaws_y2/daughters/insert            wedge 
+/gate/jaws_y2_kill/setMaterial              Tungsten 
+/gate/jaws_y2_kill/geometry/setNarrowerXLength  19.599999999999998 cm  
+/gate/jaws_y2_kill/geometry/setXLength      19.9 cm 
+/gate/jaws_y2_kill/geometry/setYLength      2.9 cm 
+/gate/jaws_y2_kill/geometry/setZLength      30 cm 
+/gate/jaws_y2_kill/vis/setVisible           1 
+/gate/jaws_y2_kill/vis/setColor             white  
+/gate/jaws_y2_kill/placement/setTranslation -0.05 0 0 cm 
+/gate/jaws_y2/daughters/name              jaws_y2_kill_entry 
+/gate/jaws_y2/daughters/insert            wedge 
+/gate/jaws_y2_kill_entry/setMaterial              Tungsten 
+/gate/jaws_y2_kill_entry/geometry/setNarrowerXLength  19.599999999999998 cm  
+/gate/jaws_y2_kill_entry/geometry/setXLength      19.9 cm 
+/gate/jaws_y2_kill_entry/geometry/setYLength      0.1 cm 
+/gate/jaws_y2_kill_entry/geometry/setZLength      30 cm 
+/gate/jaws_y2_kill_entry/vis/setVisible           1 
+/gate/jaws_y2_kill_entry/vis/setColor             white  
+/gate/jaws_y2_kill_entry/placement/setTranslation -0.05 -1.45 0 cm 
+
+/gate/world/daughters/name            jaws_x1Vol 
+/gate/world/daughters/insert          box 
+/gate/jaws_x1Vol/setMaterial                Air 
+/gate/jaws_x1Vol/geometry/setXLength      30 cm
+/gate/jaws_x1Vol/geometry/setYLength      7.8 cm 
+/gate/jaws_x1Vol/geometry/setZLength      20 cm 
+/gate/jaws_x1Vol/placement/setTranslation    0.0 14.504999999999999 53 cm 
+/gate/jaws_x1Vol/vis/setVisible             0 
+/gate/jaws_x1Vol/vis/setColor             magenta  
+/gate/jaws_x1Vol/placement/setRotationAxis  1 0 0 
+/gate/jaws_x1Vol/placement/setRotationAngle 270 deg 
+
+/gate/jaws_x1Vol/daughters/name              jaws_x1 
+/gate/jaws_x1Vol/daughters/insert            wedge 
+/gate/jaws_x1/setMaterial              Tungsten 
+/gate/jaws_x1/geometry/setNarrowerXLength  19.22 cm  
+/gate/jaws_x1/geometry/setXLength      20 cm 
+/gate/jaws_x1/geometry/setYLength      7.8 cm 
+/gate/jaws_x1/geometry/setZLength      30 cm 
+/gate/jaws_x1/vis/setVisible           1 
+/gate/jaws_x1/vis/setColor             cyan  
+/gate/jaws_x1/placement/setTranslation 0 0 0 cm 
+/gate/jaws_x1/placement/setRotationAxis  0 1 0 
+/gate/jaws_x1/placement/setRotationAngle 90 deg 
+ 
+/gate/jaws_x1/daughters/name              jaws_x1_kill 
+/gate/jaws_x1/daughters/insert            wedge 
+/gate/jaws_x1_kill/setMaterial              Tungsten 
+/gate/jaws_x1_kill/geometry/setNarrowerXLength  19.119999999999997 cm  
+/gate/jaws_x1_kill/geometry/setXLength      19.9 cm 
+/gate/jaws_x1_kill/geometry/setYLength      7.7 cm 
+/gate/jaws_x1_kill/geometry/setZLength      30 cm 
+/gate/jaws_x1_kill/vis/setVisible           1 
+/gate/jaws_x1_kill/vis/setColor             white  
+/gate/jaws_x1_kill/placement/setTranslation -0.05 0.05 0 cm 
+ 
+/gate/jaws_x1/daughters/name              jaws_x1_kill_entry 
+/gate/jaws_x1/daughters/insert            wedge 
+/gate/jaws_x1_kill_entry/setMaterial              Tungsten 
+/gate/jaws_x1_kill_entry/geometry/setNarrowerXLength  19.119999999999997 cm  
+/gate/jaws_x1_kill_entry/geometry/setXLength      19.9 cm 
+/gate/jaws_x1_kill_entry/geometry/setYLength      0.1 cm 
+/gate/jaws_x1_kill_entry/geometry/setZLength      30 cm 
+/gate/jaws_x1_kill_entry/vis/setVisible           1 
+/gate/jaws_x1_kill_entry/vis/setColor             white  
+/gate/jaws_x1_kill_entry/placement/setTranslation -0.05 -3.85 0 cm 
+ 
+/gate/world/daughters/name            jaws_x2Vol 
+/gate/world/daughters/insert          box 
+/gate/jaws_x2Vol/setMaterial                Air 
+/gate/jaws_x2Vol/geometry/setXLength      30 cm
+/gate/jaws_x2Vol/geometry/setYLength      7.8 cm 
+/gate/jaws_x2Vol/geometry/setZLength      20 cm 
+/gate/jaws_x2Vol/placement/setTranslation   0.0 -14.504999999999999 53 cm 
+/gate/jaws_x2Vol/vis/setVisible             0 
+/gate/jaws_x2Vol/vis/setColor             magenta  
+ 
+/gate/jaws_x2Vol/placement/setRotationAxis 1 0 0 
+/gate/jaws_x2Vol/placement/setRotationAngle 270 deg 
+ 
+/gate/jaws_x2Vol/daughters/name              jaws_x2 
+/gate/jaws_x2Vol/daughters/insert            wedge 
+/gate/jaws_x2/setMaterial              Tungsten 
+/gate/jaws_x2/geometry/setNarrowerXLength  19.22 cm  
+/gate/jaws_x2/geometry/setXLength      20 cm 
+/gate/jaws_x2/geometry/setYLength      7.8 cm 
+/gate/jaws_x2/geometry/setZLength      30 cm 
+/gate/jaws_x2/vis/setVisible           1 
+/gate/jaws_x2/vis/setColor             cyan  
+/gate/jaws_x2/placement/setTranslation 0 0 0 cm 
+/gate/jaws_x2/placement/setRotationAxis  0 1 0 
+/gate/jaws_x2/placement/setRotationAngle 270 deg 
+ 
+/gate/jaws_x2/daughters/name              jaws_x2_kill 
+/gate/jaws_x2/daughters/insert            wedge 
+/gate/jaws_x2_kill/setMaterial              Tungsten 
+/gate/jaws_x2_kill/geometry/setNarrowerXLength  19.119999999999997 cm  
+/gate/jaws_x2_kill/geometry/setXLength      19.9 cm 
+/gate/jaws_x2_kill/geometry/setYLength      7.7 cm 
+/gate/jaws_x2_kill/geometry/setZLength      30 cm 
+/gate/jaws_x2_kill/vis/setVisible           1 
+/gate/jaws_x2_kill/vis/setColor             white  
+/gate/jaws_x2_kill/placement/setTranslation -0.05 0.05 0  cm 
+ 
+/gate/jaws_x2/daughters/name              jaws_x2_kill_entry 
+/gate/jaws_x2/daughters/insert            wedge 
+/gate/jaws_x2_kill_entry/setMaterial              Tungsten 
+/gate/jaws_x2_kill_entry/geometry/setNarrowerXLength  19.119999999999997 cm  
+/gate/jaws_x2_kill_entry/geometry/setXLength      19.9 cm 
+/gate/jaws_x2_kill_entry/geometry/setYLength      0.1 cm 
+/gate/jaws_x2_kill_entry/geometry/setZLength      30 cm 
+/gate/jaws_x2_kill_entry/vis/setVisible           1 
+/gate/jaws_x2_kill_entry/vis/setColor             white  
+/gate/jaws_x2_kill_entry/placement/setTranslation -0.05 -3.85 0  cm 
+
+
+/gate/actor/addActor   KillActor                         KillInsides2 
+# /gate/actor/KillInsides2/save                            MyOutputFile2.txt
+/gate/actor/KillInsides2/attachTo                        jaws_y1Vol 
+/gate/actor/KillInsides2/addFilter                       volumeFilter 
+/gate/actor/KillInsides2/volumeFilter/addVolume          jaws_y1_kill
+
+
+/gate/actor/addActor   KillActor                         KillInsides4 
+# /gate/actor/KillInsides4/save                            MyOutputFile4.txt
+/gate/actor/KillInsides4/attachTo                        jaws_y2Vol 
+/gate/actor/KillInsides4/addFilter                       volumeFilter 
+/gate/actor/KillInsides4/volumeFilter/addVolume          jaws_y2_kill
+
+/gate/actor/addActor   KillActor                         KillInsides3
+# /gate/actor/KillInsides3/save                            MyOutputFile3.txt
+/gate/actor/KillInsides3/attachTo                        jaws_x1_kill 
+# /gate/actor/KillInsides3/attachTo                        jaws_x1Vol 
+# /gate/actor/KillInsides3/addFilter                       volumeFilter 
+# /gate/actor/KillInsides3/volumeFilter/addVolume          jaws_x1_kill
+
+/gate/actor/addActor   KillActor                         KillInsides5 
+# /gate/actor/KillInsides5/save                            MyOutputFile5.txt
+/gate/actor/KillInsides5/attachTo                        jaws_x2Vol 
+/gate/actor/KillInsides5/addFilter                       volumeFilter 
+/gate/actor/KillInsides5/volumeFilter/addVolume          jaws_x2_kill
+
+/gate/actor/addActor   KillActor                         KillInsides6
+# /gate/actor/KillInsides3/save                            MyOutputFile3.txt
+/gate/actor/KillInsides6/attachTo                        jaws_x1_kill_entry 
+# /gate/actor/KillInsides3/attachTo                        jaws_x1Vol 
+# /gate/actor/KillInsides3/addFilter                       volumeFilter 
+# /gate/actor/KillInsides3/volumeFilter/addVolume          jaws_x1_kill
+
+/gate/actor/addActor   KillActor                         KillInsides7
+# /gate/actor/KillInsides5/save                            MyOutputFile5.txt
+/gate/actor/KillInsides7/attachTo                        jaws_x2Vol 
+/gate/actor/KillInsides7/addFilter                       volumeFilter 
+/gate/actor/KillInsides7/volumeFilter/addVolume          jaws_x2_kill_entry
+
+/gate/actor/addActor   KillActor                         KillInsides8
+# /gate/actor/KillInsides3/save                            MyOutputFile3.txt
+/gate/actor/KillInsides8/attachTo                        jaws_y1_kill_entry 
+# /gate/actor/KillInsides3/attachTo                        jaws_x1Vol 
+# /gate/actor/KillInsides3/addFilter                       volumeFilter 
+# /gate/actor/KillInsides3/volumeFilter/addVolume          jaws_x1_kill
+
+/gate/actor/addActor   KillActor                         KillInsides9
+# /gate/actor/KillInsides5/save                            MyOutputFile5.txt
+/gate/actor/KillInsides9/attachTo                        jaws_y2Vol 
+/gate/actor/KillInsides9/addFilter                       volumeFilter 
+/gate/actor/KillInsides9/volumeFilter/addVolume          jaws_y2_kill_entry
+
+/gate/world/daughters/name                   PhS_Plane_Two
+/gate/world/daughters/insert                 box
+/gate/PhS_Plane_Two/setMaterial              Vacuum
+/gate/PhS_Plane_Two/geometry/setXLength      15 cm
+/gate/PhS_Plane_Two/geometry/setYLength      15 cm
+/gate/PhS_Plane_Two/geometry/setZLength      1 nm
+/gate/PhS_Plane_Two/placement/setTranslation 0.0 0.0 471 mm #(-529)
+/gate/PhS_Plane_Two/vis/setColor             cyan
+/gate/PhS_Plane_Two/vis/setVisible           1
+
+# /gate/world/daughters/name                   FS_Plane
+# /gate/world/daughters/insert                 box
+# /gate/FS_Plane/setMaterial                   Air	
+# /gate/FS_Plane/geometry/setXLength           40 cm
+# /gate/FS_Plane/geometry/setYLength           40 cm
+# /gate/FS_Plane/geometry/setZLength           1 nm
+# /gate/FS_Plane/placement/setTranslation      0.0 0.0 0.0 mm
+# /gate/FS_Plane/vis/setColor                  cyan
+# /gate/FS_Plane/vis/setVisible                1
+
+/gate/world/daughters/name                   Kill_BackPlane
+/gate/world/daughters/insert                 box
+/gate/Kill_BackPlane/setMaterial                   Air	
+/gate/Kill_BackPlane/geometry/setXLength           80 cm
+/gate/Kill_BackPlane/geometry/setYLength           80 cm
+/gate/Kill_BackPlane/geometry/setZLength           1 nm
+/gate/Kill_BackPlane/placement/setTranslation      0.0 0.0 710 mm
+/gate/Kill_BackPlane/vis/setColor                  red
+/gate/Kill_BackPlane/vis/setVisible                1
+
+/gate/world/daughters/name                   Kill_FrontPlane
+/gate/world/daughters/insert                 box
+/gate/Kill_FrontPlane/setMaterial                   Air	
+/gate/Kill_FrontPlane/geometry/setXLength           80 cm
+/gate/Kill_FrontPlane/geometry/setYLength           80 cm
+/gate/Kill_FrontPlane/geometry/setZLength           1 nm
+/gate/Kill_FrontPlane/placement/setTranslation      0.0 0.0 360 mm
+/gate/Kill_FrontPlane/vis/setColor                  red
+/gate/Kill_FrontPlane/vis/setVisible                1
+
+# =====================================================
+# PHYSICS
+# =====================================================
+
+/gate/physics/addPhysicsList emstandard_opt3
+
+/gate/physics/Gamma/SetCutInRegion      world 1 mm
+/gate/physics/Electron/SetCutInRegion   world 1 mm
+/gate/physics/Positron/SetCutInRegion   world 1 mm
+
+/gate/physics/Gamma/SetCutInRegion      mlc_leaf 0.001 mm
+/gate/physics/Electron/SetCutInRegion   mlc_leaf 0.001 mm
+/gate/physics/Positron/SetCutInRegion   mlc_leaf 0.001 mm
+
+/gate/physics/Gamma/SetCutInRegion      jaws_y1 0.001 mm
+/gate/physics/Electron/SetCutInRegion   jaws_y1 0.001 mm
+/gate/physics/Positron/SetCutInRegion   jaws_y1 0.001 mm
+
+/gate/physics/Gamma/SetCutInRegion      jaws_y2 0.001 mm
+/gate/physics/Electron/SetCutInRegion   jaws_y2 0.001 mm
+/gate/physics/Positron/SetCutInRegion   jaws_y2 0.001 mm
+
+/gate/physics/Gamma/SetCutInRegion      jaws_x1 0.001 mm
+/gate/physics/Electron/SetCutInRegion   jaws_x1 0.001 mm
+/gate/physics/Positron/SetCutInRegion   jaws_x1 0.001 mm
+
+/gate/physics/Gamma/SetCutInRegion      jaws_x2 0.001 mm
+/gate/physics/Electron/SetCutInRegion   jaws_x2 0.001 mm
+/gate/physics/Positron/SetCutInRegion   jaws_x2 0.001 mm
+
+# /gate/physics/Gamma/SetCutInRegion      waterbox 0.5 mm
+# /gate/physics/Electron/SetCutInRegion   waterbox 0.5 mm
+# /gate/physics/Positron/SetCutInRegion   waterbox 0.5 mm
+
+# /gate/physics/addProcess Compton
+# /gate/physics/processes/Compton/setModel StandardModel gamma
+# /gate/physics/processes/Compton/activateSplitting gamma 100
+# /gate/physics/processes/Compton/addFilter             volumeFilter  secondaries
+# /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         world      
+# /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         mlc_leaf     
+# /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         jaws_x1      
+# /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         jaws_y1      
+# /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         jaws_x2      
+# /gate/physics/processes/Compton/secondaries/volumeFilter/addVolume         jaws_y2 
+
+#=====================================================
+# DETECTORS
+#=====================================================
+
+# ----------------------------------------------------
+# the following actor regularly store the current number of
+# event/track/step in a file
+
+# /gate/actor/addActor               SimulationStatisticActor stat
+# /gate/actor/stat/save              output-readPhS-stat.txt
+# /gate/actor/stat/saveEveryNSeconds 10
+
+# ----------------------------------------------------
+# the following actor stores 3D Dose/Edep distributions
+
+# ----------------------------------------------------
+# Phase space storage (a PhS for gamma, another for e-)
+
+# /gate/actor/addActor                         PhaseSpaceActor PhS_g
+# /gate/actor/PhS_g/attachTo                   PhS_Plane_Two
+# /gate/actor/PhS_g/save 	                     /work/lb8075/PhaseSpaces/PhS2Gamma/output-lana2-PhS-g_nobias{id}.root
+# /gate/actor/PhS_g/enableParticleName         false
+# /gate/actor/PhS_g/enableProductionVolume     true
+# /gate/actor/PhS_g/enableProductionProcess    true
+# /gate/actor/PhS_g/useVolumeFrame             true
+# /gate/actor/PhS_g/addFilter                  particleFilter
+# /gate/actor/PhS_g/particleFilter/addParticle gamma
+# /gate/actor/PhS_g/enableZPosition            true
+# #/gate/actor/PhS_g/saveEveryNSeconds          20
+
+/gate/actor/addActor                         PhaseSpaceActor PhS_e
+/gate/actor/PhS_e/attachTo                   PhS_Plane_Two
+/gate/actor/PhS_e/save 	                     /work/lb8075/PhaseSpaces/PhS2ElecJawKillStudy/output-jawp1-lana2-PhS-e_nobias{id}.root
+/gate/actor/PhS_e/enableParticleName         true
+/gate/actor/PhS_e/enableProductionVolume     true
+/gate/actor/PhS_e/enableProductionProcess    true
+/gate/actor/PhS_e/useVolumeFrame             true
+/gate/actor/PhS_e/addFilter                  particleFilter
+/gate/actor/PhS_e/particleFilter/addParticle e-
+/gate/actor/PhS_e/particleFilter/addParticle e+
+/gate/actor/PhS_e/enableZPosition            true
+/gate/actor/PhS_e/enableProductionVolume true
+/gate/actor/PhS_e/enableProductionProcess true
+# /gate/actor/PhS_e/saveEveryNSeconds          20
+
+# /gate/actor/addActor                                    PhaseSpaceActor FieldSizeChecker
+# /gate/actor/FieldSizeChecker/attachTo                   FS_Plane
+# /gate/actor/FieldSizeChecker/save 	                    FieldSizeChecker.root
+# /gate/actor/FieldSizeChecker/enableParticleName         false
+# /gate/actor/FieldSizeChecker/enableProductionVolume     false
+# /gate/actor/FieldSizeChecker/enableProductionProcess    false
+# /gate/actor/FieldSizeChecker/useVolumeFrame             true
+# /gate/actor/FieldSizeChecker/addFilter                  particleFilter
+# /gate/actor/FieldSizeChecker/particleFilter/addParticle gamma
+# /gate/actor/FieldSizeChecker/enableZPosition            true
+
+/gate/actor/addActor   KillActor                         Kill_BP 
+# /gate/actor/Kill_BP/save                                 MyOutputFile7.txt
+/gate/actor/Kill_BP/attachTo                             Kill_BackPlane 
+
+/gate/actor/addActor   KillActor                         Kill_FP 
+# /gate/actor/Kill_FP/save                                 MyOutputFile8.txt
+/gate/actor/Kill_FP/attachTo                             Kill_FrontPlane 
+
+#=====================================================
+# INITIALISATION
+#=====================================================
+
+
+/gate/run/initialize
+
+# /process/em/setSecBiasing compt world 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y0 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y1 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y2 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y3 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y4 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y5 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y6 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y7 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y8 100 1000 MeV
+# /process/em/setSecBiasing compt mlc_y9 100 1000 MeV
+# /process/em/setSecBiasing compt jaws_y1 100 1000 MeV
+# /process/em/setSecBiasing compt jaws_y2 100 1000 MeV
+# /process/em/setSecBiasing compt jaws_x1 100 1000 MeV
+# /process/em/setSecBiasing compt jaws_x2 100 1000 MeV
+#=====================================================
+# BEAMS
+#=====================================================
+
+# Read from Phase Space files. Here we indicate the type of particle
+# (gamma) because this information is not stored in the PhS to gain
+# space. Moreover, we set 'useRandomSymmetry' to generate more
+# particle than the number of particle in the PhS, using a Z axis
+# symmetry.
+
+/gate/source/addSource                         beam_g phaseSpace
+# /gate/source/beam_g/addPhaseSpaceFile          output-lana2-PhS-e1.root
+/gate/source/beam_g/addPhaseSpaceFile          /work/lb8075/PhaseSpaces/PhS1Gamma/output-lana-PhS1-g{id}.root
+/gate/source/beam_g/setParticleType            gamma
+/gate/source/beam_g/attachTo                   PhS_Plane
+/gate/source/beam_g/useRandomSymmetry          true
+
+
+#=====================================================
+# START BEAMS
+#=====================================================
+
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed {seed}
+/gate/application/noGlobalOutput
+
+#/tracking/verbose 2
+
+/gate/application/setTotalNumberOfPrimaries 10000000
+/gate/application/start
+
+
+/gate/physics/processList Enabled
+/gate/physics/processList Initialized
+
