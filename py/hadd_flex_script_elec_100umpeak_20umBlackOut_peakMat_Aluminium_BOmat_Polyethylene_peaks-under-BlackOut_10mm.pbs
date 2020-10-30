@@ -1,0 +1,13 @@
+#!/bin/bash 
+#PBS -l walltime=01:00:00 
+#PBS -j oe
+#PBS -l select=1:ncpus=1
+#PBS -l select=1:ncpus=1:mem=500mb
+#PBS -o /work/lb8075/job_logfiles
+
+module add apps/gate/8.2
+hadd -f /work/lb8075/PhaseSpaces/Flex/PhS3DoseFromElec_100umpeak_20umBlackOut_peakMat_Aluminium_BOmat_Polyethylene_peaks-under-BlackOut_10mm/Total-Edep.root /work/lb8075/PhaseSpaces/Flex/PhS3DoseFromElec_100umpeak_20umBlackOut_peakMat_Aluminium_BOmat_Polyethylene_peaks-under-BlackOut_10mm/*Edep.root 
+hadd -f /work/lb8075/PhaseSpaces/Flex/PhS3DoseFromElec_100umpeak_20umBlackOut_peakMat_Aluminium_BOmat_Polyethylene_peaks-under-BlackOut_10mm/Total-Edep-Squared.root /work/lb8075/PhaseSpaces/Flex/PhS3DoseFromElec_100umpeak_20umBlackOut_peakMat_Aluminium_BOmat_Polyethylene_peaks-under-BlackOut_10mm/*Edep-Squared.root 
+hadd -f /work/lb8075/PhaseSpaces/Flex/PhS3DoseFromElec_100umpeak_20umBlackOut_peakMat_Aluminium_BOmat_Polyethylene_peaks-under-BlackOut_10mm/Total-NbOfHits.root /work/lb8075/PhaseSpaces/Flex/PhS3DoseFromElec_100umpeak_20umBlackOut_peakMat_Aluminium_BOmat_Polyethylene_peaks-under-BlackOut_10mm/*NbOfHits.root 
+now=$(date) 
+echo "Time of completion : $now" 
