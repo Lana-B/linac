@@ -1,0 +1,21 @@
+#!/bin/bash 
+#PBS -l walltime=22:59:00 
+#PBS -j oe
+#PBS -l select=1:ncpus=1
+#PBS -l select=1:ncpus=1:mem=500mb
+#PBS -J 1-100
+#PBS -o /work/lb8075/job_logfiles
+
+module add apps/gate/8.2
+cat  /home/lb8075/linac/mac/main_lana_phs1_write_BP.mac
+
+prim=500000000
+
+now=$(date) 
+echo "Start: $now" 
+
+myCommand="Gate /home/lb8075/linac/mac/main_lana_phs1_write_BP.mac -a '[id,$PBS_ARRAY_INDEX] [seed,$RANDOM$RANDOM$RANDOM] [primaries,$prim] [bias,1]'"
+eval $myCommand
+now=$(date) 
+
+echo "Time of completion : $now" 
