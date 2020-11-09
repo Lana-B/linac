@@ -9,7 +9,7 @@
 # VISUALISATION
 #=====================================================
 
-# /control/execute mac/visu.mac
+/control/execute mac/visu.mac
 
 # =====================================================
 # GEOMETRY
@@ -73,7 +73,6 @@
 /gate/physics/Gamma/SetCutInRegion      mirror 0.5 mm
 /gate/physics/Electron/SetCutInRegion   mirror 0.5 mm
 /gate/physics/Positron/SetCutInRegion   mirror 0.5 mm
-
 
 /gate/physics/Gamma/SetCutInRegion      flattening_filter 0.5 mm
 /gate/physics/Electron/SetCutInRegion   flattening_filter 0.5 mm
@@ -154,7 +153,7 @@
 /gate/source/mybeam/gps/pos/rot1      0 1 0
 /gate/source/mybeam/gps/pos/rot2      1 0 0
 /gate/source/mybeam/gps/pos/shape     Circle
-/gate/source/mybeam/gps/pos/centre    0. 0. 1000.6 mm
+/gate/source/mybeam/gps/pos/centre    0. 0. 0.6 mm
 /gate/source/mybeam/gps/pos/sigma_x   1.274 mm
 /gate/source/mybeam/gps/pos/sigma_y   1.274 mm
 /gate/source/mybeam/gps/ang/rot1      1 0 0
