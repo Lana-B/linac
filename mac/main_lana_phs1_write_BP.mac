@@ -1,4 +1,7 @@
 
+#seed, primaries, id, bias
+
+
 #=====================================================
 # VERBOSITY
 #=====================================================
@@ -102,10 +105,10 @@
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_g
 /gate/actor/PhS_g/attachTo                   PhS_Plane
-/gate/actor/PhS_g/save 	                     /work/lb8075/PhaseSpaces/PhS1AB_Gamma/output-PhS{id}.root
+/gate/actor/PhS_g/save 	                     /work/lb8075/PhaseSpaces/PhS1AB_Gamma_ZeroBias/output-PhS_bias{bias}_{id}.root
 /gate/actor/PhS_g/enableParticleName         false
-/gate/actor/PhS_g/enableProductionVolume     false
-/gate/actor/PhS_g/enableProductionProcess    false
+/gate/actor/PhS_g/enableProductionVolume     true
+/gate/actor/PhS_g/enableProductionProcess    true
 /gate/actor/PhS_g/useVolumeFrame             true
 /gate/actor/PhS_g/addFilter                  particleFilter
 /gate/actor/PhS_g/particleFilter/addParticle gamma
@@ -114,7 +117,7 @@
 
 /gate/actor/addActor                         PhaseSpaceActor PhS_e
 /gate/actor/PhS_e/attachTo                   PhS_Plane
-/gate/actor/PhS_e/save 	                     /work/lb8075/PhaseSpaces/PhS1AB_Elec/output-PhS{id}.root
+/gate/actor/PhS_e/save 	                     /work/lb8075/PhaseSpaces/PhS1AB_Elec_ZeroBias/output-PhS_bias{bias}_{id}.root
 /gate/actor/PhS_e/enableParticleName         false
 /gate/actor/PhS_e/enableProductionVolume     false
 /gate/actor/PhS_e/enableProductionProcess    false
@@ -134,8 +137,7 @@
 # Bremsstrahlung splitting : generate 100 photon (if below 100 MeV) with weight 1/100
 
 # /process/em/setSecBiasing compt flattening_filter_cone6 100 100 MeV
-/process/em/setSecBiasing eBrem target 100 100 MeV
-
+/process/em/setSecBiasing eBrem target {bias} 100 MeV #changed to variable from 100 02/11/20
 
 #====================================================
 # BEAMS
