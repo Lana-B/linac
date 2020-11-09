@@ -5,7 +5,7 @@ import os
 ###                   User Settings                         ###
 ###############################################################
 # blackout_first=True #from epi layer
-gamma=True #else electrons
+gamma=False #else electrons
 ElecFromElec=False
 jobtime="72:00:00"
 jobtime_hadd="01:00:00"
@@ -18,7 +18,7 @@ nodename=os.uname().nodename
 # nodename="bp1-login01.data.bp.acrc.priv"
 
 if nodename=="it034449.users.bris.ac.uk":
-	materials_path="/Users/lb8075/gate-exercices-master-linac/linac/data/GateMaterials.db"	
+	materials_path="/Users/lb8075/gate-exercices-master-linac/linac/data/"	
 	if gamma:
 		phasespace_in="/Users/lb8075/gate-exercices-master-linac/linac/generatedGammasnSkimmed10Halfmm1.root"
 	else:
@@ -29,7 +29,7 @@ if nodename=="it034449.users.bris.ac.uk":
 	mac_loc="/Users/lb8075/gate-exercices-master-linac/linac/mac/"
 	seed_rand=12345678
 elif nodename=="bp1-login01.data.bp.acrc.priv":
-	materials_path="/home/lb8075/linac/data/GateMaterials.db"
+	materials_path="/home/lb8075/linac/data/"
 	if gamma:
 		phasespace_in="/work/lb8075/PhaseSpaces/PhS2Gamma/output-lana2-PhS-g_nobias{id}.root"
 	else:
@@ -54,12 +54,12 @@ else:
 # file_number=-9999, phasespace_in=-9999, seed_rand=-9999, how_many_primaries=-9999
 # blackout_mat=-9999, peak_mat=-9999
 
-grating_thicknesses=np.array([50,100]) #um 30,50,80,100,200,300,350,400,500
+grating_thicknesses=np.array([100]) #um 30,50,80,100,200,300,350,400,500
 BlackOut_distances=np.array([0,10]) # 0,10 mm
-BlackOut_thickness=np.array([20,300]) #um 100,200,300,500,1000
-blackout_material=np.array(['Polyethylene','Aluminium'])  #'Polyethylene','Aluminium''silicon'
+BlackOut_thickness=np.array([20]) #um 100,200,300,500,1000
+blackout_material=np.array(['Aluminium'])  #'Polyethylene','Aluminium''silicon'
 peak_material=np.array(['Aluminium']) #'Lead','Aluminium','silicon'
-
+mat_path_air_density=np.array(['GateMaterials_AirPp9.db','GateMaterials_AirP1p4.db'])
 front_face_epi_mm=450 #mm
 front_face_epi_um=front_face_epi_mm*1000 #um
 
@@ -79,7 +79,7 @@ all_qsub_hadd="!#/bin/bash\n\n"
 ###        Create start of pbs submission file              ###
 ###############################################################
 
-macrofile=f"{mac_loc}Main_PhS3_10x10_Flexible.mac"
+macrofile=f"{mac_loc}Main_PhS3_10x10_Flexible_airbox.mac"
 
 hadd_string=f"#!/bin/bash \n\
 #PBS -l walltime={jobtime_hadd} \n\
@@ -291,11 +291,13 @@ if (gamma):
 	particle_outfilename="Gamma"
 	print("gamma")
 	script_ending="gamma"
+	comptonbias="/process/em/setBiasingFactor compt 100 True"
 else:
 	particle_type_input="/gate/physics/processList Enabled" #to avoid setting particle type as it is read from file
 	particle_outfilename="Elec"
 	print("elec")
 	script_ending="elec"
+	comptonbias="/process/em/setBiasingFactor compt 1 True"
 	if ElecFromElec:
 		script_ending+="FromElec"
 		particle_outfilename+="FromElec"
@@ -306,7 +308,7 @@ pbs_string_second_0=""
 pbs_string_second_10=""
 
 
-for blackout_first in ([True,False]): #True,
+for blackout_first in ([False]): #True,
 	for grating_thick in grating_thicknesses:
 		# if grating_thick>99:
 		# 	continue
@@ -334,6 +336,7 @@ for blackout_first in ([True,False]): #True,
 						param_list+=f' [lightcoverztrans_mm,{translation_BO_mm}] [pathOutputDose,{output_file_path}] [inputParticleType,{particle_type_input}] [pathGateMaterials,{materials_path}]'
 						param_list+=f' [id,{file_number}] [inputPhaseSpaceFile,{phasespace_in}] [seed,{seed_rand}] [primaries,{how_many_primaries}]'
 						param_list+=f' [lightcover_material,{blackout_mat}] [peak_material,{peak_mat}]'
+						param_list+=f' [comptbias, {comptonbias}]'
 
 
 						mycommandpy=f"\"Gate {macrofile} -a '{param_list}'\"\n"
@@ -354,50 +357,50 @@ for blackout_first in ([True,False]): #True,
 						    print(hadd_string_BOclose, file=text_file)
 
 					else:
+						for matpath in mat_path_air_density:
+							for distance_BlackOut_to_peaks_mm in BlackOut_distances:
 
-						for distance_BlackOut_to_peaks_mm in BlackOut_distances:
+								distance_BlackOut_to_peaks_um=distance_BlackOut_to_peaks_mm*1000 #mm
+								translation_BO_um=-airbox_half_thick_um+grating_thick+(BlackOut_thick/2.0)+distance_BlackOut_to_peaks_um
+								translation_peak_um=-airbox_half_thick_um+grating_thick/2.0
+								output_file_path=f"{out_dir}PhS3DoseFrom{particle_outfilename}_{grating_thick}umpeak_{BlackOut_thick}umBlackOut_peakMat_{peak_mat}_BOmat_{blackout_mat}_peaks-under-BlackOut_{distance_BlackOut_to_peaks_mm}mm_{matpath[14:-3]}"
+								which_output=f"BO_Second_{distance_BlackOut_to_peaks_mm}mm"
 
-							distance_BlackOut_to_peaks_um=distance_BlackOut_to_peaks_mm*1000 #mm
-							translation_BO_um=-airbox_half_thick_um+grating_thick+(BlackOut_thick/2.0)+distance_BlackOut_to_peaks_um
-							translation_peak_um=-airbox_half_thick_um+grating_thick/2.0
-							output_file_path=f"{out_dir}PhS3DoseFrom{particle_outfilename}_{grating_thick}umpeak_{BlackOut_thick}umBlackOut_peakMat_{peak_mat}_BOmat_{blackout_mat}_peaks-under-BlackOut_{distance_BlackOut_to_peaks_mm}mm"
-							which_output=f"BO_Second_{distance_BlackOut_to_peaks_mm}mm"
+								translation_peak_mm=translation_peak_um/1000.0
+								translation_BO_mm=translation_BO_um/1000.0
 
-							translation_peak_mm=translation_peak_um/1000.0
-							translation_BO_mm=translation_BO_um/1000.0
+								print(output_file_path)
+								if not (os.path.isdir(output_file_path)):
+									os.mkdir(output_file_path)
 
-							print(output_file_path)
-							if not (os.path.isdir(output_file_path)):
-								os.mkdir(output_file_path)
-
-
-							param_list=f'[peakzlength_um,{grating_thick}] [peakztrans_mm,{translation_peak_mm}] [lightcoverzlength_um,{BlackOut_thick}]'
-							param_list+=f' [lightcoverztrans_mm,{translation_BO_mm}] [pathOutputDose,{output_file_path}] [inputParticleType,{particle_type_input}] [pathGateMaterials,{materials_path}]'
-							param_list+=f' [id,{file_number}] [inputPhaseSpaceFile,{phasespace_in}] [seed,{seed_rand}] [primaries,{how_many_primaries}]'
-							param_list+=f' [lightcover_material,{blackout_mat}] [peak_material,{peak_mat}]'
-
-
-							mycommandpy=f"\"Gate {macrofile} -a '{param_list}'\"\n"
-							# print (mycommand)
-
-							if distance_BlackOut_to_peaks_mm==0:
-								pbs_string_second_0+=f"mycommand={mycommandpy}\necho $mycommand \neval $mycommand\necho \"Time of interum job ending : $(date)\" \n"
-				
-							elif distance_BlackOut_to_peaks_mm==10:
-								pbs_string_second_10+=f"mycommand={mycommandpy}\necho $mycommand \neval $mycommand\necho \"Time of interum job ending : $(date)\" \n"
+								total_mat_path=f'{materials_path}{matpath}'
+								param_list=f'[peakzlength_um,{grating_thick}] [peakztrans_mm,{translation_peak_mm}] [lightcoverzlength_um,{BlackOut_thick}]'
+								param_list+=f' [lightcoverztrans_mm,{translation_BO_mm}] [pathOutputDose,{output_file_path}] [inputParticleType,{particle_type_input}]'
+								param_list+=f' [id,{file_number}] [inputPhaseSpaceFile,{phasespace_in}] [seed,{seed_rand}] [primaries,{how_many_primaries}]'
+								param_list+=f' [lightcover_material,{blackout_mat}] [peak_material,{peak_mat}] [pathGateMaterials,{total_mat_path}] [comptbias, {comptonbias}]'
 
 
-							hadd_string_BOclose=hadd_string
+								mycommandpy=f"\"Gate {macrofile} -a '{param_list}'\"\n"
+								# print (mycommand)
 
-							hadd_string_BOclose+=f"hadd -f {output_file_path}/Total-Edep.root {output_file_path}/*Edep.root \n"
-							hadd_string_BOclose+=f"hadd -f {output_file_path}/Total-Edep-Squared.root {output_file_path}/*Edep-Squared.root \n"
-							hadd_string_BOclose+=f"hadd -f {output_file_path}/Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
-							hadd_string_BOclose+="now=$(date) \necho \"Time of completion : $now\" " 
+								if distance_BlackOut_to_peaks_mm==0:
+									pbs_string_second_0+=f"mycommand={mycommandpy}\necho $mycommand \neval $mycommand\necho \"Time of interum job ending : $(date)\" \n"
+					
+								elif distance_BlackOut_to_peaks_mm==10:
+									pbs_string_second_10+=f"mycommand={mycommandpy}\necho $mycommand \neval $mycommand\necho \"Time of interum job ending : $(date)\" \n"
 
-							hadd_file_name=f"hadd_flex_script_{script_ending}_{grating_thick}umpeak_{BlackOut_thick}umBlackOut_peakMat_{peak_mat}_BOmat_{blackout_mat}_peaks-under-BlackOut_{distance_BlackOut_to_peaks_mm}mm.pbs"
-							all_qsub_hadd+=f"qsub {hadd_file_name}\n"
-							with open(hadd_file_name, "w") as text_file:
-							    print(hadd_string_BOclose, file=text_file)
+
+								hadd_string_BOclose=hadd_string
+
+								hadd_string_BOclose+=f"hadd -f {output_file_path}/Total-Edep.root {output_file_path}/*Edep.root \n"
+								hadd_string_BOclose+=f"hadd -f {output_file_path}/Total-Edep-Squared.root {output_file_path}/*Edep-Squared.root \n"
+								hadd_string_BOclose+=f"hadd -f {output_file_path}/Total-NbOfHits.root {output_file_path}/*NbOfHits.root \n"
+								hadd_string_BOclose+="now=$(date) \necho \"Time of completion : $now\" " 
+
+								hadd_file_name=f"hadd_flex_script_{script_ending}_{grating_thick}umpeak_{BlackOut_thick}umBlackOut_peakMat_{peak_mat}_BOmat_{blackout_mat}_peaks-under-BlackOut_{distance_BlackOut_to_peaks_mm}mm.pbs"
+								all_qsub_hadd+=f"qsub {hadd_file_name}\n"
+								with open(hadd_file_name, "w") as text_file:
+								    print(hadd_string_BOclose, file=text_file)
 
 
 

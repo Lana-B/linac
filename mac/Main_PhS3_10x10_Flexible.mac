@@ -207,7 +207,9 @@
 
 /gate/source/addSource                         beam_g phaseSpace
 /gate/source/beam_g/addPhaseSpaceFile          {inputPhaseSpaceFile}
+
 {inputParticleType}
+
 /gate/source/beam_g/attachTo                   PhS_Plane_Two
 /gate/source/beam_g/useRandomSymmetry          true
 

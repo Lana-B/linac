@@ -17,13 +17,13 @@
 # TARGET
 # -----------------------------------------------------
 
-/control/execute mac/linac_target.mac
+/control/execute /home/lb8075/linac/mac/linac_target.mac
 
 # -----------------------------------------------------
 # PRIMARY_COLLIMATOR
 # -----------------------------------------------------
 
-/control/execute mac/linac_primary_collimator.mac
+/control/execute /home/lb8075/linac/mac/linac_primary_collimator.mac
 
 
 
