@@ -1,0 +1,67 @@
+#!/bin/bash 
+#PBS -l walltime=7:59:00 
+#PBS -j oe
+#PBS -l select=1:ncpus=1
+#PBS -l select=1:ncpus=1:mem=500mb
+#PBS -J 1-1000
+#PBS -o /work/lb8075/job_logfiles
+
+module add apps/gate/8.2
+
+prim=10000000
+
+field="40x40"
+
+now=$(date) 
+echo "Start : $now"
+
+myCommand="Gate /home/lb8075/linac/mac/Main_PhS2_Elec_FourPeaks_ElecSpectrum.mac -a '[id,$PBS_ARRAY_INDEX] [peakzlength_um,50] [peakztrans_mm,-5.475] [peakzlength2_um,100] [peakztrans2_mm,-5.45] [peakzlength3_um,150] [peakztrans3_mm,-5.425] [peakzlength4_um,200] [peakztrans4_mm,-5.4] [orientation,down] [peak_material,Aluminium] [seed,$RANDOM$RANDOM$RANDOM] [primaries,1000000] [pathGateMaterials,/home/lb8075/linac/data/GateMaterials.db] [pathOutputDose,/work/lb8075/PhaseSpaces/PhS3_Elec_Materials]'"
+
+eval $myCommand
+now=$(date)
+echo "Time: $now" 
+
+myCommand="Gate /home/lb8075/linac/mac/Main_PhS2_Elec_FourPeaks_ElecSpectrum.mac -a '[id,$PBS_ARRAY_INDEX] [peakzlength_um,250] [peakztrans_mm,-5.375] [peakzlength2_um,300] [peakztrans2_mm,-5.35] [peakzlength3_um,350] [peakztrans3_mm,-5.325] [peakzlength4_um,400] [peakztrans4_mm,-5.3] [orientation,down] [peak_material,Aluminium] [seed,$RANDOM$RANDOM$RANDOM] [primaries,1000000] [pathGateMaterials,/home/lb8075/linac/data/GateMaterials.db] [pathOutputDose,/work/lb8075/PhaseSpaces/PhS3_Elec_Materials]'"
+
+eval $myCommand
+now=$(date)
+echo "Time: $now" 
+
+myCommand="Gate /home/lb8075/linac/mac/Main_PhS2_Elec_FourPeaks_ElecSpectrum.mac -a '[id,$PBS_ARRAY_INDEX] [peakzlength_um,450] [peakztrans_mm,-5.275] [peakzlength2_um,500] [peakztrans2_mm,-5.25] [peakzlength3_um,550] [peakztrans3_mm,-5.225] [peakzlength4_um,600] [peakztrans4_mm,-5.2] [orientation,down] [peak_material,Aluminium] [seed,$RANDOM$RANDOM$RANDOM] [primaries,1000000] [pathGateMaterials,/home/lb8075/linac/data/GateMaterials.db] [pathOutputDose,/work/lb8075/PhaseSpaces/PhS3_Elec_Materials]'"
+
+eval $myCommand
+now=$(date)
+echo "Time: $now" 
+
+myCommand="Gate /home/lb8075/linac/mac/Main_PhS2_Elec_FourPeaks_ElecSpectrum.mac -a '[id,$PBS_ARRAY_INDEX] [peakzlength_um,50] [peakztrans_mm,-5.475] [peakzlength2_um,100] [peakztrans2_mm,-5.45] [peakzlength3_um,150] [peakztrans3_mm,-5.425] [peakzlength4_um,200] [peakztrans4_mm,-5.4] [orientation,down] [peak_material,Silicon] [seed,$RANDOM$RANDOM$RANDOM] [primaries,1000000] [pathGateMaterials,/home/lb8075/linac/data/GateMaterials.db] [pathOutputDose,/work/lb8075/PhaseSpaces/PhS3_Elec_Materials]'"
+
+eval $myCommand
+now=$(date)
+echo "Time: $now" 
+
+myCommand="Gate /home/lb8075/linac/mac/Main_PhS2_Elec_FourPeaks_ElecSpectrum.mac -a '[id,$PBS_ARRAY_INDEX] [peakzlength_um,250] [peakztrans_mm,-5.375] [peakzlength2_um,300] [peakztrans2_mm,-5.35] [peakzlength3_um,350] [peakztrans3_mm,-5.325] [peakzlength4_um,400] [peakztrans4_mm,-5.3] [orientation,down] [peak_material,Silicon] [seed,$RANDOM$RANDOM$RANDOM] [primaries,1000000] [pathGateMaterials,/home/lb8075/linac/data/GateMaterials.db] [pathOutputDose,/work/lb8075/PhaseSpaces/PhS3_Elec_Materials]'"
+
+eval $myCommand
+now=$(date)
+echo "Time: $now" 
+
+myCommand="Gate /home/lb8075/linac/mac/Main_PhS2_Elec_FourPeaks_ElecSpectrum.mac -a '[id,$PBS_ARRAY_INDEX] [peakzlength_um,450] [peakztrans_mm,-5.275] [peakzlength2_um,500] [peakztrans2_mm,-5.25] [peakzlength3_um,550] [peakztrans3_mm,-5.225] [peakzlength4_um,600] [peakztrans4_mm,-5.2] [orientation,down] [peak_material,Silicon] [seed,$RANDOM$RANDOM$RANDOM] [primaries,1000000] [pathGateMaterials,/home/lb8075/linac/data/GateMaterials.db] [pathOutputDose,/work/lb8075/PhaseSpaces/PhS3_Elec_Materials]'"
+
+eval $myCommand
+now=$(date)
+echo "Time: $now" 
+
+myCommand="Gate /home/lb8075/linac/mac/Main_PhS2_Elec_FourPeaks_ElecSpectrum.mac -a '[id,$PBS_ARRAY_INDEX] [peakzlength_um,10] [peakztrans_mm,-5.495] [peakzlength2_um,20] [peakztrans2_mm,-5.49] [peakzlength3_um,30] [peakztrans3_mm,-5.485] [peakzlength4_um,40] [peakztrans4_mm,-5.48] [orientation,down] [peak_material,Copper] [seed,$RANDOM$RANDOM$RANDOM] [primaries,1000000] [pathGateMaterials,/home/lb8075/linac/data/GateMaterials.db] [pathOutputDose,/work/lb8075/PhaseSpaces/PhS3_Elec_Materials]'"
+
+eval $myCommand
+now=$(date)
+echo "Time: $now" 
+
+myCommand="Gate /home/lb8075/linac/mac/Main_PhS2_Elec_FourPeaks_ElecSpectrum.mac -a '[id,$PBS_ARRAY_INDEX] [peakzlength_um,50] [peakztrans_mm,-5.475] [peakzlength2_um,60] [peakztrans2_mm,-5.47] [peakzlength3_um,70] [peakztrans3_mm,-5.465] [peakzlength4_um,80] [peakztrans4_mm,-5.46] [orientation,down] [peak_material,Copper] [seed,$RANDOM$RANDOM$RANDOM] [primaries,1000000] [pathGateMaterials,/home/lb8075/linac/data/GateMaterials.db] [pathOutputDose,/work/lb8075/PhaseSpaces/PhS3_Elec_Materials]'"
+
+eval $myCommand
+now=$(date)
+echo "Time: $now" 
+
+echo "Time of completion : $now" 
+
