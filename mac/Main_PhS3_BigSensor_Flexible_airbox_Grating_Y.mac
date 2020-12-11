@@ -12,7 +12,7 @@
 # VISUALISATION
 #=====================================================
 
-/control/execute mac/visu.mac
+#/control/execute mac/visu.mac
 
 # =====================================================
 # GEOMETRY
@@ -240,7 +240,7 @@
 #=====================================================
 
 /gate/run/initialize
-# /process/em/setBiasingFactor compt 100 True
+/process/em/setBiasingFactor compt {xsecbias} True
 
 # /process/em/setSecBiasing compt Peak1 100 1000 MeV
 # /particle/process/dump
