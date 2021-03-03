@@ -14,7 +14,7 @@
 # VISUALISATION
 #=====================================================
 
-#/control/execute mac/visu.mac
+# /control/execute mac/visu.mac
 
 # =====================================================
 # GEOMETRY
@@ -65,12 +65,12 @@
 /gate/world/daughters/name         epi
 /gate/world/daughters/insert       box
 /gate/epi/setMaterial                  Silicon
-/gate/epi/geometry/setXLength          180.0 mm
-/gate/epi/geometry/setYLength          180.0 mm
+/gate/epi/geometry/setXLength          100.0 mm
+/gate/epi/geometry/setYLength          100.0 mm
 /gate/epi/geometry/setZLength          0.01 mm
 /gate/epi/placement/setTranslation     0 0 449.995 mm
 /gate/epi/vis/setVisible               1
-/gate/epi/vis/setColor                 yellow
+/gate/epi/vis/setColor                 grey
 /gate/epi/vis/forceSolid
 
 /gate/world/daughters/name         bulk
@@ -81,7 +81,8 @@
 /gate/bulk/geometry/setZLength          0.6 mm
 /gate/bulk/placement/setTranslation     0 0 449.69 mm
 /gate/bulk/vis/setVisible               1
-/gate/bulk/vis/setColor                 red
+/gate/bulk/vis/setColor                 blue
+/gate/bulk/vis/forceSolid
 
 # /gate/world/daughters/name         PSlayer1 
 # /gate/world/daughters/insert       box 
@@ -102,18 +103,18 @@
 /gate/peak_air_box/geometry/setZLength          11 mm 
 /gate/peak_air_box/placement/setTranslation     0 0 455.5 mm
 /gate/peak_air_box/vis/setVisible               1 
-/gate/peak_air_box/vis/setColor                 green
+/gate/peak_air_box/vis/setColor                 cyan
 /gate/peak_air_box/vis/forceWireframe
 
 /gate/peak_air_box/daughters/name         Kapton80 
 /gate/peak_air_box/daughters/insert       box 
 /gate/Kapton80/setMaterial                  Kapton 
-/gate/Kapton80/geometry/setXLength          10.0 mm 
+/gate/Kapton80/geometry/setXLength          25.0 mm 
 /gate/Kapton80/geometry/setYLength          100.0 mm 
 /gate/Kapton80/geometry/setZLength          50 um 
-/gate/Kapton80/placement/setTranslation     3 0 -5.475 mm
+/gate/Kapton80/placement/setTranslation     20 0 -5.475 mm
 /gate/Kapton80/vis/setVisible               1 
-/gate/Kapton80/vis/setColor                 grey
+/gate/Kapton80/vis/setColor                 yellow
 /gate/Kapton80/vis/forceSolid
 
 /gate/peak_air_box/daughters/name         Copper80 
@@ -122,7 +123,7 @@
 /gate/Copper80/geometry/setXLength          10.0 mm 
 /gate/Copper80/geometry/setYLength          100.0 mm 
 /gate/Copper80/geometry/setZLength          80 um 
-/gate/Copper80/placement/setTranslation     3 0 -5.41 mm
+/gate/Copper80/placement/setTranslation     20 0 -5.41 mm
 /gate/Copper80/vis/setVisible               1 
 /gate/Copper80/vis/setColor                 red
 /gate/Copper80/vis/forceSolid
@@ -130,12 +131,12 @@
 /gate/peak_air_box/daughters/name         Kapton38 
 /gate/peak_air_box/daughters/insert       box 
 /gate/Kapton38/setMaterial                  Kapton 
-/gate/Kapton38/geometry/setXLength          10.0 mm 
+/gate/Kapton38/geometry/setXLength          25.0 mm 
 /gate/Kapton38/geometry/setYLength          100.0 mm 
 /gate/Kapton38/geometry/setZLength          50 um 
-/gate/Kapton38/placement/setTranslation     -3 0 -5.475 mm
+/gate/Kapton38/placement/setTranslation     -20 0 -5.475 mm
 /gate/Kapton38/vis/setVisible               1 
-/gate/Kapton38/vis/setColor                 red
+/gate/Kapton38/vis/setColor                 yellow
 /gate/Kapton38/vis/forceSolid
 
 /gate/peak_air_box/daughters/name         Copper38 
@@ -144,7 +145,7 @@
 /gate/Copper38/geometry/setXLength          10.0 mm 
 /gate/Copper38/geometry/setYLength          100.0 mm 
 /gate/Copper38/geometry/setZLength          50 um 
-/gate/Copper38/placement/setTranslation     -3 0 -5.4 mm
+/gate/Copper38/placement/setTranslation     -20 0 -5.4 mm
 /gate/Copper38/vis/setVisible               1 
 /gate/Copper38/vis/setColor                 red
 /gate/Copper38/vis/forceSolid
@@ -155,9 +156,9 @@
 /gate/Glue38/geometry/setXLength          10.0 mm 
 /gate/Glue38/geometry/setYLength          100.0 mm 
 /gate/Glue38/geometry/setZLength          25 um 
-/gate/Glue38/placement/setTranslation     -3 0 -5.4375 mm
+/gate/Glue38/placement/setTranslation     -20 0 -5.4375 mm
 /gate/Glue38/vis/setVisible               1 
-/gate/Glue38/vis/setColor                 red
+/gate/Glue38/vis/setColor                 blue
 /gate/Glue38/vis/forceSolid
 
 # /gate/peak_air_box/daughters/name         lightcover 
@@ -252,7 +253,7 @@
 ## Dose output electron
 ## 
 /gate/actor/addActor                               DoseActor  doseDistribution
-/gate/actor/doseDistribution/save                  {pathOutputDose}/Epi-CopperHospital.root
+/gate/actor/doseDistribution/save                  Epi-CopperHospital.root
 #/work/lb8075/PhaseSpaces/PhS3DoseFromGamma_50um_plastic1cm/Epi-30mm-no-bias{id}.root
 /gate/actor/doseDistribution/attachTo              epi
 /gate/actor/doseDistribution/stepHitType           random
@@ -298,99 +299,97 @@
 # {inputParticleType}
 # /gate/source/beam_g/attachTo                   PhS_Plane_Two
 # /gate/source/beam_g/useRandomSymmetry          true
-
 /gate/source/addSource mybeam gps 
-/gate/source/mybeam/gps/particle gamma 
-/gate/source/mybeam/gps/pos/centre 0 -0.5 471 mm 
+/gate/source/mybeam/gps/particle e- 
+/gate/source/mybeam/gps/pos/centre 0 20 471 mm 
 /gate/source/mybeam/gps/direction 0 0 -1 
 /gate/source/mybeam/gps/type Plane 
 /gate/source/mybeam/gps/shape Square 
-/gate/source/mybeam/gps/halfx 1 cm 
-/gate/source/mybeam/gps/halfy 1 cm 
+/gate/source/mybeam/gps/halfx 5 cm 
+/gate/source/mybeam/gps/halfy 2 cm 
 /gate/source/mybeam/gps/ene/type Arb 
 /gate/source/mybeam/gps/hist/type arb 
-/gate/source/mybeam/gps/hist/point 0.0003 10.15
-/gate/source/mybeam/gps/hist/point 0.0871 126.69
-/gate/source/mybeam/gps/hist/point 0.1740 467.86
-/gate/source/mybeam/gps/hist/point 0.2608 642.24
-/gate/source/mybeam/gps/hist/point 0.3476 657.32
-/gate/source/mybeam/gps/hist/point 0.4345 662.50
-/gate/source/mybeam/gps/hist/point 0.5213 569.59
-/gate/source/mybeam/gps/hist/point 0.6081 523.84
-/gate/source/mybeam/gps/hist/point 0.6950 482.71
-/gate/source/mybeam/gps/hist/point 0.7818 444.62
-/gate/source/mybeam/gps/hist/point 0.8686 411.65
-/gate/source/mybeam/gps/hist/point 0.9555 381.50
-/gate/source/mybeam/gps/hist/point 1.0423 354.90
-/gate/source/mybeam/gps/hist/point 1.1291 330.51
-/gate/source/mybeam/gps/hist/point 1.2160 308.27
-/gate/source/mybeam/gps/hist/point 1.3028 287.92
-/gate/source/mybeam/gps/hist/point 1.3896 269.38
-/gate/source/mybeam/gps/hist/point 1.4765 252.52
-/gate/source/mybeam/gps/hist/point 1.5633 236.66
-/gate/source/mybeam/gps/hist/point 1.6501 222.31
-/gate/source/mybeam/gps/hist/point 1.7370 208.95
-/gate/source/mybeam/gps/hist/point 1.8238 197.01
-/gate/source/mybeam/gps/hist/point 1.9106 185.21
-/gate/source/mybeam/gps/hist/point 1.9975 175.10
-/gate/source/mybeam/gps/hist/point 2.0843 165.34
-/gate/source/mybeam/gps/hist/point 2.1711 156.41
-/gate/source/mybeam/gps/hist/point 2.2580 147.79
-/gate/source/mybeam/gps/hist/point 2.3448 140.03
-/gate/source/mybeam/gps/hist/point 2.4316 132.96
-/gate/source/mybeam/gps/hist/point 2.5185 126.13
-/gate/source/mybeam/gps/hist/point 2.6053 119.74
-/gate/source/mybeam/gps/hist/point 2.6921 113.96
-/gate/source/mybeam/gps/hist/point 2.7790 108.43
-/gate/source/mybeam/gps/hist/point 2.8658 103.15
-/gate/source/mybeam/gps/hist/point 2.9526 98.13
-/gate/source/mybeam/gps/hist/point 3.0395 93.63
-/gate/source/mybeam/gps/hist/point 3.1263 89.30
-/gate/source/mybeam/gps/hist/point 3.2131 85.03
-/gate/source/mybeam/gps/hist/point 3.3000 81.35
-/gate/source/mybeam/gps/hist/point 3.3868 77.76
-/gate/source/mybeam/gps/hist/point 3.4736 74.29
-/gate/source/mybeam/gps/hist/point 3.5605 70.83
-/gate/source/mybeam/gps/hist/point 3.6473 67.65
-/gate/source/mybeam/gps/hist/point 3.7341 64.77
-/gate/source/mybeam/gps/hist/point 3.8210 61.98
-/gate/source/mybeam/gps/hist/point 3.9078 59.18
-/gate/source/mybeam/gps/hist/point 3.9946 56.55
-/gate/source/mybeam/gps/hist/point 4.0815 54.15
-/gate/source/mybeam/gps/hist/point 4.1683 51.64
-/gate/source/mybeam/gps/hist/point 4.2551 49.45
-/gate/source/mybeam/gps/hist/point 4.3420 47.26
-/gate/source/mybeam/gps/hist/point 4.4288 45.04
-/gate/source/mybeam/gps/hist/point 4.5156 43.15
-/gate/source/mybeam/gps/hist/point 4.6025 41.02
-/gate/source/mybeam/gps/hist/point 4.6893 39.11
-/gate/source/mybeam/gps/hist/point 4.7761 37.29
-/gate/source/mybeam/gps/hist/point 4.8630 35.43
-/gate/source/mybeam/gps/hist/point 4.9498 33.68
-/gate/source/mybeam/gps/hist/point 5.0366 32.14
-/gate/source/mybeam/gps/hist/point 5.1235 30.35
-/gate/source/mybeam/gps/hist/point 5.2103 28.73
-/gate/source/mybeam/gps/hist/point 5.2971 27.16
-/gate/source/mybeam/gps/hist/point 5.3840 25.52
-/gate/source/mybeam/gps/hist/point 5.4708 23.99
-/gate/source/mybeam/gps/hist/point 5.5576 22.38
-/gate/source/mybeam/gps/hist/point 5.6445 20.87
-/gate/source/mybeam/gps/hist/point 5.7313 19.30
-/gate/source/mybeam/gps/hist/point 5.8181 17.74
-/gate/source/mybeam/gps/hist/point 5.9050 16.26
-/gate/source/mybeam/gps/hist/point 5.9918 14.72
-/gate/source/mybeam/gps/hist/point 6.0786 13.05
-/gate/source/mybeam/gps/hist/point 6.1655 11.44
-/gate/source/mybeam/gps/hist/point 6.2523 9.82
-/gate/source/mybeam/gps/hist/point 6.3391 8.08
-/gate/source/mybeam/gps/hist/point 6.4260 6.30
-/gate/source/mybeam/gps/hist/point 6.5128 4.37
-/gate/source/mybeam/gps/hist/point 6.5996 2.27
-/gate/source/mybeam/gps/hist/point 6.6865 0.71
-/gate/source/mybeam/gps/hist/point 6.7733 0.11
-/gate/source/mybeam/gps/hist/point 6.8601 0.01
+/gate/source/mybeam/gps/hist/point 0.0001 685.83
+/gate/source/mybeam/gps/hist/point 0.0812 1057.33
+/gate/source/mybeam/gps/hist/point 0.1623 1048.04
+/gate/source/mybeam/gps/hist/point 0.2435 935.06
+/gate/source/mybeam/gps/hist/point 0.3246 801.91
+/gate/source/mybeam/gps/hist/point 0.4057 693.00
+/gate/source/mybeam/gps/hist/point 0.4868 606.45
+/gate/source/mybeam/gps/hist/point 0.5680 537.96
+/gate/source/mybeam/gps/hist/point 0.6491 482.27
+/gate/source/mybeam/gps/hist/point 0.7302 434.94
+/gate/source/mybeam/gps/hist/point 0.8113 390.44
+/gate/source/mybeam/gps/hist/point 0.8924 353.75
+/gate/source/mybeam/gps/hist/point 0.9736 322.42
+/gate/source/mybeam/gps/hist/point 1.0547 296.98
+/gate/source/mybeam/gps/hist/point 1.1358 271.32
+/gate/source/mybeam/gps/hist/point 1.2169 249.27
+/gate/source/mybeam/gps/hist/point 1.2981 228.74
+/gate/source/mybeam/gps/hist/point 1.3792 212.89
+/gate/source/mybeam/gps/hist/point 1.4603 198.16
+/gate/source/mybeam/gps/hist/point 1.5414 182.20
+/gate/source/mybeam/gps/hist/point 1.6225 168.81
+/gate/source/mybeam/gps/hist/point 1.7037 157.79
+/gate/source/mybeam/gps/hist/point 1.7848 145.05
+/gate/source/mybeam/gps/hist/point 1.8659 135.18
+/gate/source/mybeam/gps/hist/point 1.9470 126.29
+/gate/source/mybeam/gps/hist/point 2.0281 117.48
+/gate/source/mybeam/gps/hist/point 2.1093 109.66
+/gate/source/mybeam/gps/hist/point 2.1904 102.82
+/gate/source/mybeam/gps/hist/point 2.2715 95.59
+/gate/source/mybeam/gps/hist/point 2.3526 90.25
+/gate/source/mybeam/gps/hist/point 2.4338 82.80
+/gate/source/mybeam/gps/hist/point 2.5149 77.73
+/gate/source/mybeam/gps/hist/point 2.5960 72.89
+/gate/source/mybeam/gps/hist/point 2.6771 67.29
+/gate/source/mybeam/gps/hist/point 2.7582 62.89
+/gate/source/mybeam/gps/hist/point 2.8394 58.55
+/gate/source/mybeam/gps/hist/point 2.9205 54.56
+/gate/source/mybeam/gps/hist/point 3.0016 51.24
+/gate/source/mybeam/gps/hist/point 3.0827 47.16
+/gate/source/mybeam/gps/hist/point 3.1639 44.33
+/gate/source/mybeam/gps/hist/point 3.2450 41.18
+/gate/source/mybeam/gps/hist/point 3.3261 37.64
+/gate/source/mybeam/gps/hist/point 3.4072 35.62
+/gate/source/mybeam/gps/hist/point 3.4883 32.32
+/gate/source/mybeam/gps/hist/point 3.5695 29.44
+/gate/source/mybeam/gps/hist/point 3.6506 27.71
+/gate/source/mybeam/gps/hist/point 3.7317 25.58
+/gate/source/mybeam/gps/hist/point 3.8128 23.42
+/gate/source/mybeam/gps/hist/point 3.8940 21.97
+/gate/source/mybeam/gps/hist/point 3.9751 20.13
+/gate/source/mybeam/gps/hist/point 4.0562 18.50
+/gate/source/mybeam/gps/hist/point 4.1373 16.55
+/gate/source/mybeam/gps/hist/point 4.2184 15.41
+/gate/source/mybeam/gps/hist/point 4.2996 14.24
+/gate/source/mybeam/gps/hist/point 4.3807 12.95
+/gate/source/mybeam/gps/hist/point 4.4618 11.64
+/gate/source/mybeam/gps/hist/point 4.5429 10.56
+/gate/source/mybeam/gps/hist/point 4.6240 9.40
+/gate/source/mybeam/gps/hist/point 4.7052 8.67
+/gate/source/mybeam/gps/hist/point 4.7863 7.71
+/gate/source/mybeam/gps/hist/point 4.8674 6.83
+/gate/source/mybeam/gps/hist/point 4.9485 6.23
+/gate/source/mybeam/gps/hist/point 5.0297 5.54
+/gate/source/mybeam/gps/hist/point 5.1108 4.96
+/gate/source/mybeam/gps/hist/point 5.1919 4.40
+/gate/source/mybeam/gps/hist/point 5.2730 3.63
+/gate/source/mybeam/gps/hist/point 5.3541 3.48
+/gate/source/mybeam/gps/hist/point 5.4353 2.79
+/gate/source/mybeam/gps/hist/point 5.5164 2.40
+/gate/source/mybeam/gps/hist/point 5.5975 2.11
+/gate/source/mybeam/gps/hist/point 5.6786 1.72
+/gate/source/mybeam/gps/hist/point 5.7598 1.39
+/gate/source/mybeam/gps/hist/point 5.8409 1.14
+/gate/source/mybeam/gps/hist/point 5.9220 0.87
+/gate/source/mybeam/gps/hist/point 6.0031 0.68
+/gate/source/mybeam/gps/hist/point 6.0842 0.44
+/gate/source/mybeam/gps/hist/point 6.1654 0.32
+/gate/source/mybeam/gps/hist/point 6.2465 0.14
+/gate/source/mybeam/gps/hist/point 6.3276 0.05
+/gate/source/mybeam/gps/hist/point 6.4087 0.01
 /gate/source/mybeam/gps/hist/inter Log 
-
 
 #=====================================================
 # START BEAMS
