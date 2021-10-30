@@ -1,0 +1,19 @@
+#!/bin/bash 
+#PBS -l walltime=22:59:59
+#PBS -j oe
+#PBS -l select=1:ncpus=1
+#PBS -l select=1:ncpus=1:mem=500mb
+#PBS -J 1,2,3,4,5,6,7,9,11,12,13,14,15,16,17,18,20,21,23,24,27,31,33,34,35,36,37,39,40,42,45,47,48,50,52,53,54,56,60,61,62,66,68,69,73,75,76,78,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,99,100,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,133,134,135,137,138,139,141,142,144,145,146,147,148,150,151,153,156,157,159,162,163,165,166,167,168,169,171,172,174,175,176,177,178,179,180,181,183,184,185,186,187,190,191,192,193,194,195,196,197,198,199,200
+#PBS -o /work/lb8075/job_logfiles
+
+module add apps/gate/8.2
+myScript="Main_PhS3_BigSensor_Flexible_airbox_wCopper.mac"
+cat /home/lb8075/linac/mac/Main_PhS3_BigSensor_Flexible_airbox_wCopper.mac
+now=$(date)
+echo "Start: $now"
+prim=1010000 #for elec
+
+myCommand="cp /home/lb8075/linac/mac/Main_PhS3_BigSensor_Flexible_airbox_wCopper.mac .; Gate $myScript -a '[seed,$RANDOM$RANDOM$RANDOM] [primaries,$prim] [pathGateMaterials,/home/lb8075/linac/data/GateMaterials.db] [id,$PBS_ARRAY_INDEX] [pathOutputDose,/work/lb8075/PhaseSpaces/PS3/PhS3BigSensor_v6_ElectronsFromPhS1_10x10] [inputParticleType,/gate/source/beam_g/setParticleType e-] [inputPhaseSpaceFile,/work/lb8075/PhaseSpaces/GenPhS2/Generated_PhS2_ElectronsFromPhS1_10x10/generatedElectron_PhS2_v4_10x10] [grating_material,Aluminium] [foil_thick_um,4] [foil_z_um,469998.0] [pass_z_um,469992.5] [epi_z_um,469986.5] [bulk_z_um,469634.0]'" 
+eval $myCommand
+echo "Completion time is $(date)" 
+

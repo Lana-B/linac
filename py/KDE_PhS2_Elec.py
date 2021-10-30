@@ -10,12 +10,19 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--field', help='foo help')
 parser.add_argument('--entries', help='foo help')
 parser.add_argument('--jobID', help='foo help')
+parser.add_argument('--filenum', help='file number for inputting multiple files into input phase space')
+
 args = parser.parse_args()
 field_size=args.field
 file_num=int(args.jobID)
 ents_gen=int(args.entries)
+n_file=int(args.filenum)
 
-filename=f"/work/lb8075/PhaseSpaces/PhS2_{field_size}_p1_Elec_v2/Skimmed_output*.root"
+# filename=f"/work/lb8075/PhaseSpaces/PS2/PhS2_{field_size}_p1_Elec_v3/output*.root"
+# filename=f"/work/as17540/PhaseSpaces/PS2/PhS2_{field_size}_p1_Elec_v2/output*GateMaterials_SeaLevel.db.root"
+# filename=f"/work/lb8075/PhaseSpaces/PS2/PhS2_{field_size}_p1_ElecFromPhS1/output*.root"
+filename=f"/work/lb8075/PhaseSpaces/PS2/PhS2_{field_size}_p1_ElecFromPhS1_highEn/Skimmed_output*.root"
+
 print(f"input file: {filename}")
 ur=uproot.pandas.iterate(filename, "PhaseSpace", ['X','Y','dX','dY','Ekine'])
 mylist=list(ur)        
@@ -41,10 +48,11 @@ for i in range(file_num,file_num+1):
 
 	newdfsub=newdf[(newdf['Ekine']>0)]
 	newdfsub['dZ']=-1*pow(1.0-newdfsub['dX']*newdfsub['dX']-newdfsub['dY']*newdfsub['dY'],0.5)
+	newdfsub=newdfsub[(newdfsub['dZ']<0)]
 	newdfsub["Z"]=-0.0000005
 	newdfsub=newdfsub.dropna(axis='index')
 	newdfsub=newdfsub.astype('float32')
-	newdfsub.to_root(f"/work/lb8075/PhaseSpaces/Generated_PhS2_Electrons_{field_size}/generatedElectron_PhS2_{field_size}_{i}.root", key='PhaseSpace')
+	newdfsub.to_root(f"/work/lb8075/PhaseSpaces/GenPhS2/Generated_PhS2_ElectronsFromPhS1_{field_size}_highEn/generatedElectron_PhS2_v4_{field_size}_{i}_file{n_file}.root", key='PhaseSpace')
 	print("root file saved",i)
 
 print("Finished")

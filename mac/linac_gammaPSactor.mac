@@ -1,6 +1,6 @@
 /gate/actor/addActor                         PhaseSpaceActor PhS_g
 /gate/actor/PhS_g/attachTo                   PhS_Plane_Two
-/gate/actor/PhS_g/save 	                     /work/lb8075/PhaseSpaces/PhS2_{jaws}_Gamma_v2/output{id}.root
+/gate/actor/PhS_g/save 	                     /work/lb8075/PhaseSpaces/PS2/PhS2_{jaws}_Gamma_v3/output{id}.root
 /gate/actor/PhS_g/enableParticleName         false
 /gate/actor/PhS_g/enableProductionVolume     true
 /gate/actor/PhS_g/enableProductionProcess    true

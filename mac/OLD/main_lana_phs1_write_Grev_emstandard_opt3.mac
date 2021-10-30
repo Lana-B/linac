@@ -1,0 +1,179 @@
+
+#seed, primaries, id, bias
+
+
+#=====================================================
+# VERBOSITY
+#=====================================================
+
+#/control/execute mac/verbose.mac
+
+#=====================================================
+# VISUALISATION
+#=====================================================
+
+#/control/execute mac/visu.mac
+
+# =====================================================
+# GEOMETRY
+# =====================================================
+
+/gate/geometry/setMaterialDatabase /home/lb8075/linac/data/GateMaterials.db
+
+# WORLD
+/gate/world/setMaterial            Air
+/gate/world/geometry/setXLength    1 m
+/gate/world/geometry/setYLength    1 m
+/gate/world/geometry/setZLength    2.5 m
+# /gate/world/vis/setVisible 1
+
+# LINAC HEAD
+# World origin is in the center of the beam e- source (not the real
+# isocenter of the gantry room)
+/gate/geometry/setMaterialDatabase /home/lb8075/linac/data/LinacMaterials.db
+/control/execute /home/lb8075/linac/mac/linac_head.mac
+
+# VIRTUAL PLANE FOR PHASE SPACE
+/gate/linac/daughters/name               PhS_Plane
+/gate/linac/daughters/insert             cylinder
+/gate/PhS_Plane/setMaterial              Vacuum
+/gate/PhS_Plane/geometry/setRmin         0 mm
+/gate/PhS_Plane/geometry/setRmax         85 mm
+/gate/PhS_Plane/geometry/setHeight       1 nm
+/gate/PhS_Plane/placement/setTranslation 0.0 0.0 -297 mm
+/gate/PhS_Plane/vis/setColor             white
+/gate/PhS_Plane/vis/setVisible           1
+
+# -----------------------------------------------------
+# Jaws
+# -----------------------------------------------------
+
+# /control/execute mac/linac_jaws.mac
+
+# =====================================================
+# PHYSICS
+# =====================================================
+
+/gate/physics/addPhysicsList emstandard_opt3
+
+/gate/physics/Gamma/SetCutInRegion      world 1 mm
+/gate/physics/Electron/SetCutInRegion   world 1 mm
+/gate/physics/Positron/SetCutInRegion   world 1 mm
+
+
+/gate/physics/Gamma/SetCutInRegion      primary_collimator 0.5 mm
+/gate/physics/Electron/SetCutInRegion   primary_collimator 0.5 mm
+/gate/physics/Positron/SetCutInRegion   primary_collimator 0.5 mm
+
+/gate/physics/Gamma/SetCutInRegion      ionizing_chamber 0.5 mm
+/gate/physics/Electron/SetCutInRegion   ionizing_chamber 0.5 mm
+/gate/physics/Positron/SetCutInRegion   ionizing_chamber 0.5 mm
+
+/gate/physics/Gamma/SetCutInRegion      back_scatter_plate 0.5 mm
+/gate/physics/Electron/SetCutInRegion   back_scatter_plate 0.5 mm
+/gate/physics/Positron/SetCutInRegion   back_scatter_plate 0.5 mm
+
+/gate/physics/Gamma/SetCutInRegion      mirror 0.5 mm
+/gate/physics/Electron/SetCutInRegion   mirror 0.5 mm
+/gate/physics/Positron/SetCutInRegion   mirror 0.5 mm
+
+
+/gate/physics/Gamma/SetCutInRegion      flattening_filter 0.5 mm
+/gate/physics/Electron/SetCutInRegion   flattening_filter 0.5 mm
+/gate/physics/Positron/SetCutInRegion   flattening_filter 0.5 mm
+
+/gate/physics/processList Enabled
+/gate/physics/processList Initialized
+# /gate/physics/print PhysicsCuts.txt
+#=====================================================
+# DETECTORS
+#=====================================================
+
+# ----------------------------------------------------
+# Kill actor to stop particles when they go inside a region
+
+/gate/actor/addActor          KillActor killer0
+/gate/actor/killer0/attachTo  kill_box_top
+/gate/actor/addActor          KillActor killer1
+/gate/actor/killer1/attachTo  kill_box_bottom
+/gate/actor/addActor          KillActor killer2
+/gate/actor/killer2/attachTo  kill_box_bottom2
+
+
+# ----------------------------------------------------
+# Phase space storage (a PhS for gamma, another for e-)
+
+/gate/actor/addActor                         PhaseSpaceActor PhS_g
+/gate/actor/PhS_g/attachTo                   PhS_Plane
+/gate/actor/PhS_g/save 	                     /work/lb8075/PhaseSpaces/PhS1AB_Gamma_ZeroBias/emoptstandard3_grev_output-PhS_bias{bias}_{id}.root
+/gate/actor/PhS_g/enableParticleName         false
+/gate/actor/PhS_g/enableProductionVolume     true
+/gate/actor/PhS_g/enableProductionProcess    true
+/gate/actor/PhS_g/useVolumeFrame             true
+/gate/actor/PhS_g/addFilter                  particleFilter
+/gate/actor/PhS_g/particleFilter/addParticle gamma
+/gate/actor/PhS_g/enableZPosition            true
+#/gate/actor/PhS_g/saveEveryNSeconds          20
+
+/gate/actor/addActor                         PhaseSpaceActor PhS_e
+/gate/actor/PhS_e/attachTo                   PhS_Plane
+/gate/actor/PhS_e/save 	                     /work/lb8075/PhaseSpaces/PhS1AB_Elec_ZeroBias/emoptstandard3_grev_output-PhS_bias{bias}_{id}.root
+/gate/actor/PhS_e/enableParticleName         false
+/gate/actor/PhS_e/enableProductionVolume     false
+/gate/actor/PhS_e/enableProductionProcess    false
+/gate/actor/PhS_e/useVolumeFrame             true
+/gate/actor/PhS_e/addFilter                  particleFilter
+/gate/actor/PhS_e/particleFilter/addParticle e-
+/gate/actor/PhS_e/particleFilter/addParticle e+
+/gate/actor/PhS_e/enableZPosition            true
+# /gate/actor/PhS_e/saveEveryNSeconds          20
+
+#=====================================================
+# INITIALISATION
+#=====================================================
+
+
+/gate/run/initialize
+# Bremsstrahlung splitting : generate 100 photon (if below 100 MeV) with weight 1/100
+
+# /process/em/setSecBiasing compt flattening_filter_cone6 100 100 MeV
+/process/em/setSecBiasing eBrem target {bias} 100 MeV #changed to variable from 100 02/11/20
+
+#====================================================
+# BEAMS
+#=====================================================
+
+/gate/source/addSource                mybeam gps
+/gate/source/mybeam/gps/particle      e-
+/gate/source/mybeam/gps/pos/type      Beam
+/gate/source/mybeam/gps/pos/rot1      0 1 0
+/gate/source/mybeam/gps/pos/rot2      1 0 0
+/gate/source/mybeam/gps/pos/shape     Circle
+/gate/source/mybeam/gps/pos/centre    0. 0. 0.6 mm
+/gate/source/mybeam/gps/pos/sigma_x   1.274 mm
+/gate/source/mybeam/gps/pos/sigma_y   1.274 mm
+/gate/source/mybeam/gps/ang/rot1      1 0 0
+/gate/source/mybeam/gps/ang/rot2      0 1 0
+/gate/source/mybeam/gps/ang/type      beam1d
+/gate/source/mybeam/gps/ang/sigma_r   0 deg
+/gate/source/mybeam/gps/ene/type      Gauss
+/gate/source/mybeam/gps/ene/mono      5.8 MeV
+/gate/source/mybeam/gps/ene/sigma     0.074 MeV
+/gate/source/mybeam/gps/direction     0 0 -1
+
+#=====================================================
+# START BEAMS
+#=====================================================
+
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed {seed}
+/gate/application/noGlobalOutput
+
+#/tracking/verbose 2
+
+/gate/application/setTotalNumberOfPrimaries {primaries}
+/gate/application/start
+
+
+/gate/physics/processList Enabled
+/gate/physics/processList Initialized

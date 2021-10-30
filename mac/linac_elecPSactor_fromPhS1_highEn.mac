@@ -1,0 +1,13 @@
+/gate/actor/addActor                         PhaseSpaceActor PhS_e
+/gate/actor/PhS_e/attachTo                   PhS_Plane_Two
+/gate/actor/PhS_e/save 	                     /work/lb8075/PhaseSpaces/PS2/PhS2_{jaws}_ElecFromPhS1_highEn/output{id}.root
+/gate/actor/PhS_e/enableParticleName         true
+/gate/actor/PhS_e/enableProductionVolume     true
+/gate/actor/PhS_e/enableProductionProcess    true
+/gate/actor/PhS_e/useVolumeFrame             true
+/gate/actor/PhS_e/addFilter                  particleFilter
+/gate/actor/PhS_e/particleFilter/addParticle e-
+/gate/actor/PhS_e/particleFilter/addParticle e+
+/gate/actor/PhS_e/enableZPosition            true
+/gate/actor/PhS_e/enableProductionVolume true
+/gate/actor/PhS_e/enableProductionProcess true

@@ -1,0 +1,210 @@
+universe = vanilla
+getenv = false
+environment = SINGULARITY_CACHEDIR=.
+Executable     = /hdfs/user/lb8075/gateSingularityImage/gateExecScriptSing.sh
+transfer_input_files = transfers/transfer_script_ClusterAllOne_main_phs1, data/GateMaterials.db, Materials.xml, data/LinacMaterials.db
+request_cpus = 1
+request_memory = 120
+when_to_transfer_output = on_exit_or_evict
++SingularityImage = "docker://opengatecollaboration/gate"
++PostCmd        = "transfer_script_ClusterAllOne_main_phs1" 
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs11.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs11.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs11.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs11.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs12.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs12.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs12.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs12.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs13.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs13.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs13.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs13.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs14.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs14.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs14.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs14.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs15.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs15.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs15.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs15.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs16.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs16.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs16.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs16.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs17.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs17.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs17.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs17.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs18.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs18.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs18.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs18.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs19.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs19.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs19.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs19.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs110.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs110.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs110.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs110.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs111.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs111.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs111.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs111.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs112.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs112.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs112.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs112.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs113.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs113.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs113.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs113.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs114.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs114.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs114.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs114.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs115.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs115.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs115.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs115.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs116.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs116.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs116.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs116.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs117.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs117.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs117.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs117.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs118.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs118.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs118.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs118.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs119.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs119.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs119.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs119.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs120.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs120.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs120.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs120.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs121.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs121.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs121.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs121.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs122.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs122.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs122.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs122.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs123.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs123.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs123.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs123.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs124.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs124.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs124.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs124.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs125.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs125.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs125.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs125.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs126.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs126.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs126.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs126.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs127.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs127.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs127.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs127.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs128.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs128.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs128.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs128.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs129.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs129.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs129.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs129.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs130.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs130.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs130.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs130.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs131.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs131.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs131.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs131.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs132.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs132.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs132.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs132.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs133.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs133.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs133.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs133.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs134.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs134.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs134.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs134.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs135.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs135.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs135.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs135.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs136.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs136.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs136.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs136.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs137.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs137.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs137.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs137.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs138.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs138.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs138.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs138.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs139.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs139.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs139.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs139.log
+Queue
+Arguments      = /users/lb8075/linac/mac/ClusterAllOne_main_phs140.mac
+Output         = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs140.out
+Error          = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs140.err
+Log            = /storage/lb8075/ClusterAllOne_main_phs1/ClusterAllOne_main_phs140.log
+Queue

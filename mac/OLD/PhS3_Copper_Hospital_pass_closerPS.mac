@@ -1,0 +1,485 @@
+
+# INPUTS
+# pathGateMaterials
+# pathOutputDose
+# id
+# inputPhaseSpaceFile
+# seed 
+# primaries
+# [inputPhaseSpaceFile,/Users/lb8075/gate-exercices-master-linac/linac/generatedGammasnSkimmed10Halfmm1.root] [seed,12345678] [primaries,200] [pathGateMaterials,/Users/lb8075/gate-exercices-master-linac/linac/data/GateMaterials.db] [id,1] [pathOutputDose,/Users/lb8075/gate-exercices-master-linac/linac/output/BigSensorTest.root]
+
+# Gate /home/lb8075/linac/mac/Main_PhS3_BigSensor_Flexible_airbox_Grating_Y.mac -a '[id,1] [peakzlength_um,400] [peakztrans_mm,-5.3] [peak_material,Aluminium] [inputPhaseSpaceFile,/work/lb8075/PhaseSpaces/Generated_PhS2_Electrons_${field}/generatedElectron_PhS2_${field}_{id}.root] [seed,123456] [primaries,100000] [pathGateMaterials,/home/lb8075/linac/data/GateMaterials.db] [pathOutputDose,/work/lb8075/PhaseSpaces/PhS3BigSensor_${field}_Elec_Square/] [inputParticleType,/gate/source/beam_g/setParticleType e-]'
+
+#=====================================================
+# VISUALISATION
+#=====================================================
+
+# /control/execute mac/visu.mac
+
+# =====================================================
+# GEOMETRY
+# =====================================================
+
+/gate/geometry/setMaterialDatabase {pathGateMaterials}
+#/home/lb8075/linac/data/GateMaterials.db
+
+# WORLD
+/gate/world/setMaterial            Air
+/gate/world/geometry/setXLength    0.3 m
+/gate/world/geometry/setYLength    0.3 m
+/gate/world/geometry/setZLength    1 m
+/gate/world/vis/setVisible 1
+
+
+/gate/world/daughters/name                   PhS_Plane_Two
+/gate/world/daughters/insert                 box
+/gate/PhS_Plane_Two/setMaterial              Vacuum
+/gate/PhS_Plane_Two/geometry/setXLength      31 cm
+/gate/PhS_Plane_Two/geometry/setYLength      31 cm
+/gate/PhS_Plane_Two/geometry/setZLength      1 nm
+/gate/PhS_Plane_Two/placement/setTranslation 0.0 0.0 450.1 mm #(-529)
+/gate/PhS_Plane_Two/vis/setColor             cyan
+/gate/PhS_Plane_Two/vis/setVisible           1
+
+
+/gate/world/daughters/name                   Kill_BackPlane
+/gate/world/daughters/insert                 box
+/gate/Kill_BackPlane/setMaterial                   Air	
+/gate/Kill_BackPlane/geometry/setXLength           30 cm
+/gate/Kill_BackPlane/geometry/setYLength           30 cm
+/gate/Kill_BackPlane/geometry/setZLength           1 nm
+/gate/Kill_BackPlane/placement/setTranslation      0.0 0.0 480 mm
+/gate/Kill_BackPlane/vis/setColor                  red
+/gate/Kill_BackPlane/vis/setVisible                1
+
+/gate/world/daughters/name                   Kill_FrontPlane
+/gate/world/daughters/insert                 box
+/gate/Kill_FrontPlane/setMaterial                   Air	
+/gate/Kill_FrontPlane/geometry/setXLength           30 cm
+/gate/Kill_FrontPlane/geometry/setYLength           30 cm
+/gate/Kill_FrontPlane/geometry/setZLength           1 nm
+/gate/Kill_FrontPlane/placement/setTranslation      0.0 0.0 445 mm
+/gate/Kill_FrontPlane/vis/setColor                  red
+/gate/Kill_FrontPlane/vis/setVisible                1
+
+/gate/world/daughters/name         top_pass
+/gate/world/daughters/insert       box
+/gate/top_pass/setMaterial                  Passivation
+/gate/top_pass/geometry/setXLength          100.0 mm
+/gate/top_pass/geometry/setYLength          100.0 mm
+/gate/top_pass/geometry/setZLength          0.01 mm
+/gate/top_pass/placement/setTranslation     0 0 449.9965 mm
+/gate/top_pass/vis/setVisible               1
+/gate/top_pass/vis/setColor                 grey
+/gate/top_pass/vis/forceSolid
+
+/gate/world/daughters/name         epi
+/gate/world/daughters/insert       box
+/gate/epi/setMaterial                  Silicon
+/gate/epi/geometry/setXLength          100.0 mm
+/gate/epi/geometry/setYLength          100.0 mm
+/gate/epi/geometry/setZLength          0.01 mm
+/gate/epi/placement/setTranslation     0 0 449.9905 mm
+/gate/epi/vis/setVisible               1
+/gate/epi/vis/setColor                 grey
+/gate/epi/vis/forceSolid
+
+/gate/world/daughters/name         bulk
+/gate/world/daughters/insert       box
+/gate/bulk/setMaterial                  Silicon
+/gate/bulk/geometry/setXLength          180.0 mm
+/gate/bulk/geometry/setYLength          180.0 mm
+/gate/bulk/geometry/setZLength          0.7 mm
+/gate/bulk/placement/setTranslation     0 0 449.638 mm
+/gate/bulk/vis/setVisible               1
+/gate/bulk/vis/setColor                 blue
+/gate/bulk/vis/forceSolid
+
+# /gate/world/daughters/name         PSlayer1 
+# /gate/world/daughters/insert       box 
+# /gate/PSlayer1/setMaterial                  Silicon 
+# /gate/PSlayer1/geometry/setXLength          11.0 mm 
+# /gate/PSlayer1/geometry/setYLength          11.0 mm 
+# /gate/PSlayer1/geometry/setZLength          10.0 nm 
+# /gate/PSlayer1/placement/setTranslation     0 0 450000005.0 nm 
+# /gate/PSlayer1/vis/setVisible               1 
+# /gate/PSlayer1/vis/setColor                 blue
+# /gate/PSlayer1/vis/forceSolid
+
+/gate/world/daughters/name         peak_air_box 
+/gate/world/daughters/insert       box 
+/gate/peak_air_box/setMaterial                  Air 
+/gate/peak_air_box/geometry/setXLength          200.0 mm 
+/gate/peak_air_box/geometry/setYLength          200.0 mm 
+/gate/peak_air_box/geometry/setZLength          11 mm 
+/gate/peak_air_box/placement/setTranslation     0 0 455.5 mm
+/gate/peak_air_box/vis/setVisible               1 
+/gate/peak_air_box/vis/setColor                 cyan
+/gate/peak_air_box/vis/forceWireframe
+
+/gate/peak_air_box/daughters/name         Kapton60 
+/gate/peak_air_box/daughters/insert       box 
+/gate/Kapton60/setMaterial                  Kapton 
+/gate/Kapton60/geometry/setXLength          25.0 mm 
+/gate/Kapton60/geometry/setYLength          100.0 mm 
+/gate/Kapton60/geometry/setZLength          50 um 
+/gate/Kapton60/placement/setTranslation     20 0 -5.475 mm
+/gate/Kapton60/vis/setVisible               1 
+/gate/Kapton60/vis/setColor                 yellow
+/gate/Kapton60/vis/forceSolid
+
+/gate/peak_air_box/daughters/name         Copper60 
+/gate/peak_air_box/daughters/insert       box 
+/gate/Copper60/setMaterial                 CopperAlloyC86400 
+/gate/Copper60/geometry/setXLength          10.0 mm 
+/gate/Copper60/geometry/setYLength          100.0 mm 
+/gate/Copper60/geometry/setZLength          60 um 
+/gate/Copper60/placement/setTranslation     20 0 -5.445 mm
+/gate/Copper60/vis/setVisible               1 
+/gate/Copper60/vis/setColor                 red
+/gate/Copper60/vis/forceSolid
+
+/gate/peak_air_box/daughters/name         Kapton50 
+/gate/peak_air_box/daughters/insert       box 
+/gate/Kapton50/setMaterial                  Kapton 
+/gate/Kapton50/geometry/setXLength          25.0 mm 
+/gate/Kapton50/geometry/setYLength          100.0 mm 
+/gate/Kapton50/geometry/setZLength          50 um 
+/gate/Kapton50/placement/setTranslation     -20 0 -5.475 mm
+/gate/Kapton50/vis/setVisible               1 
+/gate/Kapton50/vis/setColor                 yellow
+/gate/Kapton50/vis/forceSolid
+
+/gate/peak_air_box/daughters/name         Copper50 
+/gate/peak_air_box/daughters/insert       box 
+/gate/Copper50/setMaterial                  CopperAlloyC86400 
+/gate/Copper50/geometry/setXLength          10.0 mm 
+/gate/Copper50/geometry/setYLength          100.0 mm 
+/gate/Copper50/geometry/setZLength          50 um 
+/gate/Copper50/placement/setTranslation     -20 0 -5.45 mm
+/gate/Copper50/vis/setVisible               1 
+/gate/Copper50/vis/setColor                 red
+/gate/Copper50/vis/forceSolid
+
+# /gate/peak_air_box/daughters/name         Kapton80 
+# /gate/peak_air_box/daughters/insert       box 
+# /gate/Kapton80/setMaterial                  Kapton 
+# /gate/Kapton80/geometry/setXLength          25.0 mm 
+# /gate/Kapton80/geometry/setYLength          100.0 mm 
+# /gate/Kapton80/geometry/setZLength          50 um 
+# /gate/Kapton80/placement/setTranslation     20 0 -5.475 mm
+# /gate/Kapton80/vis/setVisible               1 
+# /gate/Kapton80/vis/setColor                 yellow
+# /gate/Kapton80/vis/forceSolid
+
+# /gate/peak_air_box/daughters/name         Copper80 
+# /gate/peak_air_box/daughters/insert       box 
+# /gate/Copper80/setMaterial                 Copper 
+# /gate/Copper80/geometry/setXLength          10.0 mm 
+# /gate/Copper80/geometry/setYLength          100.0 mm 
+# /gate/Copper80/geometry/setZLength          80 um 
+# /gate/Copper80/placement/setTranslation     20 0 -5.41 mm
+# /gate/Copper80/vis/setVisible               1 
+# /gate/Copper80/vis/setColor                 red
+# /gate/Copper80/vis/forceSolid
+
+# /gate/peak_air_box/daughters/name         Kapton70 
+# /gate/peak_air_box/daughters/insert       box 
+# /gate/Kapton70/setMaterial                  Kapton 
+# /gate/Kapton70/geometry/setXLength          25.0 mm 
+# /gate/Kapton70/geometry/setYLength          100.0 mm 
+# /gate/Kapton70/geometry/setZLength          50 um 
+# /gate/Kapton70/placement/setTranslation     -20 0 -5.475 mm
+# /gate/Kapton70/vis/setVisible               1 
+# /gate/Kapton70/vis/setColor                 yellow
+# /gate/Kapton70/vis/forceSolid
+
+# /gate/peak_air_box/daughters/name         Copper70 
+# /gate/peak_air_box/daughters/insert       box 
+# /gate/Copper70/setMaterial                  Copper 
+# /gate/Copper70/geometry/setXLength          10.0 mm 
+# /gate/Copper70/geometry/setYLength          100.0 mm 
+# /gate/Copper70/geometry/setZLength          70 um 
+# /gate/Copper70/placement/setTranslation     -20 0 -5.415 mm
+# /gate/Copper70/vis/setVisible               1 
+# /gate/Copper70/vis/setColor                 red
+# /gate/Copper70/vis/forceSolid
+
+# /gate/peak_air_box/daughters/name         Glue38 
+# /gate/peak_air_box/daughters/insert       box 
+# /gate/Glue38/setMaterial                  Epoxy 
+# /gate/Glue38/geometry/setXLength          10.0 mm 
+# /gate/Glue38/geometry/setYLength          100.0 mm 
+# /gate/Glue38/geometry/setZLength          25 um 
+# /gate/Glue38/placement/setTranslation     -20 0 -5.4375 mm
+# /gate/Glue38/vis/setVisible               1 
+# /gate/Glue38/vis/setColor                 blue
+# /gate/Glue38/vis/forceSolid
+
+# /gate/peak_air_box/daughters/name         lightcover 
+# /gate/peak_air_box/daughters/insert       box 
+# /gate/lightcover/setMaterial                  {lightcover_material} 
+# /gate/lightcover/geometry/setXLength          100.0 mm 
+# /gate/lightcover/geometry/setYLength          100.0 mm 
+# /gate/lightcover/geometry/setZLength          {lightcoverzlength_um} um
+# #200 um  
+# /gate/lightcover/placement/setTranslation     0 0 {lightcoverztrans_mm} mm
+# #465.525 mm 
+# /gate/lightcover/vis/setVisible               1 
+# /gate/lightcover/vis/setColor                 magenta
+# /gate/lightcover/vis/forceWireframe
+# =====================================================
+# PHYSICS
+# =====================================================
+
+/gate/physics/addPhysicsList emstandard_opt4
+
+/gate/physics/Gamma/SetCutInRegion      world 1 mm
+/gate/physics/Electron/SetCutInRegion   world 1 mm
+/gate/physics/Positron/SetCutInRegion   world 1 mm
+
+/gate/physics/Gamma/SetCutInRegion      top_pass 0.00001 mm 
+/gate/physics/Electron/SetCutInRegion   top_pass 0.00001 mm
+/gate/physics/Positron/SetCutInRegion   top_pass 0.00001 mm
+
+
+/gate/physics/Gamma/SetCutInRegion      epi 0.00001 mm 
+/gate/physics/Electron/SetCutInRegion   epi 0.00001 mm
+/gate/physics/Positron/SetCutInRegion   epi 0.00001 mm
+
+/gate/physics/Gamma/SetCutInRegion      bulk 0.00001 mm
+/gate/physics/Electron/SetCutInRegion   bulk 0.00001 mm
+/gate/physics/Positron/SetCutInRegion   bulk 0.00001 mm
+
+# /gate/physics/Gamma/SetCutInRegion      peak_air_box {peakStepSize} mm
+# /gate/physics/Electron/SetCutInRegion   peak_air_box {peakStepSize} mm
+# /gate/physics/Positron/SetCutInRegion   peak_air_box {peakStepSize} mm
+
+# /gate/physics/Gamma/SetCutInRegion      Kapton80 0.00001 mm #0.00001
+# /gate/physics/Electron/SetCutInRegion   Kapton80 0.00001 mm
+# /gate/physics/Positron/SetCutInRegion   Kapton80 0.00001 mm
+
+# /gate/physics/Gamma/SetCutInRegion      Copper80 0.00001 mm #0.00001
+# /gate/physics/Electron/SetCutInRegion   Copper80 0.00001 mm
+# /gate/physics/Positron/SetCutInRegion   Copper80 0.00001 mm
+
+# /gate/physics/Gamma/SetCutInRegion      Kapton70 0.00001 mm #0.00001
+# /gate/physics/Electron/SetCutInRegion   Kapton70 0.00001 mm
+# /gate/physics/Positron/SetCutInRegion   Kapton70 0.00001 mm
+
+# /gate/physics/Gamma/SetCutInRegion      Copper70 0.00001 mm #0.00001
+# /gate/physics/Electron/SetCutInRegion   Copper70 0.00001 mm
+# /gate/physics/Positron/SetCutInRegion   Copper70 0.00001 mm
+
+/gate/physics/Gamma/SetCutInRegion      Kapton60 0.00001 mm #0.00001
+/gate/physics/Electron/SetCutInRegion   Kapton60 0.00001 mm
+/gate/physics/Positron/SetCutInRegion   Kapton60 0.00001 mm
+
+/gate/physics/Gamma/SetCutInRegion      Copper60 0.00001 mm #0.00001
+/gate/physics/Electron/SetCutInRegion   Copper60 0.00001 mm
+/gate/physics/Positron/SetCutInRegion   Copper60 0.00001 mm
+
+/gate/physics/Gamma/SetCutInRegion      Kapton50 0.00001 mm #0.00001
+/gate/physics/Electron/SetCutInRegion   Kapton50 0.00001 mm
+/gate/physics/Positron/SetCutInRegion   Kapton50 0.00001 mm
+
+/gate/physics/Gamma/SetCutInRegion      Copper50 0.00001 mm #0.00001
+/gate/physics/Electron/SetCutInRegion   Copper50 0.00001 mm
+/gate/physics/Positron/SetCutInRegion   Copper50 0.00001 mm
+
+# /gate/physics/Gamma/SetCutInRegion      Glue38 0.00001 mm #0.00001
+# /gate/physics/Electron/SetCutInRegion   Glue38 0.00001 mm
+# /gate/physics/Positron/SetCutInRegion   Glue38 0.00001 mm
+
+# /gate/physics/Gamma/SetCutInRegion      lightcover 0.0001 mm
+# /gate/physics/Electron/SetCutInRegion   lightcover 0.0001 mm
+# /gate/physics/Positron/SetCutInRegion   lightcover 0.0001 mm
+#=====================================================
+# DETECTORS
+#=====================================================
+
+# ----------------------------------------------------
+# Phase space storage (a PhS for gamma, another for e-)
+
+# /gate/actor/addActor                         PhaseSpaceActor PhS_g
+# /gate/actor/PhS_g/attachTo                   PSlayer1
+# /gate/actor/PhS_g/save 	                   /work/lb8075/PhaseSpaces/PhS3GammaFromGamma/output-lana3n1-PhS-g.root
+# /gate/actor/PhS_g/enableParticleName         false
+# /gate/actor/PhS_g/enableProductionVolume     false
+# /gate/actor/PhS_g/enableProductionProcess    false
+# /gate/actor/PhS_g/useVolumeFrame             true
+# /gate/actor/PhS_g/addFilter                  particleFilter
+# /gate/actor/PhS_g/particleFilter/addParticle gamma
+# /gate/actor/PhS_g/enableZPosition            true
+
+# /gate/actor/addActor                         PhaseSpaceActor PhS_e
+# /gate/actor/PhS_e/attachTo                   PSlayer1
+# /gate/actor/PhS_e/save 	                   /work/lb8075/PhaseSpaces/PhS3ElecFromGamma/output-lana3n1-PhS-e_nobias{id}.root
+# /gate/actor/PhS_e/enableParticleName         false
+# /gate/actor/PhS_e/enableProductionVolume     false
+# /gate/actor/PhS_e/enableProductionProcess    false
+# /gate/actor/PhS_e/useVolumeFrame             true
+# /gate/actor/PhS_e/addFilter                  particleFilter
+# /gate/actor/PhS_e/particleFilter/addParticle e-
+# /gate/actor/PhS_e/particleFilter/addParticle e+
+# /gate/actor/PhS_e/enableZPosition            true
+
+
+## 
+## Dose output electron
+## 
+/gate/actor/addActor                               DoseActor  doseDistribution
+/gate/actor/doseDistribution/save                  {pathOutputDose}/Epi-CopperHospital-CopperAlloyC86400-50-60-corspecvinputphs-{id}.root
+#/work/lb8075/PhaseSpaces/PhS3DoseFromGamma_50um_plastic1cm/Epi-30mm-no-bias{id}.root
+/gate/actor/doseDistribution/attachTo              epi
+/gate/actor/doseDistribution/stepHitType           random
+/gate/actor/doseDistribution/setPosition           0 0 0 cm
+/gate/actor/doseDistribution/setSize               100 100 0.010 mm
+/gate/actor/doseDistribution/setResolution         2000 2000 1	 #for 60 micron pixel x4
+/gate/actor/doseDistribution/enableNumberOfHits    true
+/gate/actor/doseDistribution/enableEdep            true
+/gate/actor/doseDistribution/enableUncertaintyEdep false
+/gate/actor/doseDistribution/enableSquaredEdep     true
+/gate/actor/doseDistribution/enableDose            false
+/gate/actor/doseDistribution/enableUncertaintyDose false
+
+
+/gate/actor/addActor   KillActor                         Kill_BP 
+/gate/actor/Kill_BP/attachTo                             Kill_BackPlane 
+
+/gate/actor/addActor   KillActor                         Kill_FP 
+/gate/actor/Kill_FP/attachTo                             Kill_FrontPlane 
+
+#=====================================================
+# INITIALISATION
+#=====================================================
+
+/gate/run/initialize
+# /process/em/setBiasingFactor compt 100 True
+
+# /process/em/setSecBiasing compt Kapton80 100 1000 MeV
+# /particle/process/dump
+
+#=====================================================
+# BEAMS
+#=====================================================
+
+# Read from Phase Space files. Here we indicate the type of particle
+# (gamma) because this information is not stored in the PhS to gain
+# space. Moreover, we set 'useRandomSymmetry' to generate more
+# particle than the number of particle in the PhS, using a Z axis
+# symmetry.
+
+/gate/source/addSource                         beam_g phaseSpace
+/gate/source/beam_g/addPhaseSpaceFile          {inputPhaseSpaceFile}
+{inputParticleType}
+/gate/source/beam_g/attachTo                   PhS_Plane_Two
+/gate/source/beam_g/useRandomSymmetry          true
+
+# /gate/source/addSource mybeam gps 
+# /gate/source/mybeam/gps/particle e- 
+# /gate/source/mybeam/gps/pos/centre 0 20 471 mm 
+# /gate/source/mybeam/gps/direction 0 0 -1 
+# /gate/source/mybeam/gps/type Plane 
+# /gate/source/mybeam/gps/shape Square 
+# /gate/source/mybeam/gps/halfx 5 cm 
+# /gate/source/mybeam/gps/halfy 2 cm 
+# /gate/source/mybeam/gps/ene/type Arb 
+# /gate/source/mybeam/gps/hist/type arb 
+# /gate/source/mybeam/gps/hist/point 0.035245682798267806 712.5860561912796
+# /gate/source/mybeam/gps/hist/point 0.10553674279508413 1126.5083560713801
+# /gate/source/mybeam/gps/hist/point 0.17582780279190047 1184.1091939187731
+# /gate/source/mybeam/gps/hist/point 0.24611886278871678 1090.6310461440548
+# /gate/source/mybeam/gps/hist/point 0.31640992278553315 956.1827543804721
+# /gate/source/mybeam/gps/hist/point 0.38670098278234943 832.4129856491513
+# /gate/source/mybeam/gps/hist/point 0.4569920427791657 726.5945091868555
+# /gate/source/mybeam/gps/hist/point 0.5272831027759821 644.0286745936259
+# /gate/source/mybeam/gps/hist/point 0.5975741627727984 570.4479641139327
+# /gate/source/mybeam/gps/hist/point 0.6678652227696147 514.3572842574922
+# /gate/source/mybeam/gps/hist/point 0.7381562827664311 464.6610809150464
+# /gate/source/mybeam/gps/hist/point 0.8084473427632474 418.6360147807322
+# /gate/source/mybeam/gps/hist/point 0.8787384027600638 380.56613237281795
+# /gate/source/mybeam/gps/hist/point 0.94902946275688 348.37259695898945
+# /gate/source/mybeam/gps/hist/point 1.0193205227536963 318.23894231943046
+# /gate/source/mybeam/gps/hist/point 1.0896115827505128 289.3879741742801
+# /gate/source/mybeam/gps/hist/point 1.159902642747329 266.92516389044056
+# /gate/source/mybeam/gps/hist/point 1.2301937027441454 247.31838461877985
+# /gate/source/mybeam/gps/hist/point 1.3004847627409617 229.09539028443504
+# /gate/source/mybeam/gps/hist/point 1.370775822737778 210.13311358631978
+# /gate/source/mybeam/gps/hist/point 1.4410668827345945 196.53537301506162
+# /gate/source/mybeam/gps/hist/point 1.5113579427314106 183.01977492866706
+# /gate/source/mybeam/gps/hist/point 1.581649002728227 169.61159393786326
+# /gate/source/mybeam/gps/hist/point 1.6519400627250431 157.51137405219444
+# /gate/source/mybeam/gps/hist/point 1.7222311227218596 145.16472671193452
+# /gate/source/mybeam/gps/hist/point 1.7925221827186761 134.9664212834914
+# /gate/source/mybeam/gps/hist/point 1.8628132427154922 125.16619097400195
+# /gate/source/mybeam/gps/hist/point 1.9331043027123087 118.65166005905436
+# /gate/source/mybeam/gps/hist/point 2.0033953627091248 109.07890124611012
+# /gate/source/mybeam/gps/hist/point 2.0736864227059413 102.8171164384347
+# /gate/source/mybeam/gps/hist/point 2.1439774827027573 95.8792357938064
+# /gate/source/mybeam/gps/hist/point 2.214268542699574 89.76909865049421
+# /gate/source/mybeam/gps/hist/point 2.2845596026963904 82.4331428869112
+# /gate/source/mybeam/gps/hist/point 2.354850662693207 78.4839849607796
+# /gate/source/mybeam/gps/hist/point 2.425141722690023 71.7672571600136
+# /gate/source/mybeam/gps/hist/point 2.495432782686839 68.43732719669944
+# /gate/source/mybeam/gps/hist/point 2.5657238426836555 62.44092580166001
+# /gate/source/mybeam/gps/hist/point 2.636014902680472 57.22803733916563
+# /gate/source/mybeam/gps/hist/point 2.7063059626772885 53.108275790624944
+# /gate/source/mybeam/gps/hist/point 2.7765970226741046 49.77202717462821
+# /gate/source/mybeam/gps/hist/point 2.8468880826709206 46.783304456131724
+# /gate/source/mybeam/gps/hist/point 2.917179142667737 42.90997036218105
+# /gate/source/mybeam/gps/hist/point 2.9874702026645537 39.93388494904789
+# /gate/source/mybeam/gps/hist/point 3.05776126266137 37.15367776905112
+# /gate/source/mybeam/gps/hist/point 3.1280523226581862 35.125390258189434
+# /gate/source/mybeam/gps/hist/point 3.1983433826550023 31.504802271511714
+# /gate/source/mybeam/gps/hist/point 3.268634442651819 29.03420907292327
+# /gate/source/mybeam/gps/hist/point 3.3389255026486353 27.04383347815286
+# /gate/source/mybeam/gps/hist/point 3.4092165626454514 25.07873249410935
+# /gate/source/mybeam/gps/hist/point 3.479507622642268 23.258960521747674
+# /gate/source/mybeam/gps/hist/point 3.549798682639084 21.407595285977074
+# /gate/source/mybeam/gps/hist/point 3.6200897426359004 19.183429541979336
+# /gate/source/mybeam/gps/hist/point 3.690380802632717 17.45843735984494
+# /gate/source/mybeam/gps/hist/point 3.760671862629533 16.365310445891463
+# /gate/source/mybeam/gps/hist/point 3.8309629226263495 15.411193890937943
+# /gate/source/mybeam/gps/hist/point 3.9012539826231656 13.74938823562164
+# /gate/source/mybeam/gps/hist/point 3.971545042619982 12.99114991380427
+# /gate/source/mybeam/gps/hist/point 4.041836102616799 11.291432342396927
+# /gate/source/mybeam/gps/hist/point 4.112127162613614 10.29308521867073
+# /gate/source/mybeam/gps/hist/point 4.182418222610432 8.808201838445056
+# /gate/source/mybeam/gps/hist/point 4.252709282607247 8.309028276581959
+# /gate/source/mybeam/gps/hist/point 4.323000342604064 7.784580103991713
+# /gate/source/mybeam/gps/hist/point 4.39329140260088 6.407113819356734
+# /gate/source/mybeam/gps/hist/point 4.463582462597696 5.92689621553907
+# /gate/source/mybeam/gps/hist/point 4.533873522594513 5.364536126857857
+# /gate/source/mybeam/gps/hist/point 4.604164582591329 4.694758942585851
+# /gate/source/mybeam/gps/hist/point 4.674455642588145 4.107124243177445
+# /gate/source/mybeam/gps/hist/point 4.744746702584962 3.4942149330416905
+# /gate/source/mybeam/gps/hist/point 4.8150377625817775 2.6664714317244003
+# /gate/source/mybeam/gps/hist/point 4.885328822578595 2.2241657439976037
+# /gate/source/mybeam/gps/hist/point 4.9556198825754105 1.971419636725149
+# /gate/source/mybeam/gps/hist/point 5.025910942572227 1.7692227509072076
+# /gate/source/mybeam/gps/hist/point 5.0962020025690435 1.2005440095441613
+# /gate/source/mybeam/gps/hist/point 5.166493062565859 1.093126913953368
+# /gate/source/mybeam/gps/hist/point 5.236784122562677 0.7519196691355536
+# /gate/source/mybeam/gps/hist/point 5.307075182559492 0.46126164577223044
+# /gate/source/mybeam/gps/hist/point 5.377366242556309 0.3348885921360071
+# /gate/source/mybeam/gps/hist/point 5.447657302553125 0.14532901168166162
+# /gate/source/mybeam/gps/hist/point 5.517948362549941 0.012637305363622751
+# /gate/source/mybeam/gps/hist/point 5.588239422546758 0.018955958045434127
+# /gate/source/mybeam/gps/hist/inter Log 
+
+#=====================================================
+# START BEAMS
+#=====================================================
+
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed {seed}
+#1234567890
+/gate/application/noGlobalOutput
+
+#/tracking/verbose 2
+
+/gate/application/setTotalNumberOfPrimaries {primaries}
+#1000
+/gate/application/start
+

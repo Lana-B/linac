@@ -1,6 +1,6 @@
 /gate/actor/addActor                         PhaseSpaceActor PhS_e
 /gate/actor/PhS_e/attachTo                   PhS_Plane_Two
-/gate/actor/PhS_e/save 	                     /work/lb8075/PhaseSpaces/PhS2_{jaws}_Elec_v2/output{id}.root
+/gate/actor/PhS_e/save 	                     /work/lb8075/PhaseSpaces/PS2/PhS2_{jaws}_Elec_v3/output{id}.root
 /gate/actor/PhS_e/enableParticleName         true
 /gate/actor/PhS_e/enableProductionVolume     true
 /gate/actor/PhS_e/enableProductionProcess    true

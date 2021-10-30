@@ -1,0 +1,33 @@
+#!/bin/bash 
+#PBS -l walltime=4:59:00 
+#PBS -j oe
+#PBS -l select=1:ncpus=1
+#PBS -l select=1:ncpus=1:mem=500mb
+#PBS -J 1-200
+#PBS -o /work/lb8075/job_logfiles
+
+module add apps/gate/8.2
+
+prim=1000000
+
+field="40x40"
+
+now=$(date) 
+echo "Start : $now" 
+
+myCommand="Gate /home/lb8075/linac/mac/Main_PhS3_BigSensor_Flexible_airbox_bigger_smallstep_twopeaks.mac -a '[id,$PBS_ARRAY_INDEX] [peakzlength_um,300] [peakztrans_mm,-5.35] [peakzlength_um,250] [peakztrans_mm,-5.375] [orientation,down] [peak_material,Aluminium] [inputPhaseSpaceFile,/work/lb8075/PhaseSpaces/Generated_PhS2_Electrons_${field}/generatedElectron_PhS2_${field}_{id}.root] [seed,$RANDOM$RANDOM$RANDOM] [primaries,$prim] [pathGateMaterials,/home/lb8075/linac/data/GateMaterials.db] [pathOutputDose,/work/lb8075/PhaseSpaces/PhS3BigSensor_${field}_Elec_Square_V3] [inputParticleType,/gate/source/beam_g/setParticleType e-] [xsecbias,1]'"
+
+eval $myCommand
+now=$(date)
+echo "Time: $now" 
+
+myCommand="Gate /home/lb8075/linac/mac/Main_PhS3_BigSensor_Flexible_airbox_bigger_smallstep_twopeaks.mac -a '[id,$PBS_ARRAY_INDEX] [peakzlength_um,300] [peakztrans_mm,-5.35] [peakzlength_um,250] [peakztrans_mm,-5.325] [orientation,up] [peak_material,Aluminium] [inputPhaseSpaceFile,/work/lb8075/PhaseSpaces/Generated_PhS2_Electrons_${field}/generatedElectron_PhS2_${field}_{id}.root] [seed,$RANDOM$RANDOM$RANDOM] [primaries,$prim] [pathGateMaterials,/home/lb8075/linac/data/GateMaterials.db] [pathOutputDose,/work/lb8075/PhaseSpaces/PhS3BigSensor_${field}_Elec_Square_V3] [inputParticleType,/gate/source/beam_g/setParticleType e-] [xsecbias,1]'"
+
+eval $myCommand
+now=$(date)
+echo "Time: $now" 
+
+echo "Time of completion : $now" 
+
+
+

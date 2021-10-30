@@ -1,0 +1,19 @@
+#!/bin/bash 
+#PBS -l walltime=22:59:59
+#PBS -j oe
+#PBS -l select=1:ncpus=1
+#PBS -l select=1:ncpus=1:mem=500mb
+#PBS -J 3,5,12,18,20,31,36,38,43,59,70,75,76,78,80,81,93,98,101,102,103,104,106,107,108,110,111,112,114,115,118,125,129,134,138,140,142,144,145,147,152,153,154,164,165,169,174,181,182,183,184,185,187,188,194,199,200
+#PBS -o /work/lb8075/job_logfiles
+
+module add apps/gate/8.2
+myScript="Main_PhS3_BigSensor_Flexible_airbox_wCopper.mac"
+cat /home/lb8075/linac/mac/Main_PhS3_BigSensor_Flexible_airbox_wCopper.mac
+now=$(date)
+echo "Start: $now"
+prim=8339070 #for elec
+
+myCommand="cp /home/lb8075/linac/mac/Main_PhS3_BigSensor_Flexible_airbox_wCopper.mac .; Gate $myScript -a '[seed,$RANDOM$RANDOM$RANDOM] [primaries,$prim] [pathGateMaterials,/home/lb8075/linac/data/GateMaterials.db] [id,$PBS_ARRAY_INDEX] [pathOutputDose,/work/lb8075/PhaseSpaces/PS3/PhS3BigSensor_v6_Electrons_highEn_30x30] [inputParticleType,/gate/source/beam_g/setParticleType e-] [inputPhaseSpaceFile,/work/lb8075/PhaseSpaces/GenPhS2/Generated_PhS2_Electrons_highEn_30x30/generatedElectron_PhS2_v4_30x30] [grating_material,Copper] [foil_thick_um,400] [foil_z_um,469800.0] [pass_z_um,469596.5] [epi_z_um,469590.5] [bulk_z_um,469238.0]'" 
+eval $myCommand
+echo "Completion time is $(date)" 
+

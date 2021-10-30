@@ -22,7 +22,7 @@ def runthing(args):
 	PBS_ID=int(args.jobID)
 	ents_gen=int(args.entries)
 	n_file=int(args.filenum)
-	filename=f"/work/lb8075/PhaseSpaces/PhS2_{field_size}_p1_Gamma_v2/Skimmed_output*01.root"
+	filename=f"/work/lb8075/PhaseSpaces/PS2/PhS2_{field_size}_p1_Gamma_v3_highEn/Skimmed_output*1.root"
 	print(f"input file: {filename}")
 	ur=uproot.pandas.iterate(filename, "PhaseSpace", ['X','Y','dX','dY','Ekine'])
 	mylist=list(ur)        
@@ -48,6 +48,7 @@ def runthing(args):
 
 	del nparr
 	del values
+
 	gc.collect()
 
 	for i in range(PBS_ID,PBS_ID+1):
@@ -67,11 +68,12 @@ def runthing(args):
 
 		newdf['dZ']=-1*pow(1.0-newdf['dX']*newdf['dX']-newdf['dY']*newdf['dY'],0.5)
 		newdf=newdf.astype('float32')
+		newdf=newdf[(newdf['dZ']<0)]
 
 		newdf["Z"]=-0.0000005
 		newdf=newdf.dropna(axis='index')
 		newdf=newdf.astype('float32')
-		newdf.to_root(f"/work/lb8075/PhaseSpaces/Generated_PhS2_Gammas_{field_size}/generatedGamma_PhS2_{field_size}_{i}_file{n_file}.root", key='PhaseSpace')
+		newdf.to_root(f"/work/lb8075/PhaseSpaces/GenPhS2/Generated_PhS2_Gammas_highEn_{field_size}/generatedGamma_PhS2_{field_size}_{i}_file{n_file}.root", key='PhaseSpace')
 		print("root file saved",i)
 
 	print("Finished")

@@ -1,0 +1,272 @@
+
+#seed, primaries, id, jaws
+
+
+#=====================================================
+# VERBOSITY
+#=====================================================
+
+#/control/execute mac/verbose.mac
+
+#=====================================================
+# VISUALISATION
+#=====================================================
+
+# /control/execute mac/visu.mac
+
+# =====================================================
+# GEOMETRY
+# =====================================================
+
+/gate/geometry/setMaterialDatabase /home/lb8075/linac/data/GateMaterials.db
+
+# WORLD
+/gate/world/setMaterial            Air
+/gate/world/geometry/setXLength    1 m
+/gate/world/geometry/setYLength    1 m
+/gate/world/geometry/setZLength    2.5 m
+# /gate/world/vis/setVisible 1
+
+# LINAC HEAD
+# World origin is in the center of the beam e- source (not the real
+# isocenter of the gantry room)
+/gate/geometry/setMaterialDatabase /home/lb8075/linac/data/LinacMaterials.db
+/control/execute /home/lb8075/linac/mac/linac_P1and2_head.mac
+
+
+# -----------------------------------------------------
+# Jaws
+# -----------------------------------------------------
+
+/control/execute /home/lb8075/linac/mac/linac_jaws_{jaws}.mac
+
+
+/gate/world/daughters/name                   PhS_Plane_Two
+/gate/world/daughters/insert                 box
+/gate/PhS_Plane_Two/setMaterial              Vacuum
+/gate/PhS_Plane_Two/geometry/setXLength      30 cm
+/gate/PhS_Plane_Two/geometry/setYLength      30 cm
+/gate/PhS_Plane_Two/geometry/setZLength      1 nm
+/gate/PhS_Plane_Two/placement/setTranslation 0.0 0.0 471 mm #(-529)
+/gate/PhS_Plane_Two/vis/setColor             cyan
+/gate/PhS_Plane_Two/vis/setVisible           1
+
+/gate/world/daughters/name                   FS_Plane
+/gate/world/daughters/insert                 box
+/gate/FS_Plane/setMaterial                   Air	
+/gate/FS_Plane/geometry/setXLength           50 cm
+/gate/FS_Plane/geometry/setYLength           50 cm
+/gate/FS_Plane/geometry/setZLength           1 nm
+/gate/FS_Plane/placement/setTranslation      0.0 0.0 0.0 mm
+/gate/FS_Plane/vis/setColor                  cyan
+/gate/FS_Plane/vis/setVisible                1
+
+
+/gate/world/daughters/name                      kill_box_end
+/gate/world/daughters/insert                    box
+/gate/kill_box_end/setMaterial              Vacuum
+/gate/kill_box_end/geometry/setXLength         70 cm
+/gate/kill_box_end/geometry/setYLength         70 cm
+/gate/kill_box_end/geometry/setZLength         0.1 mm
+/gate/kill_box_end/placement/setTranslation 0.0 0.0 -3 mm
+/gate/kill_box_end/vis/setVisible           1
+/gate/kill_box_end/vis/setColor                  red
+
+/gate/world/daughters/name                      kill_box_side_world
+/gate/world/daughters/insert                    box
+/gate/kill_box_side_world/setMaterial              Vacuum
+/gate/kill_box_side_world/geometry/setXLength         0.79 m
+/gate/kill_box_side_world/geometry/setYLength         0.01 mm
+/gate/kill_box_side_world/geometry/setZLength       0.5 m
+/gate/kill_box_side_world/placement/setTranslation 0.0 400.0 530 mm
+/gate/kill_box_side_world/vis/setVisible           1
+/gate/kill_box_side_world/vis/setColor                  red
+
+/gate/world/daughters/name                      kill_box_side_world2
+/gate/world/daughters/insert                    box
+/gate/kill_box_side_world2/setMaterial              Vacuum
+/gate/kill_box_side_world2/geometry/setXLength         0.79 m
+/gate/kill_box_side_world2/geometry/setYLength         0.01 mm
+/gate/kill_box_side_world2/geometry/setZLength       0.5 m
+/gate/kill_box_side_world2/placement/setTranslation 0.0 -400.0 530 mm
+/gate/kill_box_side_world2/vis/setVisible           1
+/gate/kill_box_side_world2/vis/setColor                  red
+
+/gate/world/daughters/name                      kill_box_side_world3
+/gate/world/daughters/insert                    box
+/gate/kill_box_side_world3/setMaterial              Vacuum
+/gate/kill_box_side_world3/geometry/setXLength         0.01 mm
+/gate/kill_box_side_world3/geometry/setYLength         0.79 m
+/gate/kill_box_side_world3/geometry/setZLength       0.5 m
+/gate/kill_box_side_world3/placement/setTranslation 400.0 0.0 530 mm
+/gate/kill_box_side_world3/vis/setVisible           1
+/gate/kill_box_side_world3/vis/setColor                  red
+
+/gate/world/daughters/name                      kill_box_side_world4
+/gate/world/daughters/insert                    box
+/gate/kill_box_side_world4/setMaterial              Vacuum
+/gate/kill_box_side_world4/geometry/setXLength         0.01 mm
+/gate/kill_box_side_world4/geometry/setYLength         0.79 m
+/gate/kill_box_side_world4/geometry/setZLength       0.5 m
+/gate/kill_box_side_world4/placement/setTranslation -400.0 0.0 530 mm
+/gate/kill_box_side_world4/vis/setVisible           1
+/gate/kill_box_side_world4/vis/setColor                  red
+
+# =====================================================
+# PHYSICS
+# =====================================================
+
+/gate/physics/addPhysicsList emstandard_opt4
+
+/gate/physics/Gamma/SetCutInRegion      world 1 mm
+/gate/physics/Electron/SetCutInRegion   world 1 mm
+/gate/physics/Positron/SetCutInRegion   world 1 mm
+
+
+/gate/physics/Gamma/SetCutInRegion      primary_collimator 0.5 mm
+/gate/physics/Electron/SetCutInRegion   primary_collimator 0.5 mm
+/gate/physics/Positron/SetCutInRegion   primary_collimator 0.5 mm
+
+/gate/physics/Gamma/SetCutInRegion      ionizing_chamber 0.5 mm
+/gate/physics/Electron/SetCutInRegion   ionizing_chamber 0.5 mm
+/gate/physics/Positron/SetCutInRegion   ionizing_chamber 0.5 mm
+
+/gate/physics/Gamma/SetCutInRegion      back_scatter_plate 0.5 mm
+/gate/physics/Electron/SetCutInRegion   back_scatter_plate 0.5 mm
+/gate/physics/Positron/SetCutInRegion   back_scatter_plate 0.5 mm
+
+/gate/physics/Gamma/SetCutInRegion      mirror 0.5 mm
+/gate/physics/Electron/SetCutInRegion   mirror 0.5 mm
+/gate/physics/Positron/SetCutInRegion   mirror 0.5 mm
+
+/gate/physics/Gamma/SetCutInRegion      flattening_filter 0.5 mm
+/gate/physics/Electron/SetCutInRegion   flattening_filter 0.5 mm
+/gate/physics/Positron/SetCutInRegion   flattening_filter 0.5 mm
+
+/gate/physics/Gamma/SetCutInRegion      mlc_leaf 0.0005 mm
+/gate/physics/Electron/SetCutInRegion   mlc_leaf 0.0005 mm
+/gate/physics/Positron/SetCutInRegion   mlc_leaf 0.0005 mm
+
+/gate/physics/Gamma/SetCutInRegion      jaws_y1 0.0005 mm
+/gate/physics/Electron/SetCutInRegion   jaws_y1 0.0005 mm
+/gate/physics/Positron/SetCutInRegion   jaws_y1 0.0005 mm
+
+/gate/physics/Gamma/SetCutInRegion      jaws_y2 0.0005 mm
+/gate/physics/Electron/SetCutInRegion   jaws_y2 0.0005 mm
+/gate/physics/Positron/SetCutInRegion   jaws_y2 0.0005 mm
+
+/gate/physics/Gamma/SetCutInRegion      jaws_x1 0.0005 mm
+/gate/physics/Electron/SetCutInRegion   jaws_x1 0.0005 mm
+/gate/physics/Positron/SetCutInRegion   jaws_x1 0.0005 mm
+
+/gate/physics/Gamma/SetCutInRegion      jaws_x2 0.0005 mm
+/gate/physics/Electron/SetCutInRegion   jaws_x2 0.0005 mm
+/gate/physics/Positron/SetCutInRegion   jaws_x2 0.0005 mm
+
+/gate/physics/processList Enabled
+/gate/physics/processList Initialized
+# /gate/physics/print PhysicsCuts.txt
+#=====================================================
+# DETECTORS
+#=====================================================
+/gate/actor/addActor                         PhaseSpaceActor PhS_e
+/gate/actor/PhS_e/attachTo                   PhS_Plane_Two
+/gate/actor/PhS_e/save 	                     /work/lb8075/PhaseSpaces/P1and2_{jaws}_Elec_Sensor/output{id}.root
+/gate/actor/PhS_e/enableParticleName         true
+/gate/actor/PhS_e/enableProductionVolume     true
+/gate/actor/PhS_e/enableProductionProcess    true
+/gate/actor/PhS_e/useVolumeFrame             true
+/gate/actor/PhS_e/addFilter                  particleFilter
+/gate/actor/PhS_e/particleFilter/addParticle e-
+/gate/actor/PhS_e/particleFilter/addParticle e+
+/gate/actor/PhS_e/enableZPosition            true
+/gate/actor/PhS_e/enableProductionVolume true
+/gate/actor/PhS_e/enableProductionProcess true
+
+
+/gate/actor/addActor                                    PhaseSpaceActor FieldSizeChecker
+/gate/actor/FieldSizeChecker/attachTo                   FS_Plane
+/gate/actor/FieldSizeChecker/save 	                    /work/lb8075/PhaseSpaces/P1and2_{jaws}_Elec_Iso/output{id}.root
+/gate/actor/FieldSizeChecker/enableParticleName         true
+/gate/actor/FieldSizeChecker/enableProductionVolume     true
+/gate/actor/FieldSizeChecker/enableProductionProcess    true
+/gate/actor/FieldSizeChecker/useVolumeFrame             true
+/gate/actor/FieldSizeChecker/addFilter                  particleFilter
+/gate/actor/FieldSizeChecker/particleFilter/addParticle e-
+/gate/actor/FieldSizeChecker/particleFilter/addParticle e+
+/gate/actor/FieldSizeChecker/enableZPosition            true
+
+# ----------------------------------------------------
+# Kill actor to stop particles when they go inside a region
+
+/gate/actor/addActor          KillActor killer0
+/gate/actor/killer0/attachTo  kill_box_top
+/gate/actor/addActor          KillActor killer1
+/gate/actor/killer1/attachTo  kill_box_bottom
+/gate/actor/addActor          KillActor killer2
+/gate/actor/killer2/attachTo  kill_box_bottom2
+/gate/actor/addActor          KillActor killer3
+/gate/actor/killer3/attachTo  kill_box_side
+/gate/actor/addActor          KillActor killer4
+/gate/actor/killer4/attachTo  kill_box_side2
+/gate/actor/addActor          KillActor killer5
+/gate/actor/killer5/attachTo  kill_box_side3
+/gate/actor/addActor          KillActor killer6
+/gate/actor/killer6/attachTo  kill_box_side4
+/gate/actor/addActor          KillActor killer7
+/gate/actor/killer7/attachTo  kill_box_end
+/gate/actor/addActor          KillActor killer8
+/gate/actor/killer8/attachTo  kill_box_side_world
+/gate/actor/addActor          KillActor killer9
+/gate/actor/killer9/attachTo  kill_box_side_world2
+/gate/actor/addActor          KillActor killer10
+/gate/actor/killer10/attachTo  kill_box_side_world3
+/gate/actor/addActor          KillActor killer11
+/gate/actor/killer11/attachTo  kill_box_side_world4
+
+
+#=====================================================
+# INITIALISATION
+#=====================================================
+
+
+/gate/run/initialize
+# Bremsstrahlung splitting : generate 100 photon (if below 100 MeV) with weight 1/100
+
+# /process/em/setSecBiasing compt flattening_filter_cone6 100 100 MeV
+# /process/em/setSecBiasing eBrem target {bias} 100 MeV #changed to variable from 100 02/11/20
+
+#====================================================
+# BEAMS
+#=====================================================
+
+/gate/source/addSource                mybeam gps
+/gate/source/mybeam/gps/particle      e-
+/gate/source/mybeam/gps/pos/type      Beam
+/gate/source/mybeam/gps/pos/rot1      0 1 0
+/gate/source/mybeam/gps/pos/rot2      1 0 0
+/gate/source/mybeam/gps/pos/shape     Circle
+/gate/source/mybeam/gps/pos/centre    0. 0. 1000.6 mm
+/gate/source/mybeam/gps/pos/sigma_x   1.274 mm
+/gate/source/mybeam/gps/pos/sigma_y   1.274 mm
+/gate/source/mybeam/gps/ang/rot1      1 0 0
+/gate/source/mybeam/gps/ang/rot2      0 1 0
+/gate/source/mybeam/gps/ang/type      beam1d
+/gate/source/mybeam/gps/ang/sigma_r   0 deg
+/gate/source/mybeam/gps/ene/type      Gauss
+/gate/source/mybeam/gps/ene/mono      5.8 MeV
+/gate/source/mybeam/gps/ene/sigma     0.074 MeV
+/gate/source/mybeam/gps/direction     0 0 -1
+
+#=====================================================
+# START BEAMS
+#=====================================================
+
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed {seed}
+/gate/application/noGlobalOutput
+
+#/tracking/verbose 2
+
+/gate/application/setTotalNumberOfPrimaries {primaries}
+/gate/application/start

@@ -1,0 +1,19 @@
+#!/bin/bash 
+#PBS -l walltime=02:59:00
+#PBS -j oe
+#PBS -l select=1:ncpus=1
+#PBS -l select=1:ncpus=1:mem=500mb
+#PBS -J 1-200
+#PBS -o /work/lb8075/job_logfiles
+
+module add apps/gate/8.2
+myScript="/home/lb8075/linac/mac/Main_PhS3_BigSensor_Flexible_airbox_wCopper.mac"
+cat $myScript
+now=$(date)
+echo "Start: $now"
+prim=1000000 #for elec
+
+myCommand="Gate $myScript -a '[seed,$RANDOM$RANDOM$RANDOM] [primaries,$prim] [pathGateMaterials,/home/lb8075/linac/data/GateMaterials.db] [id,$PBS_ARRAY_INDEX] [pathOutputDose,/work/lb8075/PhaseSpaces/PhS3BigSensor_v3_Gammas_30x30/] [inputParticleType,/gate/source/beam_g/setParticleType gamma] [inputPhaseSpaceFile,/work/lb8075/PhaseSpaces/GenPhS2/Generated_PhS2_Gammas_30x30/generatedElectron_PhS2_v4_10x10] [grating_material,Aluminium] [foil_thick_um,40] [foil_z_um,469980.0] [pass_z_um,469955.0] [epi_z_um,469945.0] [bulk_z_um,469590.0]'" 
+eval $myCommand
+echo "Completion time is $(date)" 
+
